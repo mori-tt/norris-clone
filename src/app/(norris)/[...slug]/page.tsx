@@ -5,6 +5,7 @@ import {
   getScrapedPage,
   listScrapedPaths,
   scrapedPathFromSlug,
+  slugUrlForm,
 } from "@/lib/pages";
 
 /** 本家サイトの下層ページ(スクレイプ済みHTMLをそのまま描画) */
@@ -15,7 +16,7 @@ export function generateStaticParams() {
       slug: p
         .replace(/^\/+|\/+$/g, "")
         .split("/")
-        .map((s) => decodeURIComponent(s)),
+        .map(slugUrlForm),
     }));
 }
 

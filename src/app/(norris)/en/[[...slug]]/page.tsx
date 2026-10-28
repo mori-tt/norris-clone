@@ -9,6 +9,7 @@ import {
   getScrapedPage,
   listScrapedPaths,
   scrapedPathFromSlug,
+  slugUrlForm,
 } from "@/lib/pages";
 
 const LOCALE: Locale = "en";
@@ -23,7 +24,7 @@ export function generateStaticParams() {
     slug: p
       .replace(/^\/+|\/+$/g, "")
       .split("/")
-      .map((s) => decodeURIComponent(s)),
+      .map(slugUrlForm),
   }));
   return [{ slug: [] }, ...params];
 }

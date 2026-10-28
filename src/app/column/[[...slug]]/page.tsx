@@ -5,6 +5,7 @@ import {
   getScrapedPage,
   listScrapedPaths,
   scrapedPathFromSlug,
+  slugUrlForm,
 } from "@/lib/pages";
 
 /**
@@ -21,7 +22,7 @@ export function generateStaticParams() {
         .replace(/^\/column\/?|\/+$/g, "")
         .split("/")
         .filter(Boolean)
-        .map((s) => decodeURIComponent(s)),
+        .map(slugUrlForm),
     }));
 }
 

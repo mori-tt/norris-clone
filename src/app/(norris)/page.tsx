@@ -272,7 +272,7 @@ export default async function HomePage({
             >
               {f.href && (
                 <div className="box_link">
-                  <Link href={lh(f.href)}>詳細はこちら</Link>
+                  <Link href={lh(f.href)}>{chrome.details}</Link>
                 </div>
               )}
               <div className="txt_wrap">

@@ -110,6 +110,7 @@ type Chrome = {
   closeMenu: string;
   newsList: string;
   langName: string;
+  details: string;
   skipContactNote: string;
 };
 
@@ -134,6 +135,7 @@ export const CHROME: Record<Locale, Chrome> = {
     closeMenu: "閉じる",
     newsList: "一覧へ",
     langName: "日本語",
+    details: "詳細はこちら",
     skipContactNote: "",
   },
   en: {
@@ -156,6 +158,7 @@ export const CHROME: Record<Locale, Chrome> = {
     closeMenu: "Close",
     newsList: "See all",
     langName: "English",
+    details: "Learn more",
     skipContactNote: "",
   },
   zh: {
@@ -178,6 +181,7 @@ export const CHROME: Record<Locale, Chrome> = {
     closeMenu: "关闭",
     newsList: "查看全部",
     langName: "中文",
+    details: "了解更多",
     skipContactNote: "",
   },
 };
