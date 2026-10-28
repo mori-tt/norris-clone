@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { getHome, getPosts, getSite } from "@/lib/content";
+import { Fragment } from "react";
+import { getAccess, getHome, getPosts, getSite } from "@/lib/content";
 import { HeroSlider } from "@/components/HeroSlider";
-import { SectionHeading } from "@/components/SectionHeading";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { CtaBar } from "@/components/CtaBar";
@@ -23,6 +23,7 @@ export default async function HomePage({
 }) {
   const site = getSite(locale);
   const home = getHome(locale);
+  const access = getAccess(locale);
   const chrome = CHROME[locale];
   const prefix = localePrefix(locale);
   const lh = (href: string) =>
@@ -40,7 +41,7 @@ export default async function HomePage({
 
       {/* 泌尿器科バナー */}
       {home.banner && (
-        <div className="bnr-block">
+        <div className="bnr_block">
           <div className="topinner">
             <p>
               <Link href={lh(home.banner.href || "#")}>
@@ -53,7 +54,7 @@ export default async function HomePage({
       )}
 
       {/* sec01: News + Schedule */}
-      <section className="sec_news py-[4%]">
+      <section className="sec01 sec_news">
         <div className="topinner">
           <div className="columns">
             <div className="column col_2 news">
@@ -68,14 +69,14 @@ export default async function HomePage({
               </div>
               <dl>
                 {news.map((p) => (
-                  <div key={p.slug} className="contents">
+                  <Fragment key={p.slug}>
                     <dt>
                       <time dateTime={p.date}>{formatDate(p.date)}</time>
                     </dt>
                     <dd>
                       <Link href={`${prefix}/news/${p.slug}/`}>{p.title}</Link>
                     </dd>
-                  </div>
+                  </Fragment>
                 ))}
               </dl>
             </div>
@@ -95,9 +96,9 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* Instagram */}
+      {/* Instagram(本家 sec01 2個目) */}
       {home.instagram && home.instagram.images.length > 0 && (
-        <section className="py-[4%]">
+        <section className="sec01">
           <div className="topinner">
             <h2 className="ttl">{home.instagram.title}</h2>
             <div className="insta-header">
@@ -140,10 +141,13 @@ export default async function HomePage({
       {/* sec02: 再生医療メニュー + 診療メニュー */}
       <section className="sec02">
         <div className="topinner">
-          <SectionHeading ja={home.regen.title} ghost="menu" />
-          <p className="mb-[4%] text-center">{home.regen.text}</p>
+          <h2 className="ttl">{home.regen.title}</h2>
+          <p
+            className="pc_tac mb0"
+            dangerouslySetInnerHTML={{ __html: home.regen.text }}
+          />
           {home.regen.bannerHref && (
-            <div className="bnr-block">
+            <div className="bnr_block">
               <div className="topinner">
                 <div className="btn">
                   <Link href={lh(home.regen.bannerHref)}>
@@ -153,15 +157,30 @@ export default async function HomePage({
               </div>
             </div>
           )}
-          <MenuCardRow cards={home.regen.cards} lh={lh} />
+          <MenuCardRow
+            cards={home.regen.cards}
+            lh={lh}
+            firstTtl={1}
+            textCls="sameheight"
+            subAfter
+          />
 
-          <h2 className="ttl ghost-menu">{home.menuCards.title}</h2>
-          <p className="mb-[4%] text-center">{home.menuCards.text}</p>
-          <MenuCardRow cards={home.menuCards.cards} lh={lh} />
+          <h2 className="ttl ttl2">{home.menuCards.title}</h2>
+          <p
+            className="pc_tac mbchange pc-text-center"
+            dangerouslySetInnerHTML={{ __html: home.menuCards.text }}
+          />
+          <MenuCardRow
+            cards={home.menuCards.cards}
+            lh={lh}
+            firstTtl={4}
+            textCls="sameheight2"
+            wrapCls="mbchange2"
+          />
 
-          <ul className="menu-link-list mt-[4%]">
+          <ul className="columns wrap sp_col_2 sp_wrap con02">
             {home.menuCards.links.map((l) => (
-              <li key={l.href}>
+              <li key={l.href} className="column col_4">
                 <Link href={lh(l.href)}>{l.label}</Link>
               </li>
             ))}
@@ -172,9 +191,12 @@ export default async function HomePage({
       {/* sec06: 症状・お悩みから探す */}
       <section className="sec06">
         <div className="topinner">
-          <h2 className="ttl ghost-treatment">{home.concerns.title}</h2>
-          <p className="mb-[2%] text-center">{home.concerns.text}</p>
-          <ul className="columns wrap sp_col_2">
+          <h2 className="ttl">{home.concerns.title}</h2>
+          <p
+            className="pc_tac"
+            dangerouslySetInnerHTML={{ __html: home.concerns.text }}
+          />
+          <ul className="columns wrap sp_col_2 sp_wrap">
             {home.concerns.items.map((c) => (
               <li key={c.href} className="column col_3">
                 <Link href={lh(c.href)}>
@@ -190,23 +212,32 @@ export default async function HomePage({
       {/* sec03: 機器から探す */}
       <section className="sec03">
         <div className="topinner">
-          <h2 className="ttl ghost-machine">{home.devices.title}</h2>
-          <p className="mb-[4%] text-center">{home.devices.text}</p>
-          <div className="columns wrap sp_col_2">
+          <h2 className="ttl">{home.devices.title}</h2>
+          <p
+            className="pc_tac"
+            dangerouslySetInnerHTML={{ __html: home.devices.text }}
+          />
+          <div className="columns wrap sp_col_2 sp_wrap">
             {home.devices.items.map((d) => (
               <div key={d.name} className="column col_3">
-                <Link href={lh(d.href)} className="box-link" aria-label={d.name} />
+                <div className="box_link">
+                  <Link href={lh(d.href)} aria-label={d.name} />
+                </div>
                 <figure>
-                  <picture>
-                    {d.imageSp && (
-                      <source media="(max-width: 767px)" srcSet={d.imageSp} />
-                    )}
-                    { }
-                    <img src={d.image} alt={d.name} loading="lazy" />
-                  </picture>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={d.image} alt={d.name} loading="lazy" className="pc" />
+                  {d.imageSp && (
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img
+                      src={d.imageSp}
+                      alt={d.name}
+                      loading="lazy"
+                      className="sp"
+                    />
+                  )}
                 </figure>
                 <h3>{d.name}</h3>
-                <div className="txt-wrap">
+                <div className="txt_wrap">
                   <p>{d.text}</p>
                 </div>
               </div>
@@ -217,31 +248,41 @@ export default async function HomePage({
 
       {/* sec04: 3つの特徴 */}
       <section className="sec04">
-        <div className="topinner">
-          <h2 className="ttl ghost-features">{home.features.title}</h2>
-          <p className="mb-[4%] text-center">{home.features.text}</p>
-          <div className="columns con">
-            {home.features.items.map((f, i) => (
-              <div
-                key={f.title}
-                className="column col_3"
-                style={
-                  f.image ? { backgroundImage: `url(${f.image})` } : undefined
-                }
-              >
-                {f.href && (
-                  <Link href={lh(f.href)} className="box-link" aria-label={f.title} />
-                )}
-                <div className="txt-wrap">
-                  <h3>
-                    <span className="num">{String(i + 1).padStart(2, "0")}</span>
-                    {f.title}
-                  </h3>
-                  <p className="tac">{f.text}</p>
-                </div>
-              </div>
-            ))}
+        <div className="con_ttl">
+          <div className="topinner">
+            <h2
+              className="ttl"
+              dangerouslySetInnerHTML={{ __html: home.features.title }}
+            />
+            <p
+              className="pc_tac"
+              dangerouslySetInnerHTML={{ __html: home.features.text }}
+            />
           </div>
+        </div>
+        <div className="columns con">
+          {home.features.items.map((f, i) => (
+            <div
+              key={f.title}
+              className={`column col_3 con0${i + 1}`}
+              style={
+                f.image ? { backgroundImage: `url(${f.image})` } : undefined
+              }
+            >
+              {f.href && (
+                <div className="box_link">
+                  <Link href={lh(f.href)}>詳細はこちら</Link>
+                </div>
+              )}
+              <div className="txt_wrap">
+                <h3>
+                  <span className="num">{String(i + 1).padStart(2, "0")}</span>
+                  <span dangerouslySetInnerHTML={{ __html: f.title }} />
+                </h3>
+                <p className="tac">{f.text}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -249,9 +290,9 @@ export default async function HomePage({
       {home.greeting && (
         <section className="sec05">
           <div className="topinner">
-            <h2 className="ttl ghost-greeting">{home.greeting.title}</h2>
+            <h2 className="ttl">{home.greeting.title}</h2>
             <div className="columns aic">
-              <div className="column col_2">
+              <div className="column col_2 col_img">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={home.greeting.image}
@@ -259,18 +300,18 @@ export default async function HomePage({
                   loading="lazy"
                 />
               </div>
-              <div className="column col_2">
-                {home.greeting.text.split("\n").map((p) => (
-                  <p key={p.slice(0, 12)} className="mb-4">
-                    {p}
-                  </p>
-                ))}
+              <div className="column col_2 col_txt">
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: home.greeting.text.replace(/\n/g, "<br />"),
+                  }}
+                />
                 <p className="name">
                   <span className="s">{home.greeting.nameTitle}</span>
                   <br />
                   {home.greeting.name}
                 </p>
-                <div className="btn-style outline right">
+                <div className="btn-style right">
                   <Link href={lh(home.greeting.href)}>MORE</Link>
                 </div>
               </div>
@@ -279,35 +320,71 @@ export default async function HomePage({
         </section>
       )}
 
+      {/* Googleマップ */}
+      {access.mapEmbedUrl && (
+        <div className="map_block">
+          <div className="googlemap">
+            <iframe
+              width="600"
+              height="450"
+              style={{ border: 0 }}
+              src={access.mapEmbedUrl}
+              allowFullScreen
+              loading="lazy"
+              title="Google Maps"
+            />
+          </div>
+        </div>
+      )}
+
       {/* sec07: テキスト + クリニック情報 */}
       <section className="sec07">
         <div className="topinner">
           {home.textSection && (
             <>
               <h2 className="ttl">{home.textSection.title}</h2>
-              <div className="prose-clinic">
-                <Blocks blocks={home.textSection.blocks} />
-              </div>
+              <Blocks blocks={home.textSection.blocks} bare />
             </>
           )}
-          {home.clinicTable && (
-            <div className="mt-12">
-              <h3 className="mb-6 text-center font-serif text-xl text-[#8e292c]">
-                {home.clinicTable.title}
-              </h3>
-              <table className="clinic-table">
+        </div>
+        {home.seoBox && (
+          <div className="topinner seo-box">
+            <h3>{home.seoBox.title}</h3>
+            {home.seoBox.paragraphs.map((p) => (
+              <p key={p.slice(0, 16)}>{p}</p>
+            ))}
+            {home.seoBox.btnText && (
+              <div className="c-btn btn-style">
+                <Link className="c-btn-anchor" href={lh(home.seoBox.btnHref)}>
+                  {home.seoBox.btnText}
+                </Link>
+              </div>
+            )}
+            <div className="u-mt50 c-nap">
+              <h3 className="c-nap-title">{home.seoBox.napTitle}</h3>
+              <table className="c-table">
                 <tbody>
-                  {home.clinicTable.rows.map((r) => (
+                  {home.seoBox.rows.map((r) => (
                     <tr key={r.label}>
                       <th>{r.label}</th>
-                      <td>{r.value}</td>
+                      <td>
+                        {r.href ? (
+                          r.href.startsWith("tel:") ? (
+                            <a href={r.href}>{r.value}</a>
+                          ) : (
+                            <Link href={lh(r.href)}>{r.value}</Link>
+                          )
+                        ) : (
+                          r.value
+                        )}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </section>
       <SiteFooter locale={locale} />
       <CtaBar locale={locale} />
@@ -315,10 +392,14 @@ export default async function HomePage({
   );
 }
 
-/** 本家 sec02 のカード行(タイトル帯背景 + 画像 + MORE ボタン) */
+/** 本家 sec02 のカード行(PC=bggrayカード / SP=con01背景カード の二重構造) */
 function MenuCardRow({
   cards,
   lh,
+  firstTtl,
+  textCls,
+  wrapCls = "",
+  subAfter = false,
 }: {
   cards: {
     title: string;
@@ -329,32 +410,75 @@ function MenuCardRow({
     href: string;
   }[];
   lh: (href: string) => string;
+  /** sec_02_ttlNN / con01_N の開始番号 */
+  firstTtl: number;
+  /** sameheight / sameheight2 */
+  textCls: string;
+  wrapCls?: string;
+  /** PCタイトルで sub をタイトルの後に置く(再生医療グループ) */
+  subAfter?: boolean;
 }) {
   return (
-    <div className="columns wrap mb-[4%]">
-      {cards.map((c) => (
-        <div key={c.href} className="column col_3 sec02-card">
-          <p
-            className="card-ttl"
-            style={
-              c.titleBg ? { backgroundImage: `url(${c.titleBg})` } : undefined
-            }
-          >
-            {c.sub && <span className="sub">{c.sub}</span>}
-            {c.title}
-          </p>
-          <p className="card-body">{c.text}</p>
-          <div className="overbtn">
-            <figure>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={c.image} alt={c.title} loading="lazy" />
-            </figure>
-            <div className="btn-style">
-              <Link href={lh(c.href)}>MORE</Link>
+    <>
+      <div className={`columns wrap pc${wrapCls ? ` ${wrapCls}` : ""}`}>
+        {cards.map((c, i) => (
+          <div key={c.href} className="column col_3">
+            <div className="bggray">
+              <p
+                className={`sec02_ttl sec_02_ttl0${firstTtl + i}`}
+                style={
+                  c.titleBg
+                    ? { backgroundImage: `url(${c.titleBg})` }
+                    : undefined
+                }
+              >
+                {!subAfter && c.sub && <span className="sub">{c.sub}</span>}
+                {c.title}
+                {subAfter && c.sub && <span className="sub">{c.sub}</span>}
+              </p>
+              <p className={textCls}>{c.text}</p>
+              <div className="overbtn">
+                <figure>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={c.image} alt={c.title} loading="lazy" />
+                </figure>
+                <div className="btn-style">
+                  <Link href={lh(c.href)}>MORE</Link>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+      <div className="columns wrap con01 sp">
+        {cards.map((c, i) => (
+          <div key={c.href} className={`column col_2 con01_${firstTtl + i}`}>
+            <div className="txt_wrap">
+              <h3>
+                {subAfter ? (
+                  i === 1 ? (
+                    c.title
+                  ) : (
+                    <span className="sub">
+                      {c.title}
+                      {c.sub && <span className="sub">{c.sub}</span>}
+                    </span>
+                  )
+                ) : (
+                  <>
+                    {c.sub && <span className="sub">{c.sub}</span>}
+                    {c.title}
+                  </>
+                )}
+              </h3>
+              <p>{c.text}</p>
+              <div className="btn-style">
+                <Link href={lh(c.href)}>MORE</Link>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
   );
 }

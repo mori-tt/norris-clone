@@ -19,6 +19,11 @@ export const blockSchema = z.discriminatedUnion("type", [
   }),
   // .md ファイルや外部CMS由来の本文は html ブロックとして保持(自前コンテンツ前提)
   z.object({ type: z.literal("html"), html: z.string() }),
+  // 枠付き2カラムブロック(トップ sec07 の .border-block 相当)
+  z.object({
+    type: z.literal("borderBlocks"),
+    items: z.array(z.object({ title: z.string(), text: z.string() })),
+  }),
 ]);
 export type Block = z.infer<typeof blockSchema>;
 
@@ -299,11 +304,21 @@ export const homeSchema = z.object({
     })
     .nullable()
     .default(null),
-  // クリニック情報テーブル(sec07下部)
-  clinicTable: z
+  // sec07 下部の SEO ボックス(説明文 + コラム導線 + クリニック情報テーブル)
+  seoBox: z
     .object({
       title: z.string().default(""),
-      rows: z.array(z.object({ label: z.string(), value: z.string() })),
+      paragraphs: z.array(z.string()).default([]),
+      btnText: z.string().default(""),
+      btnHref: z.string().default("/column/"),
+      napTitle: z.string().default(""),
+      rows: z.array(
+        z.object({
+          label: z.string(),
+          value: z.string(),
+          href: z.string().optional(),
+        }),
+      ),
     })
     .nullable()
     .default(null),

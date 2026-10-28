@@ -37,6 +37,7 @@ const CJK = /[぀-ヿ一-鿿]/;
 const SKIP_NODE_BASE = "script,style,noscript,iframe,code,pre";
 const SKIP_KEYS = new Set([
   "url", "href", "image", "imageSp", "avatar", "src", "tel", "tel2",
+  "mapEmbedUrl",
   "postalCode", "slug", "date", "order", "theme", "instagramUrl", "lineUrl",
   "nameEn", "layout", "cssLinks", "styles", "mainClass", "bodyClass",
   "titleBg", "instagramUser", "form",

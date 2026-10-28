@@ -33,8 +33,8 @@
   "scheduleImage": "/images/norris/calendar.png",
   "regen": {
     "title": "Regenerative medicine menu",
-    "text": "Our hospital's regenerative medicine has been rigorously examined by the Specified Certified Regenerative Medicine Committee recognized by the Ministry of Health, Labor and Welfare, and we are a medical institution whose treatment validity, safety, and physician system have been recognized as appropriate.",
-    "bannerText": "Regenerative medicine menu",
+    "text": "Our hospital's regenerative medicine has been rigorously examined by the Specified Regenerative Medicine Committee recognized by the Ministry of Health, Labor and Welfare, and we are a medical institution whose treatment validity, safety, and physician system have been recognized as appropriate.",
+    "bannerText": "Norris Clinic Regenerative Medicine Menu in Tennoji/Namba, Osaka City",
     "bannerHref": "/regenerate/",
     "cards": [
       {
@@ -62,8 +62,8 @@
     ]
   },
   "menuCards": {
-    "title": "Medical treatment menu",
-    "text": "At Norris Clinic, a cosmetic dermatology clinic in Osaka, we offer a wide range of treatment options to help our many patients achieve beauty and smiles.",
+    "title": "Norris Clinic Medical Menu in Tennoji/Namba, Osaka City",
+    "text": "At Norris Clinic, a cosmetic dermatology clinic in Osaka, we offer a wide range of treatments to help our many patients achieve beauty and smiles.",
     "cards": [
       {
         "title": "HARG therapy",
@@ -143,7 +143,7 @@
   },
   "concerns": {
     "title": "Search by symptoms/concerns",
-    "text": "Symptoms and concerns vary from patient to patient. At Norris Clinic, a cosmetic dermatology, urology, and regenerative medicine clinic in Osaka, we share our thoughts through careful counseling and propose treatments tailored to each patient.",
+    "text": "Symptoms and concerns vary from patient to patient. <br />At Norris Clinic, a cosmetic dermatology, urology, and regenerative medicine clinic in Osaka, we share our thoughts through careful counseling and propose treatments tailored to each patient.",
     "items": [
       {
         "image": "/images/norris/sec06_bnr01.png",
@@ -179,7 +179,7 @@
   },
   "devices": {
     "title": "Search by device",
-    "text": "At Norris Clinic, we have a full range of equipment to ensure the satisfaction of our patients. We will support you to get rid of the parts and complexes you are concerned about.",
+    "text": "At Norris Clinic, we have a full range of equipment to ensure the satisfaction of our patients. <br />We will support you to get rid of your concerns and complexes.",
     "items": [
       {
         "name": "light shear duet",
@@ -226,11 +226,11 @@
     ]
   },
   "features": {
-    "title": "Three features of Norris Clinic",
-    "text": "Norris Clinic was born with the aim of continuing to be a place and person where you can feel comfortable and feel at ease seeking advice. We are a beauty clinic that helps each patient improve and resolve their unique concerns. If you would like to receive beauty treatment in Osaka, please contact Norris Clinic.",
+    "title": "Norris Clinic<br />Three features",
+    "text": "Norris Clinic was born with the aim of continuing to be a place and person where you can feel comfortable and feel at ease seeking advice. <br />We are a beauty clinic that helps each patient improve and resolve their unique concerns. <br />When receiving cosmetic treatment in Osaka, please contact Norris Clinic.",
     "items": [
       {
-        "title": "Aging care that provides total care for your concerns",
+        "title": "Total care for your concerns<br />Aging care",
         "text": "This is a clinic that provides total care for your whole body, not just your face. By combining high technology and the latest equipment, we support aging care for each individual.",
         "image": "/images/norris/sec04_bg01.jpg",
         "href": "/rejuvenation/"
@@ -242,7 +242,7 @@
         "href": "/stem_cell/"
       },
       {
-        "title": "No unnecessary upsells",
+        "title": "No unnecessary upsells<br />",
         "text": "The level of concern and wishes vary depending on the patient. We will propose the best treatment for each patient, taking into consideration your budget.",
         "image": "/images/norris/sec04_bg03.jpg",
         "href": "/fee/"
@@ -270,6 +270,19 @@
         "text": "At Norris Clinic, we offer a wide range of treatment options centered on advanced beauty regenerative medicine in order to help our many patients achieve beauty and smiles."
       },
       {
+        "type": "borderBlocks",
+        "items": [
+          {
+            "title": "water light injection",
+            "text": "Recommended for those who are concerned about dry skin and those who want to restore the moisture and firmness of their skin. A skin beautifying treatment born in Korea, the beauty powerhouse. A beauty ingredient whose main ingredient is non-crosslinked hyaluronic acid, which has high moisturizing properties, is finely injected into the dermis and epidermis. This can moisturize and firm your skin. At Norris Clinic, we also offer \"PRP water light injection\" which is a form of PRP treatment. By injecting Platelet Rich Plasma (PRP) extracted from your own blood, you can solve all your skin problems."
+          },
+          {
+            "title": "aging care treatment",
+            "text": "Recommended for those who are worried about aging, such as dark circles and hollows around the eyes. Norris Clinic's anti-aging treatment is unique in that in addition to facial care, it also provides total body care. We will guide you to the most suitable treatment menu according to your concerns."
+          }
+        ]
+      },
+      {
         "type": "h3",
         "text": "Reasons why Norris Clinic in Tennoji, Osaka is chosen"
       },
@@ -279,12 +292,20 @@
       },
       {
         "type": "p",
-        "text": "First of all, please tell us about your beauty concerns by phone or through the online reservation form. Norris Clinic in Osaka will help you improve and resolve your concerns, and provide you with days filled with beauty and smiles."
+        "text": "First of all, please tell us about your beauty concerns by phone or through the online reservation form. Norris Clinic in Osaka will help you improve and resolve your concerns, and provide you with days filled with beauty and smiles.大阪で美容クリニックをお探しの方、ハイフ（HIFU）やエクソソームなどの水光注射を行う美容皮膚科を受診したい方は、ノリスクリニックへお越しください。"
       }
     ]
   },
-  "clinicTable": {
-    "title": "If you are looking for a beauty clinic in Tennoji/Namba, Osaka, come to Norris Clinic.",
+  "seoBox": {
+    "title": "If you want to receive treatment at a beauty clinic in Tennoji, Osaka, go to Norris Clinic.",
+    "paragraphs": [
+      "シミ（しみ）・しわ・たるみ・クマ・脱毛などの肌に関する悩みは、美容クリニックに相談することができます。",
+      "天王寺のノリスクリニックでは、患者様の「美」と「笑顔」を叶えるため、ダーマペンやHIFU、ボトックス、フォトフェイシャル、エクソソーム、美肌診断といった幅広い診療メニューをご用意しております。丁寧なカウンセリングを通して一人ひとりに合った治療をご提案し、肌悩みの改善・解消をサポートいたします。",
+      "治療内容や費用、ダウンタイムなど、治療について気になることがございましたら、お気軽にお問い合わせください。"
+    ],
+    "btnText": "Column list",
+    "btnHref": "/column/",
+    "napTitle": "If you are looking for a beauty clinic in Tennoji/Namba, Osaka, come to Norris Clinic.",
     "rows": [
       {
         "label": "Clinic name",
@@ -296,11 +317,12 @@
       },
       {
         "label": "Address",
-        "value": "4th floor, Kamirokutoki Building, 18-21 Ishigatsujicho, Tennoji-ku, Osaka-shi, Osaka 543-0031"
+        "value": "4th floor, Kamirokutoki Building, 18-21 Ishigatsuji-cho, Tennoji-ku, Osaka-shi, Osaka 543-0031"
       },
       {
         "label": "TEL",
-        "value": "06-6772-3456"
+        "value": "06-6772-3456",
+        "href": "tel:0667723456"
       },
       {
         "label": "Medical hours",
@@ -309,6 +331,11 @@
       {
         "label": "Closed days",
         "value": "Irregular holidays"
+      },
+      {
+        "label": "URL",
+        "value": "https://www.norris-beauty-clinic.com/",
+        "href": "/"
       }
     ]
   },

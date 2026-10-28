@@ -113,213 +113,8 @@ input[type="reset"]:disabled {
   width: 100%;
 }
 
-/* ============ バナーブロック ============ */
-.home .bnr-block {
-  margin: 5% 0 3%;
-}
-.home .bnr-block .btn a {
-  font-size: 30px;
-  font-family: var(--font-serif);
-  text-align: center;
-  line-height: 1.3;
-  letter-spacing: 0.1em;
-  padding: 1em;
-  margin: 0 auto;
-  background: #f5f1e1;
-  border: 1px solid var(--accent);
-  color: #6f623d;
-  width: 100%;
-  display: block;
-  text-decoration: none;
-  transition: 200ms;
-}
-.home .bnr-block .btn a:hover {
-  opacity: 0.7;
-}
 
-/* ============ セクション見出し ============ */
-h2.ttl {
-  font-size: 36px;
-  font-family: var(--font-serif);
-  text-align: center;
-  line-height: 1.3;
-  letter-spacing: 0.1em;
-  color: var(--primary);
-  padding-top: 80px;
-  position: relative;
-  min-height: 160px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  background-repeat: no-repeat;
-  background-position: left 85% bottom;
-}
-h2.ttl::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  width: 84px;
-  height: 60px;
-  background: url(/images/norris/ttl_img.png) no-repeat center / contain;
-}
-h2.ttl.ghost-menu {
-  background-image: url(/images/norris/txt_menu.png);
-}
-h2.ttl.ghost-machine {
-  background-image: url(/images/norris/txt_machine.png);
-}
-h2.ttl.ghost-features {
-  background-image: url(/images/norris/txt_features.png);
-}
-h2.ttl.ghost-greeting {
-  background-position: left 90% bottom;
-  background-image: url(/images/norris/txt_greeting.png);
-  padding-bottom: 50px;
-}
-h2.ttl.ghost-treatment {
-  background-position: right bottom;
-  background-image: url(/images/norris/txt_treatment.png);
-}
 
-/* ============ 汎用ボタン ============ */
-.home .btn-style a {
-  font-size: 16px;
-  color: #fff;
-  background: var(--accent);
-  max-width: 320px;
-  width: 100%;
-  padding: 0.6em 1em;
-  margin: 0 auto;
-  line-height: 1.3;
-  letter-spacing: 0.1em;
-  display: block;
-  text-align: center;
-  text-decoration: none;
-  position: relative;
-}
-.home .btn-style a::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 5%;
-  bottom: 0;
-  margin: auto;
-  display: block;
-  width: 4px;
-  height: 4px;
-  border-top: 1px solid #fff;
-  border-right: 1px solid #fff;
-  transform: rotate(45deg);
-  transition: 200ms;
-}
-.home .btn-style a:hover {
-  opacity: 0.7;
-}
-.home .btn-style a:hover::after {
-  right: 4%;
-}
-.home .btn-style.right a {
-  margin-left: auto;
-  margin-right: 0;
-}
-.home .btn-style.outline a {
-  background: transparent;
-  border: 1px solid var(--accent);
-  color: var(--accent);
-  max-width: 240px;
-}
-.home .btn-style.outline a::after {
-  border-color: var(--accent);
-}
-
-/* ============ カラム ============ */
-.home .columns {
-  display: flex;
-  justify-content: space-between;
-}
-.home .columns.wrap {
-  flex-wrap: wrap;
-}
-.home .columns.aic {
-  align-items: center;
-}
-.home .columns:not(:last-child) {
-  margin-bottom: 2%;
-}
-.home .col_2 {
-  width: 48.34%;
-}
-.home .col_3 {
-  width: 30%;
-}
-.home .col_4 {
-  width: 23.5%;
-}
-.home .col_2:not(:nth-child(2n + 1)),
-.home .col_3:not(:nth-child(3n + 1)),
-.home .col_4:not(:nth-child(4n + 1)) {
-  margin-left: 2%;
-}
-
-/* 全体リンク */
-.box-link {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-}
-
-/* ============ sec01: News + Schedule ============ */
-.sec_news h3 {
-  font-size: 16px;
-  font-family: var(--font-serif);
-  line-height: 1.3;
-  letter-spacing: 0.1em;
-  padding: 0 0 0.3em 0.5em;
-  border-bottom: 1px solid var(--primary);
-}
-.sec_news h3 .en {
-  font-size: 30px;
-  display: inline-block;
-  margin-right: 0.5em;
-}
-.sec_news .news .heading {
-  position: relative;
-}
-.sec_news .news .heading .btn-style {
-  position: absolute;
-  top: 10px;
-  right: 0;
-}
-.sec_news .news .heading .btn-style a {
-  font-size: 14px;
-  width: 80px;
-  padding: 0.3em 1.2em 0.3em 1em;
-}
-.sec_news .news dl {
-  overflow: hidden;
-}
-.sec_news .news dt {
-  padding: 1em 0 1em 4%;
-  width: 100px;
-  float: left;
-  clear: both;
-  color: var(--text);
-}
-.sec_news .news dd {
-  padding: 1em 4% 1em calc(120px + 4%);
-  border-bottom: 1px solid #ccc;
-}
-.sec_news .news dd a {
-  text-decoration: none;
-  color: var(--text);
-}
-.sec_news .news dd a:hover {
-  color: var(--primary);
-}
 
 /* ============ Instagram ============ */
 .insta-header {
@@ -358,293 +153,41 @@ h2.ttl.ghost-treatment {
   object-fit: cover;
 }
 
-/* ============ sec02: 再生医療・診療メニュー ============ */
-.sec02 {
-  margin: 5% 0;
+/* ============ sec07 下部 SEO ボックス(本家インラインCSS移植・トップのみ) ============ */
+.home .seo-box {
+  margin-top: 80px;
 }
-.sec02-card {
-  background: #f7f7f7;
+.home .c-btn {
+  margin-top: 30px;
 }
-.sec02 .sec02-card {
-  width: 32%;
-  margin-left: 0;
-}
-.sec02 .sec02-card + .sec02-card {
-  margin-left: 2%;
-}
-.sec02-card .card-ttl {
-  font-size: 36px;
-  font-family: var(--font-serif);
-  color: var(--primary);
-  line-height: 1.3;
-  letter-spacing: 0.1em;
-  text-align: center;
-  margin: 0 0 20px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  height: 114px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-}
-.sec02-card .card-ttl .sub {
-  font-size: 20px;
-  letter-spacing: 0.05em;
-  display: block;
-}
-.sec02-card .card-body {
-  padding: 0 20px 1.5em;
-  min-height: 140px;
-}
-.sec02-card .overbtn {
-  position: relative;
-}
-.sec02-card .overbtn .btn-style {
-  position: absolute;
-  right: 5%;
-  bottom: 5%;
-  margin: auto;
-  z-index: 1;
-}
-.sec02-card .overbtn .btn-style a {
-  min-width: 160px;
-  width: auto;
-  border: 1px solid #fff;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
-}
-/* テキストリンクボタン一覧(con02) */
-.menu-link-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 0;
-  list-style: none;
-}
-.menu-link-list li {
-  width: 23.5%;
-  margin-bottom: 30px;
-}
-.menu-link-list li:not(:nth-child(4n + 1)) {
-  margin-left: 2%;
-}
-.menu-link-list a {
-  font-size: 22px;
-  font-family: var(--font-serif);
-  text-align: center;
-  line-height: 1.3;
-  color: #fff;
-  background: var(--primary);
-  padding: 0.5em 0.2em 50px;
-  min-height: 120px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  text-decoration: none;
-  transition: 200ms;
-}
-.menu-link-list a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 20px;
-  margin: auto;
-  width: 6px;
-  height: 6px;
-  border-bottom: 1px solid #fff;
-  border-right: 1px solid #fff;
-  transform: rotate(45deg);
-}
-.menu-link-list a:hover {
-  opacity: 0.7;
-}
-
-/* ============ sec03: 機器 ============ */
-.sec03 {
-  padding: 5% 0;
-  background: url(/images/norris/sec03_bg.jpg) no-repeat center top / cover;
-}
-.sec03 .column {
-  background: #fff;
-  margin-bottom: 4%;
-  position: relative;
-  transition: 200ms;
-}
-.sec03 .column:hover {
-  opacity: 0.7;
-}
-.sec03 .txt-wrap {
-  padding: 1.2em 1.5em;
-}
-.sec03 h3 {
-  font-size: 24px;
-  font-family: var(--font-serif);
-  text-align: center;
-  line-height: 1.3;
-  color: #fff;
-  background: linear-gradient(90deg, #8d794b 0, #a08f5d);
-  padding: 0.5em 0.2em;
-}
-
-/* ============ sec04: 3つの特徴 ============ */
-.sec04 {
-  margin: 5% 0;
-}
-.sec04 .con .column {
-  position: relative;
-  margin: 0;
-  padding: 20px;
-  color: #fff;
-  transition: 200ms;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-.sec04 .con .column:hover {
-  opacity: 0.7;
-}
-.sec04 .txt-wrap {
-  height: 100%;
-  border: 1px solid #fff;
-  padding: 4% 2%;
-}
-.sec04 h3 {
-  font-size: 30px;
-  font-family: var(--font-serif);
-  text-align: center;
-  line-height: 1.5;
-  color: #fff;
-  padding: 90px 0 0.7em;
-  margin-bottom: 0.7em;
-  position: relative;
-}
-.sec04 h3::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  width: 60px;
-  height: 1px;
-  background: #fff;
-}
-.sec04 h3 .num {
-  font-size: 200%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-.sec04 p.tac {
-  text-align: center;
-}
-
-/* ============ sec05: ごあいさつ ============ */
-.sec05 {
-  margin: 5% 0;
-}
-.sec05 .name {
-  font-size: 24px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  margin: 0 0 1em auto;
-  width: fit-content;
-  text-align: right;
-}
-.sec05 .name .s {
-  font-size: 75%;
-}
-
-/* ============ sec06: 症状・お悩み ============ */
-.sec06 {
-  padding: 5% 0;
-  background: url(/images/norris/sec06_bg.jpg) no-repeat center / cover;
-}
-.sec06 ul.columns {
-  list-style: none;
-  padding: 0;
-}
-.sec06 .column {
-  margin-top: 4%;
-  transition: 200ms;
-}
-.sec06 .column a {
-  display: block;
-}
-.sec06 .column:hover {
-  opacity: 0.7;
-}
-
-/* ============ sec07: テキスト/情報 ============ */
-.sec07 {
-  margin: 5% 0;
-}
-.sec07 h3 {
-  font-size: 30px;
-  font-family: var(--font-serif);
-  text-align: center;
-  color: var(--primary);
-  line-height: 1.3;
-  letter-spacing: 0.1em;
-  padding-top: 80px;
-  margin: 1.5em auto 1em;
-  position: relative;
-}
-.sec07 h3::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  width: 84px;
-  height: 60px;
-  background: url(/images/norris/ttl_img.png) no-repeat center / contain;
-}
-.sec07 p {
-  margin-bottom: 1em;
-}
-.sec07 .border-block {
-  border: 1px solid var(--border-beige);
-  padding: 2em;
-}
-.sec07 .border-block h4 {
-  font-size: 20px;
-  font-family: var(--font-serif);
-  color: var(--primary);
-  border-bottom: 1px solid var(--accent);
-  padding-bottom: 0.5em;
-  margin-bottom: 0.8em;
-}
-/* ============ クリニック情報テーブル(トップのみ) ============ */
-.home .clinic-table {
+.home .c-table {
   border-collapse: collapse;
-  width: 100%;
   text-align: left;
+  width: 100%;
 }
-.home .clinic-table th {
+.home .c-table th {
+  text-align: left;
+  vertical-align: middle;
   width: 25%;
-  background: var(--border-beige);
+  background-color: #d7d1c0;
   border-bottom: 2px solid #fff;
 }
-.home .clinic-table th,
-.home .clinic-table td {
-  padding: 10px 20px;
+.home .c-table td {
   vertical-align: middle;
 }
-.home .clinic-table a {
-  text-decoration: none;
-  color: var(--accent);
+.home .c-table th,
+.home .c-table td {
+  padding: 10px 20px;
 }
-.home .clinic-table a:hover {
+.home .c-table a {
+  text-decoration: none;
+  color: #a08f5d;
+}
+.home .c-table a:hover {
   opacity: 0.7;
+}
+.home .c-nap {
+  padding-top: 50px;
 }
 
 /* ============ 記事本文(markdown由来html・トップのみ) ============ */
@@ -691,46 +234,6 @@ h2.ttl.ghost-treatment {
   padding: 0.5rem 0.75rem;
   text-align: left;
 }
-.home .prose-clinic h2 {
-  font-size: 30px;
-  font-family: var(--font-serif);
-  text-align: center;
-  color: var(--primary);
-  line-height: 1.3;
-  letter-spacing: 0.1em;
-  padding-top: 80px;
-  margin: 1.5em auto 1em;
-  position: relative;
-}
-.home .prose-clinic h2::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  width: 84px;
-  height: 60px;
-  background: url(/images/norris/ttl_img.png) no-repeat center / contain;
-}
-.home .prose-clinic h3 {
-  font-size: 20px;
-  font-family: var(--font-serif);
-  color: var(--primary);
-  border-bottom: 1px solid var(--accent);
-  padding: 0 0 0.4em 2em;
-  margin: 2em 0 1em;
-  position: relative;
-}
-.home .prose-clinic h3::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0.6em;
-  width: 28px;
-  height: 22px;
-  background: url(/images/norris/h4_img.png) no-repeat center / contain;
-}
 
 /* ============================================================
    レスポンシブ (SP: <768px)
@@ -741,91 +244,12 @@ h2.ttl.ghost-treatment {
     position: static;
     background: #fff;
   }
-  h2.ttl {
-    font-size: 24px;
-    min-height: 120px;
-    padding-top: 60px;
-    background-size: 60% !important;
-  }
-  h2.ttl::before {
-    width: 63px;
-    height: 45px;
-  }
-
-  .home .columns {
-    display: block;
-  }
-  .home .columns.wrap {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .home .col_2,
-  .home .col_3,
-  .home .col_4 {
-    width: 100%;
-    margin-left: 0 !important;
-    margin-bottom: 4%;
-  }
-  .home .columns.sp_col_2 .column {
-    width: 48%;
-    margin-left: 0 !important;
-  }
-  .home .columns:not(:last-child) {
-    margin-bottom: 0;
-  }
-
-  /* news */
-  .sec_news .news dt {
-    width: 100%;
-    float: none;
-    padding: 10px 0 0;
-  }
-  .sec_news .news dd {
-    padding: 0 0 10px;
-  }
   .insta-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .home .bnr-block .btn a {
-    font-size: 20px;
-  }
-
-  .sec02 .sec02-card {
-    width: 100%;
-    margin-left: 0 !important;
-  }
-  .sec02-card .card-ttl {
-    font-size: 26px;
-    height: 90px;
-  }
-  .sec02-card .card-ttl .sub {
-    font-size: 15px;
-  }
-  .sec02-card .card-body {
-    min-height: 0;
-  }
-  .menu-link-list li {
-    width: 48%;
-    margin-left: 0 !important;
-    margin-bottom: 15px;
-  }
-  .menu-link-list a {
-    font-size: 18px;
-    min-height: 90px;
-    padding-bottom: 35px;
-  }
-
-  .sec06 {
-    background-image: url(/images/norris/sp_sec06_bg.jpg);
-  }
-  .sec06 .column {
-    width: 48%;
-    margin-top: 4%;
-  }
-
-  .home .clinic-table th,
-  .home .clinic-table td {
+  .home .c-table th,
+  .home .c-table td {
     display: block;
     width: 100%;
   }
