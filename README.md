@@ -83,7 +83,20 @@ node scripts/scrape-norris-pages.mjs    # ページ本文+画像を再取得
 
 - 本家由来のデッドリンク(`/liftup/` 等)は本家と同じく404になります
 - `script/iframe/noscript/onclick` はスクレイプ時に除去済み(GTM・予約JS等は含まれません)
-- `/contact/` は本家のフォームページを静的描画(フォーム送信は動きません)。`site.json` の `contactUrl`/`reserveUrl` に外部URLを設定する運用が現実的です
+- `/contact/` `/reserve/` のフォームは PHP 必須のレンタルサーバー向けに `public/contact.php` 経由で送信できます(下記「フォーム送信」参照)。PHP が無い環境では投稿は `?error=1` にリダイレクトされます
+
+## フォーム送信(contact.php)
+
+静的書き出しのままフォーム送信を動かすため、PHP製の受付エンドポイントを同梱しています(ロリポップ等のPHP可レンタルサーバー前提)。
+
+- `out/contact.php` — `/contact/`・`/reserve/` のフォームがPOSTする受付。urlencoded POST・JSON POST 両対応。成功/失敗で `?sent=1`/`?error=1` へリダイレクト
+- `out/phpmailer/` — 同梱PHPMailer。Composer無し・FTPのみでも動作
+- `deploy/contact-config.example.php` — 設定テンプレート。**`contact-config.php` としてコピーし、公開フォルダの外**(例: 公開フォルダが `~/web/example.com/` なら `~/contact-config.php`)に置いて値を設定する
+  - `CONTACT_TO_EMAIL`/`CONTACT_FROM_EMAIL` は必須。SMTPはロリポップ既定(`smtp.lolipop.jp:465 ssl`)
+  - `CONTACT_ALLOWED_ORIGINS` に本番ドメインを設定すると他ドメインからのPOSTを拒否
+  - 環境変数 `CONTACT_CONFIG_FILE` で配置パスを変更可能
+- スパム対策: ハニーポット(`website`)、送信開始から2.5秒未満の投稿、リンク3件超の投稿は「成功を装い破棄」、IP毎レート制限(既定5件/10分)
+- サーバーがPHPを実行しない環境(GitHub Pages等)ではフォーム送信は動作しません
 - スクレイプHTML・Markdown由来の本文はサニタイズしていません(自前コンテンツ前提)
 - Turbopack は稀に古いCSSをキャッシュします。見た目が変わらない場合は `rm -rf .next out && npm run build`
 - `decap-server` はローカル開発ツールです(公開物には含まれません)

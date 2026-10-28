@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { FormEnhance } from "@/components/FormEnhance";
 import { SiteHeader } from "@/components/SiteHeader";
 import {
   getScrapedPage,
@@ -29,6 +30,28 @@ export async function generateMetadata({
   return { title: page.docTitle };
 }
 
+/**
+ * スクレイプしたCF7フォームを静的ホスティング上の contact.php に接続する。
+ * action を差し替え、フォーム種別・返却先・ハニーポットを hidden 項目として注入する。
+ */
+function wireForm(html: string, form: "contact" | "reserve"): string {
+  const returnPath = `/${form}/`;
+  const hidden =
+    `<input type="hidden" name="form" value="${form}">` +
+    `<input type="hidden" name="return_path" value="${returnPath}">` +
+    `<input type="hidden" name="started_at" value="">` +
+    `<div class="contact-trap" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>`;
+  return html
+    .replace(
+      /<form action="[^"]*" method="post" class="wpcf7-form[^"]*"/,
+      `<form action="/contact.php" method="post" class="wpcf7-form init"`,
+    )
+    .replace(
+      /(<form action="\/contact\.php"[^>]*>)/,
+      `$1${hidden}`,
+    );
+}
+
 export default async function UnderPage({
   params,
 }: PageProps<"/[...slug]">) {
@@ -42,6 +65,13 @@ export default async function UnderPage({
   const needsSwellCss = /swl-|corg|swell-block|cap_box|mark_|u-fz-|min_width|is-style-/.test(page.html);
   const needsCf7 = page.url === "/contact/" || /wpcf7/.test(page.html);
   const needsAuthorCss = /wpae|wp-author/.test(page.html);
+  const formKind =
+    page.url === "/contact/"
+      ? "contact"
+      : page.url === "/reserve/"
+        ? "reserve"
+        : null;
+  const bodyHtml = formKind ? wireForm(page.html, formKind) : page.html;
 
   return (
     <div className={`pbody ${page.bodyClass ?? ""}`}>
@@ -113,8 +143,9 @@ export default async function UnderPage({
           <div
             id="main"
             className={page.mainClass}
-            dangerouslySetInnerHTML={{ __html: page.html }}
+            dangerouslySetInnerHTML={{ __html: bodyHtml }}
           />
+          {formKind && <FormEnhance />}
         </div>
       </div>
     </div>

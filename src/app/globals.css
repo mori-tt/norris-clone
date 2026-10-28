@@ -34,7 +34,19 @@ body {
 img {
   max-width: 100%;
   height: auto;
+  /* Tailwindプリフライトの display:block を打ち消し、本家と同じUAデフォルト(inline)に戻す */
+  display: inline;
   vertical-align: bottom;
+}
+
+/* スパム対策ハニーポット(画面上は見せない) */
+.contact-trap {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 /* フォーム要素: Tailwindプリフライトで消えたUAデフォルトを復元(本家は素のUAスタイル) */
@@ -81,11 +93,6 @@ input[type="reset"]:disabled {
   width: 100%;
   z-index: 100;
   background: rgba(255, 255, 255, 0.8);
-}
-#header .headerinner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 /* ============ メインイメージスライダー ============ */
@@ -733,9 +740,6 @@ h2.ttl.ghost-treatment {
   #header {
     position: static;
     background: #fff;
-  }
-  #header .headerinner {
-    display: block;
   }
   h2.ttl {
     font-size: 24px;
