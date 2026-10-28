@@ -253,6 +253,49 @@ export const FORM_STRINGS: [string, string, string][] = [
   ["【診療時間】", "[Hours]", "【就诊时间】"],
   ["【休診日】", "[Closed]", "【休诊日】"],
   ["不定休", "Irregular holidays", "不定期休息"],
+  // reserve 注記
+  [
+    "※1 お時間に余裕がある方は10：00～18：30まで",
+    "*1 If your schedule is flexible: 10:00-18:30",
+    "※1 时间充裕者可选10:00～18:30",
+  ],
+  [
+    "受診可能なお時間帯をご記入ください",
+    "Please enter the time slot you are available.",
+    "请填写您方便的就诊时间段。",
+  ],
+  ["例）11：00～15：00", "e.g., 11:00-15:00", "例）11:00～15:00"],
+  // reserve 希望施術メニュー選択肢
+  ["※無料カウンセリング", "*Free Counseling", "※免费咨询"],
+  ["フォトフェイシャル", "Photofacial", "光子嫩肤"],
+  ["ピコトーニング", "Pico Toning", "皮秒嫩肤"],
+  ["ピコスポット", "Pico Spot", "皮秒祛斑"],
+  ["ダーマペン", "Dermapen", "微针"],
+  ["ピーリング", "Chemical Peel", "焕肤"],
+  ["水光注射", "Skin Booster", "水光针"],
+  ["美容点滴", "Beauty IV Drip", "美容点滴"],
+  ["ヒアルロン酸", "Hyaluronic Acid", "玻尿酸"],
+  ["ボトックス", "Botox", "肉毒杆菌"],
+  ["幹細胞治療", "Stem Cell Therapy", "干细胞治疗"],
+  ["メンズメニュー", "Men's Menu", "男士项目"],
+  ["ほくろ除去", "Mole Removal", "祛痣"],
+  ["タトゥー除去", "Tattoo Removal", "祛纹身"],
+  ["ハイフ", "HIFU", "超声刀"],
+  ["脱毛", "Hair Removal", "脱毛"],
+  ["ピアス（耳たぶのみ）", "Piercing (earlobe only)", "穿刺（仅耳垂）"],
+  ["ピアス（耳たぶ以外）", "Piercing (non-earlobe)", "穿刺（非耳垂）"],
+  [
+    "(脱毛をご希望される方は必須)",
+    "(required if requesting hair removal)",
+    "（脱毛顾客必填）",
+  ],
+  // 日時セレクトの単位・部位(タグ囲み指定で属性値・長文内の誤置換を防ぐ)
+  [">月<", ">Month<", ">月<"],
+  [">日<", ">Day<", ">日<"],
+  [">時<", ">hr<", ">时<"],
+  [">分<", ">min<", ">分<"],
+  [">分 <", ">min <", ">分 <"],
+  [">手<", ">Hands<", ">手<"],
 ];
 
 /** FORM_STRINGS の置換(長い方から先に、部分一致の誤爆を防ぐ) */
