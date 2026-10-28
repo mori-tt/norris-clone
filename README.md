@@ -79,6 +79,18 @@ node scripts/fetch-norris-assets.mjs    # テーマ画像を再取得
 node scripts/scrape-norris-pages.mjs    # ページ本文+画像を再取得
 ```
 
+## 多言語(英語・中国語)
+
+`/en/` と `/zh/` プレフィックスで全ページの英語版・中国語版を静的生成します(日本語はルート直下のまま)。
+
+- **翻訳本文**: `content/i18n/<locale>/pages/.../index.json`。存在しないページは日本語本文+翻訳済みクローム(ナビ/フッター等)にフォールバック
+- **翻訳の作り方**: `npm run translate` で全ページ+`site/home/access/clinic/doctor/fee/schedule.json` を機械翻訳して `content/i18n/` に出力(再開可能・既存ファイルはスキップ)。品質を上げるには `DEEPL_API_KEY` を設定して再実行(`--force` で上書き)
+- **手修正**: `content/i18n/<locale>/` 内の JSON を直接編集すれば機械翻訳を上書きできます。元の `content/pages/` を変更した場合は再実行で差分だけ再翻訳されます
+- **クローム翻訳**: ナビ・フッター・CTA・フォームラベル・パンくず等は `src/lib/i18n.ts` の辞書で翻訳(機械翻訳不使用)。新しいナビ項目を増やす場合は `NAV_LABELS` にも追加してください
+- **フォーム**: `/en|zh/contact|reserve/` のラベルは辞書翻訳、送信後は同ロケールへリダイレクト。`contact.php` は返却先のホワイトリストで en/zh を許可済み
+- **言語切替**: ヘッダー右上に 日本語/English/中文 リンク。`sitemap.xml` と各ページ `<head>` に hreflang alternate を出力
+- **対象外**: 記事本文内の画像に埋め込まれた日本語文字(写真テキスト)、`_wpcf7` hidden値、PDF ファイルは日本語のままです
+
 ## 注意点・制約
 
 - 本家由来のデッドリンク(`/liftup/` 等)は本家と同じく404になります

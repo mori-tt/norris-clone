@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "placeholders": "node scripts/generate-placeholders.mjs",
+    "translate": "node scripts/translate-pages.mjs",
     "cms": "decap-server"
   },
   "dependencies": {
