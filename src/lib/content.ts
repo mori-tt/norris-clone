@@ -172,17 +172,85 @@ function getLocalPosts(collection: PostCollection): Post[] {
   return [...fromJson, ...fromMd].sort((a, b) => b.date.localeCompare(a.date));
 }
 
+const ENTITIES: Record<string, string> = {
+  amp: "&",
+  lt: "<",
+  gt: ">",
+  quot: '"',
+  apos: "'",
+  nbsp: " ",
+  "#039": "'",
+};
+const decodeEntities = (s: string): string =>
+  s.replace(/&(#\d+|#x[0-9a-fA-F]+|\w+);/g, (m, e) =>
+    e[0] === "#"
+      ? String.fromCodePoint(parseInt(e.slice(1), e[1] === "x" ? 16 : 10))
+      : (ENTITIES[e] ?? m),
+  );
+
+/**
+ * content/i18n/<locale>/pages/<collection>/<slug>/index.json から
+ * 翻訳済みタイトル(<h3>)と日付(.dateBlock)を取り出す。
+ * 翻訳ページが無い記事は日本語のまま返す。
+ */
+function getLocalizedPostOverrides(
+  collection: PostCollection,
+  locale: string,
+): Map<string, { title?: string; date?: string }> {
+  const dir = path.join(contentDir, "i18n", locale, "pages", collection);
+  const map = new Map<string, { title?: string; date?: string }>();
+  if (!existsSync(dir)) return map;
+  for (const ent of readdirSync(dir, { withFileTypes: true })) {
+    if (!ent.isDirectory()) continue;
+    const file = path.join(dir, ent.name, "index.json");
+    if (!existsSync(file)) continue;
+    try {
+      const { html } = JSON.parse(readFileSync(file, "utf8")) as {
+        html?: string;
+      };
+      if (!html) continue;
+      const h3 = html.match(/<h3[^>]*>([\s\S]*?)<\/h3>/)?.[1];
+      const date = html.match(/dateBlock[^>]*>([^<]+)/)?.[1];
+      map.set(ent.name, {
+        title: h3
+          ? decodeEntities(
+              h3
+                .replace(/<[^>]+>/g, " ")
+                .replace(/\s+/g, " ")
+                .trim(),
+            )
+          : undefined,
+        date: date?.trim().replaceAll(".", "-"),
+      });
+    } catch {
+      // 壊れた翻訳JSONはスキップ(日本語にフォールバック)
+    }
+  }
+  return map;
+}
+
 /**
  * ローカル(content/news|column)に外部CMS(microCMS/Newt)の記事をマージ。
  * 同slugは外部CMSが優先。環境変数未設定ならローカルのみ。
+ * locale を渡すと i18n 翻訳ページのタイトル/日付で上書きする(並び順は日本語基準)。
  */
 export const getPosts = async (
   collection: PostCollection,
+  locale = "ja",
 ): Promise<Post[]> => {
   const merged = new Map<string, Post>();
   for (const p of getLocalPosts(collection)) merged.set(p.slug, p);
   for (const p of await fetchExternalPosts(collection)) merged.set(p.slug, p);
-  return [...merged.values()].sort((a, b) => b.date.localeCompare(a.date));
+  const posts = [...merged.values()].sort((a, b) =>
+    b.date.localeCompare(a.date),
+  );
+  if (locale === "ja") return posts;
+  const overrides = getLocalizedPostOverrides(collection, locale);
+  return posts.map((p) => {
+    const o = overrides.get(p.slug);
+    if (!o) return p;
+    return { ...p, title: o.title ?? p.title, date: o.date ?? p.date };
+  });
 };
 
 export const getPost = async (

@@ -28,7 +28,7 @@ export default async function HomePage({
   const prefix = localePrefix(locale);
   const lh = (href: string) =>
     href.startsWith("/") && !href.startsWith("//") ? prefix + href : href;
-  const news = (await getPosts("news")).slice(0, 3);
+  const news = (await getPosts("news", locale)).slice(0, 3);
 
   return (
     <div
