@@ -1,6 +1,6 @@
 ---
 slug: vital
-name: 美容点滴・注射
+name: 水光注射
 nameEn: IV DRIP
 kind: treatment
 catchcopy: 体の内側から美しさをサポート

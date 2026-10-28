@@ -1,17 +1,12 @@
 type Props = {
-  en: string;
   ja: string;
+  /** 透かし英字の背景画像(txt_*.png) */
+  ghost?: "menu" | "machine" | "features" | "greeting" | "treatment" | "";
 };
 
-/** 「News お知らせ」形式のセクション見出し */
-export function SectionHeading({ en, ja }: Props) {
+/** 本家 h2.ttl 形式のセクション見出し(NBCエンブレム + 透かし英字) */
+export function SectionHeading({ ja, ghost = "" }: Props) {
   return (
-    <div className="mb-8 text-center">
-      <p className="font-serif text-2xl font-semibold tracking-wide text-text md:text-3xl">
-        <span className="text-primary-dark">{en}</span>
-        <span className="ml-3">{ja}</span>
-      </p>
-      <div className="mx-auto mt-3 h-px w-12 bg-primary" />
-    </div>
+    <h2 className={`ttl${ghost ? ` ghost-${ghost}` : ""}`}>{ja}</h2>
   );
 }

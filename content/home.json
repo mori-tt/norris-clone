@@ -2,38 +2,270 @@
   "hero": {
     "slides": [
       {
-        "image": "/images/hero-1.svg",
-        "title": "「美」と「笑顔」を叶える美容医療",
-        "subtitle": "一人ひとりのお悩みに寄り添い、うつくしい笑顔をお届けします"
+        "image": "/images/norris/mainimage01.jpg",
+        "imageSp": "/images/norris/sp_mainimage01.jpg",
+        "alt": "「美」と「笑顔」を叶える美容医療 一人ひとりのお悩みに寄り添いうつくしい笑顔をお届けします"
       },
       {
-        "image": "/images/hero-2.svg",
-        "title": "確かな技術と丁寧なカウンセリング",
-        "subtitle": "土日も診療・平日19時まで・不要なアップセルはいたしません"
+        "image": "/images/norris/mainimage02.jpg",
+        "imageSp": "/images/norris/sp_mainimage02.jpg",
+        "alt": "高度な美容再生医療 幹細胞治療/PRP治療/HARG療法"
       },
       {
-        "image": "/images/hero-3.svg",
-        "title": "駅近で通いやすいクリニック",
-        "subtitle": "お仕事帰りやお買い物のついでにもお立ち寄りいただけます"
+        "image": "/images/norris/mainimage03.jpg",
+        "imageSp": "/images/norris/sp_mainimage03.jpg",
+        "alt": "安心して通い続けられるクリニックであるために 土日OPEN/平日19時まで診療/不要なアップセルなし"
+      },
+      {
+        "image": "/images/norris/mainimage04.jpg",
+        "imageSp": "/images/norris/sp_mainimage04.jpg",
+        "alt": "泌尿器科 その違和感見過ごしていませんか 安心して相談できる泌尿器科",
+        "href": "/menu/urology/"
+      }
+    ]
+  },
+  "banner": {
+    "image": "/images/norris/hinyou.png",
+    "alt": "泌尿器科のご案内",
+    "href": "/menu/urology/"
+  },
+  "scheduleTitle": "10月診療日",
+  "scheduleImage": "/images/norris/calendar.png",
+  "regen": {
+    "title": "再生医療メニュー",
+    "text": "当院の再生医療は、厚生労働省が認めた特定認定再生医療等委員会において、厳しく審査が行われ、治療の妥当性・安全性・医師体制などが適切と認められた医療機関です。",
+    "bannerText": "再生医療メニュー",
+    "bannerHref": "/menu/regenerate/",
+    "cards": [
+      {
+        "title": "幹細胞治療",
+        "text": "幹細胞は、自己複製の能力を備え、同時に血管、心筋、骨、脂肪などさまざまな種類の細胞へ分化できる能力も持っています。",
+        "image": "/images/norris/sec_02_bnrimg001.jpg",
+        "titleBg": "/images/norris/sec_02_ttlbg001.jpg",
+        "href": "/menu/stem_cell/"
+      },
+      {
+        "title": "PRP",
+        "text": "血液を加工し、PRPを患部へ注射投与することで、組織の自己修復力を高めます。コラーゲンやエラスチンの生成が活発になることで、美容面でもさまざまな効果が期待できます。",
+        "image": "/images/norris/sec_02_bnrimg002.jpg",
+        "titleBg": "/images/norris/sec_02_ttlbg002.jpg",
+        "href": "/menu/prp/"
+      },
+      {
+        "title": "エクソソーム",
+        "sub": "（幹細胞培養液上清液）",
+        "text": "細胞外に分泌される小胞のことを指し、特に重要な役割は細胞間の情報伝達にあります。これらのエクソソームは袋状の構造を持ち、内部には核酸（マイクロRNAやメッセンジャーRNA）やタンパク質など、遺伝子に関わる重要な情報が含まれていいます。",
+        "image": "/images/norris/sec_02_bnrimg003.jpg",
+        "titleBg": "/images/norris/sec_02_ttlbg003.jpg",
+        "href": "/menu/exosome/"
+      }
+    ]
+  },
+  "menuCards": {
+    "title": "診療メニュー",
+    "text": "大阪の美容皮膚科・ノリスクリニックでは、多くの患者様の「美」と「笑顔」を叶えるために、幅広い診療メニューをご用意しています。",
+    "cards": [
+      {
+        "title": "HARG療法",
+        "sub": "細胞から育毛促進",
+        "text": "脂肪幹細胞から抽出した150種類以上の成長因子を含む「HARGカクテル」を頭皮に注入することで、薄毛を改善し、毛髪再生・発毛を促す再生医療です。",
+        "image": "/images/norris/sec_02_bnrimg004.jpg",
+        "titleBg": "/images/norris/sec_02_ttlbg004.jpg",
+        "href": "/menu/harg/"
+      },
+      {
+        "title": "レーザー治療",
+        "sub": "シミ・ニキビのお悩み・肌質改善",
+        "text": "3種類の波長を備えたピコレーザー（PicoWay）の照射によって、シミ・ニキビの改善、肌質改善を含めたトータルでの美肌効果が期待できます。",
+        "image": "/images/norris/sec_02_bnrimg005.jpg",
+        "titleBg": "/images/norris/sec_02_ttlbg005.jpg",
+        "href": "/menu/picolaser/"
+      },
+      {
+        "title": "医療脱毛",
+        "sub": "短期間で効果を実感",
+        "text": "大型の照射口、吸引・冷却システムを備えた「ライトシェアデュエット」を導入しています。",
+        "image": "/images/norris/sec_02_bnrimg006.jpg",
+        "titleBg": "/images/norris/sec_02_ttlbg006.jpg",
+        "href": "/menu/epilation/"
+      }
+    ],
+    "links": [
+      { "label": "ボトックス", "href": "/menu/botox/" },
+      { "label": "ヒアルロン酸注射", "href": "/menu/hyaluronic/" },
+      { "label": "水光注射", "href": "/menu/vital/" },
+      { "label": "ホルモン注射", "href": "/menu/hormone/" },
+      { "label": "美容点滴", "href": "/menu/beauty/" },
+      { "label": "HIFU", "href": "/menu/hifu/" },
+      { "label": "ダーマペン", "href": "/menu/dermapen/" },
+      { "label": "リフトアップ（糸リフト）", "href": "/menu/liftup/" },
+      { "label": "フォトフェイシャル", "href": "/menu/photofacial/" },
+      { "label": "美肌診断", "href": "/menu/beautiful_skin/" },
+      { "label": "メンズメニュー", "href": "/menu/mens_menu/" },
+      { "label": "泌尿器科", "href": "/menu/urology/" }
+    ]
+  },
+  "concerns": {
+    "title": "症状・お悩みから探す",
+    "text": "症状・お悩みは、患者様一人一人で異なります。大阪の美容皮膚科・泌尿器科・再生医療のノリスクリニックでは、丁寧なカウンセリングで“想い”を共有し、各患者様に合わせた治療法をご提案します。",
+    "items": [
+      {
+        "image": "/images/norris/sec06_bnr01.png",
+        "alt": "しみ・そばかす・肝斑・くすみ",
+        "href": "/menu/blemish/"
+      },
+      {
+        "image": "/images/norris/sec06_bnr02.png",
+        "alt": "しわ・たるみ",
+        "href": "/menu/wrinkles/"
+      },
+      {
+        "image": "/images/norris/sec06_bnr03.png",
+        "alt": "イボ・ほくろ・タトゥー除去",
+        "href": "/menu/mole/"
+      },
+      {
+        "image": "/images/norris/sec06_bnr04.png",
+        "alt": "ニキビ・ニキビ跡・毛穴",
+        "href": "/menu/acne/"
+      },
+      {
+        "image": "/images/norris/sec06_bnr05.png",
+        "alt": "エイジングケア",
+        "href": "/menu/rejuvenation/"
+      },
+      {
+        "image": "/images/norris/sec06_bnr06.png",
+        "alt": "その他（美容点滴・ピアス）",
+        "href": "/menu/others/"
+      }
+    ]
+  },
+  "devices": {
+    "title": "機器から探す",
+    "text": "ノリスクリニックでは、ご来院頂いた患者様にご満足いただけるよう、充実の機器を取り揃えております。ご自身の気になる部位やコンプレックスを払拭できるようサポートさせて頂きます。",
+    "items": [
+      {
+        "name": "ライトシェアーデュエット",
+        "text": "熱破壊式ダイオードレーザー脱毛機器。2種のハンドピースを使用します。",
+        "image": "/images/norris/sec03_img01.jpg",
+        "imageSp": "/images/norris/sp_sec03_img01.jpg",
+        "href": "/menu/epilation/"
+      },
+      {
+        "name": "ルミナスIPL M22",
+        "text": "ルミナス社のフォトフェイシャル機器。7種類の光から一人ひとりのお悩みに最適な光を選択し、照射します。シミ、そばかす、肝斑、ニキビ跡、赤ら顔、美肌等に効果的です。",
+        "image": "/images/norris/sec03_img02.jpg",
+        "imageSp": "/images/norris/sp_sec03_img02.jpg",
+        "href": "/menu/photofacial/"
+      },
+      {
+        "name": "ウルトラセルQ+（HIFU）",
+        "text": "3つのカートリッジを用いることで、通常のレーザーでは届かない深い3層へアプローチが可能で、皮膚を内側から引き上げることができます。肌の引き締め、たるみ解消、リフトアップに効果的です。",
+        "image": "/images/norris/sec03_img03.jpg",
+        "imageSp": "/images/norris/sp_sec03_img03.jpg",
+        "href": "/menu/hifu/"
+      },
+      {
+        "name": "PicoWay",
+        "text": "シネロン・キャンデラ社製の皮膚レーザー。短い照射時間で、皮膚へのダメージを最小限に抑えての施術が可能です。シミ、そばかす、ニキビ跡、シワ、色素沈着などに効果的です。",
+        "image": "/images/norris/sec03_img04.jpg",
+        "imageSp": "/images/norris/sp_sec03_img04.jpg",
+        "href": "/menu/picolaser/"
+      },
+      {
+        "name": "re-Beau 2",
+        "text": "肉眼では見えづらい肌状態、隠れシミ、赤みを画像化し、肌診断を行います。診断後はお一人お一人に合った治療やケア方法をご提案いたします。",
+        "image": "/images/norris/sec03_img05.jpg",
+        "imageSp": "/images/norris/sp_sec03_img05.jpg",
+        "href": "/menu/beautiful_skin/"
+      },
+      {
+        "name": "ダーマペン4",
+        "text": "微細な針で肌に穴を開け、自然治癒力を生かし肌状態をより美しくします。世界最速の振動数/秒で少ないダウンタイムでの治療が可能。ニキビ跡や毛穴の引き締めに効果的です。",
+        "image": "/images/norris/sec03_img06.jpg",
+        "imageSp": "/images/norris/sp_sec03_img06.jpg",
+        "href": "/menu/dermapen/"
       }
     ]
   },
   "features": {
-    "title": "当院が選ばれる理由",
+    "title": "ノリスクリニック 3つの特徴",
+    "text": "気軽に、また安心して相談できる場所・人であり続けることを目指し、ノリスクリニックは誕生しました。患者様お一人お一人異なるお悩みを、改善・解消へと導く美容クリニックです。大阪で美容医療を受ける際は、ぜひノリスクリニックへご相談ください。",
     "items": [
       {
-        "title": "丁寧なカウンセリング",
-        "text": "施術前に医師がじっくりとお悩みをお伺いし、最適な治療プランをご提案します。"
+        "title": "お悩みをトータルケアできるエイジングケア",
+        "text": "お顔だけでなく、全身のトータルケアができるクリニックです。高い技術と最新の機器の融合により、お一人お一人にとってのエイジングケアをサポートします。",
+        "image": "/images/norris/sec04_bg01.jpg",
+        "href": "/menu/rejuvenation/"
       },
       {
-        "title": "明確な料金体系",
-        "text": "料金はすべて事前にご提示。不要なアップセルや追加費用はありません。"
+        "title": "幹細胞治療に基づいた根本からの肌改善",
+        "text": "細胞の活性化、コラーゲンの生成を促す再生医療「幹細胞治療」によって、表面的ではない、根本からの肌改善をいたします。",
+        "image": "/images/norris/sec04_bg02.jpg",
+        "href": "/menu/stem_cell/"
       },
       {
-        "title": "通いやすい診療時間",
-        "text": "土日も診療、平日は19時まで。お仕事やご予定に合わせて通えます。"
+        "title": "不要なアップセルは行いません",
+        "text": "お悩みの程度、ご希望は患者様によって異なります。ご予算なども考慮した上で、患者様お一人お一人にとっての最適な治療をご提案します。",
+        "image": "/images/norris/sec04_bg03.jpg",
+        "href": "/fee/"
       }
     ]
   },
-  "instagramNote": "最新情報やキャンペーンはInstagramでも発信しています。"
+  "greeting": {
+    "title": "ごあいさつ",
+    "text": "「美しくありたい」「若々しくありたい」という気持ちは、程度の差こそあれ、誰もが持っているものです。そして、美しくあること、若々しくあることは、毎日の暮らし、人生に大きな喜びをもたらしてくれます。ご自身でのご満足に留まらず、大切な人に褒められた、仕事上の付き合いがうまくいったといった、まわりの人との関係の中でのさまざまなメリットにもつながります。\n以前と比べると、美容医療に対する後ろめたいイメージはなくなってきました。社会性だけでなく、個人の意思も尊重すべき時代で、ノリスクリニックが皆様の幸せに寄与できれば、これほど嬉しいことはありません。",
+    "image": "/images/norris/doctor.png",
+    "imageAlt": "ノリスクリニック院長 千原良友",
+    "name": "千原 良友",
+    "nameTitle": "院長",
+    "href": "/doctor/"
+  },
+  "textSection": {
+    "title": "ノリスクリニックの独自のこだわりと選ばれる理由",
+    "blocks": [
+      { "type": "h3", "text": "ノリスクリニックの診療メニュー例" },
+      {
+        "type": "p",
+        "text": "ノリスクリニックでは、多くの患者様の「美」と「笑顔」を叶えるために、高度な美容再生医療を中心とした幅広い診療メニューをご用意しています。"
+      },
+      { "type": "h3", "text": "大阪・天王寺のノリスクリニックが選ばれる理由" },
+      {
+        "type": "p",
+        "text": "「美しくありたい」という気持ちに、年齢は関係ありません。大阪のノリスクリニックは、誰もが入りやすい落ち着いた雰囲気にこだわった美容クリニックです。若い方はもちろん、ご年配の方にも安心してお越しいただけます。また当院では、経験豊かなスタッフによる適切なカウンセリングをもとに診療を行っています。その際、不要なアップセルはいたしません。患者様のご予算やご希望、お悩みの程度などを考慮したうえで、納得いただける最適な診療法をご提案します。"
+      },
+      {
+        "type": "p",
+        "text": "まずはお電話やWEBの予約フォームから、美容に関するお悩みをお聞かせください。大阪のノリスクリニックがお悩みの改善・解消をサポートし、「美」と「笑顔」に溢れる日々をご提供します。"
+      }
+    ]
+  },
+  "clinicTable": {
+    "title": "大阪の天王寺・難波で美容クリニックをお探しならノリスクリニックへ",
+    "rows": [
+      { "label": "クリニック名", "value": "ノリスクリニック 美容皮膚科・泌尿器科・再生医療" },
+      { "label": "院長", "value": "千原 良友" },
+      { "label": "住所", "value": "〒543-0031 大阪府大阪市天王寺区石ケ辻町18-21 上六ときビル 4階" },
+      { "label": "TEL", "value": "06-6772-3456" },
+      { "label": "診療時間", "value": "10:30～19:00" },
+      { "label": "休診日", "value": "不定休" }
+    ]
+  },
+  "instagram": {
+    "title": "Instagram",
+    "avatar": "/images/norris/insta/profile.webp",
+    "bio": "@norris_beautyclinic",
+    "images": [
+      "/images/norris/insta/post01.jpg",
+      "/images/norris/insta/post02.jpg",
+      "/images/norris/insta/post03.jpg",
+      "/images/norris/insta/post04.jpg",
+      "/images/norris/insta/post05.jpg",
+      "/images/norris/insta/post06.jpg",
+      "/images/norris/insta/post07.jpg",
+      "/images/norris/insta/post08.jpg"
+    ]
+  },
+  "instagramNote": ""
 }

@@ -36,7 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="ja"
       className={`${notoSans.variable} ${shipporiMincho.variable} antialiased`}
     >
-      <body className="flex min-h-dvh flex-col bg-background font-sans text-text">
+      <body id="top" className="font-sans text-text" style={{ background: "var(--background)" }}>
         {/* site.json の theme を CSS 変数として注入(サイト複製時に色を変えられる) */}
         <style
           dangerouslySetInnerHTML={{
@@ -44,7 +44,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           }}
         />
         <SiteHeader />
-        <main className="flex-1 pb-16 md:pb-0">{children}</main>
+        <main>{children}</main>
         <SiteFooter />
         <CtaBar />
       </body>

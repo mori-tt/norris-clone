@@ -1,33 +1,44 @@
 {
   "about": {
-    "title": "患者さまに寄り添うクリニックでありたい",
+    "title": "クリニック紹介",
     "body": [
       {
         "type": "p",
-        "text": "サンプル美容クリニックは、美容皮膚科を中心としたクリニックです。「美」を通じて、患者さま一人ひとりの毎日がより明るくなることを願い、丁寧なカウンセリングと確かな技術を大切にしています。"
-      },
-      {
-        "type": "p",
-        "text": "初めて美容医療を受ける方にも安心していただけるよう、施術の内容・リスク・料金をわかりやすくご説明します。ご不明な点はどうぞお気軽にご相談ください。"
+        "text": "上六ときビルの4階にございます。エレベーターをご利用ください。"
       }
     ],
-    "image": "/images/about.svg"
+    "image": "/images/norris/hinyou.png"
   },
   "facilities": [
     {
+      "name": "受付",
+      "body": "診察券のお預かりや問診票のご記入をお願いしております。",
+      "image": "/images/norris/sec_02_ttlbg001.jpg"
+    },
+    {
+      "name": "待合室",
+      "body": "各席にUSBポートをご用意しております。パーテーションでプライバシーを守りながら、快適にお待ち頂けます。",
+      "image": "/images/norris/sec_02_ttlbg002.jpg"
+    },
+    {
       "name": "カウンセリングルーム",
-      "body": "プライバシーに配慮した個室で、落ち着いてご相談いただけます。",
-      "image": "/images/facility-1.svg"
+      "body": "落ち着いてご相談いただける個室です。",
+      "image": "/images/norris/sec_02_ttlbg003.jpg"
     },
     {
-      "name": "施術室",
-      "body": "清潔な個室の施術室で、リラックスしてお過ごしいただけます。",
-      "image": "/images/facility-2.svg"
+      "name": "脱毛ルーム",
+      "body": "医療脱毛専用の施術室です。",
+      "image": "/images/norris/sec03_img01.jpg"
     },
     {
-      "name": "パウダールーム",
-      "body": "施術後にお化粧直しをしていただけるスペースをご用意しています。",
-      "image": "/images/facility-3.svg"
+      "name": "ピーリングルーム",
+      "body": "ピーリングなどの施術を行うお部屋です。",
+      "image": "/images/norris/sec_02_ttlbg005.jpg"
+    },
+    {
+      "name": "オペ室",
+      "body": "清潔な環境で施術を行います。",
+      "image": "/images/norris/sec_02_ttlbg006.jpg"
     }
   ]
 }

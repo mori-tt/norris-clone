@@ -41,18 +41,18 @@ export const siteSchema = z.object({
   instagramUser: z.string().default(""),
   theme: z
     .object({
-      primary: z.string().default("#b8896f"),
-      primaryDark: z.string().default("#96684f"),
-      accent: z.string().default("#d9b8a3"),
-      background: z.string().default("#faf7f4"),
-      text: z.string().default("#3f3a36"),
+      primary: z.string().default("#8e292c"),
+      primaryDark: z.string().default("#6e090c"),
+      accent: z.string().default("#a08f5d"),
+      background: z.string().default("#f9f8f4"),
+      text: z.string().default("#333"),
     })
     .default({
-      primary: "#b8896f",
-      primaryDark: "#96684f",
-      accent: "#d9b8a3",
-      background: "#faf7f4",
-      text: "#3f3a36",
+      primary: "#8e292c",
+      primaryDark: "#6e090c",
+      accent: "#a08f5d",
+      background: "#f9f8f4",
+      text: "#333",
     }),
 });
 export type Site = z.infer<typeof siteSchema>;
@@ -180,26 +180,143 @@ export const doctorSchema = z.object({
 });
 export type Doctor = z.infer<typeof doctorSchema>;
 
-/** content/home.json — トップページ固有セクション */
+/** content/home.json — トップページ固有セクション(本家サイト構成) */
 export const homeSchema = z.object({
   hero: z.object({
+    // 画像のみのフェードスライダー(文言は画像に焼き込み)
     slides: z.array(
       z.object({
-        image: z.string(),
-        title: z.string(),
-        subtitle: z.string().default(""),
+        image: z.string(), // PC用画像
+        imageSp: z.string().default(""), // SP用画像(未指定時はPCと同じ)
+        alt: z.string().default(""),
+        href: z.string().default(""), // スライド全体のリンク
       }),
     ),
   }),
+  // ヒーロー直下のバナー画像
+  banner: z
+    .object({
+      image: z.string(),
+      alt: z.string().default(""),
+      href: z.string().default(""),
+    })
+    .nullable()
+    .default(null),
+  scheduleTitle: z.string().default("診療日"),
+  scheduleImage: z.string().default(""), // カレンダー画像(あれば優先表示)
+  // 再生医療メニュー(sec02 上段)
+  regen: z.object({
+    title: z.string().default("再生医療メニュー"),
+    text: z.string().default(""),
+    bannerText: z.string().default(""),
+    bannerHref: z.string().default(""),
+    cards: z.array(
+      z.object({
+        title: z.string(),
+        sub: z.string().default(""),
+        text: z.string(),
+        image: z.string(),
+        titleBg: z.string().default(""), // タイトル帯背景画像
+        href: z.string(),
+      }),
+    ),
+  }),
+  // 診療メニュー(sec02 下段: カード + テキストリンク)
+  menuCards: z.object({
+    title: z.string().default("診療メニュー"),
+    text: z.string().default(""),
+    cards: z.array(
+      z.object({
+        title: z.string(),
+        sub: z.string().default(""),
+        text: z.string(),
+        image: z.string(),
+        titleBg: z.string().default(""),
+        href: z.string(),
+      }),
+    ),
+    links: z.array(
+      z.object({ label: z.string(), href: z.string() }),
+    ),
+  }),
+  // 症状・お悩みから探す(正方形画像リンク)
+  concerns: z.object({
+    title: z.string().default("症状・お悩みから探す"),
+    text: z.string().default(""),
+    items: z.array(
+      z.object({
+        image: z.string(),
+        alt: z.string(),
+        href: z.string(),
+      }),
+    ),
+  }),
+  // 機器から探す
+  devices: z.object({
+    title: z.string().default("機器から探す"),
+    text: z.string().default(""),
+    items: z.array(
+      z.object({
+        name: z.string(),
+        text: z.string(),
+        image: z.string(),
+        imageSp: z.string().default(""),
+        href: z.string(),
+      }),
+    ),
+  }),
+  // 3つの特徴(背景写真+白枠)
   features: z.object({
     title: z.string().default("当院の特徴"),
+    text: z.string().default(""),
     items: z.array(
       z.object({
         title: z.string(),
         text: z.string(),
+        image: z.string().default(""), // カラム背景画像
+        href: z.string().default(""),
       }),
     ),
   }),
+  // ごあいさつ
+  greeting: z
+    .object({
+      title: z.string().default("ごあいさつ"),
+      text: z.string().default(""),
+      image: z.string().default(""),
+      imageAlt: z.string().default(""),
+      name: z.string().default(""),
+      nameTitle: z.string().default("院長"),
+      href: z.string().default("/doctor/"),
+    })
+    .nullable()
+    .default(null),
+  // フリーテキストエリア(sec07)
+  textSection: z
+    .object({
+      title: z.string().default(""),
+      blocks: z.array(blockSchema).default([]),
+    })
+    .nullable()
+    .default(null),
+  // クリニック情報テーブル(sec07下部)
+  clinicTable: z
+    .object({
+      title: z.string().default(""),
+      rows: z.array(z.object({ label: z.string(), value: z.string() })),
+    })
+    .nullable()
+    .default(null),
+  // Instagram(静的グリッド)
+  instagram: z
+    .object({
+      title: z.string().default("Instagram"),
+      avatar: z.string().default(""),
+      bio: z.string().default(""),
+      images: z.array(z.string()).default([]),
+    })
+    .nullable()
+    .default(null),
   instagramNote: z.string().default(""),
 });
 export type Home = z.infer<typeof homeSchema>;

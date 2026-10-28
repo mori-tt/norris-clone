@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { getMenuItems, getNavigation, getSite } from "@/lib/content";
 import type { NavItem } from "@/lib/schemas";
-import { ChevronDownIcon, PhoneIcon } from "./icons";
 import { MobileMenu } from "./MobileMenu";
 
 const kindLabels: Record<string, string> = {
@@ -11,14 +10,14 @@ const kindLabels: Record<string, string> = {
   mens: "メンズ",
 };
 
-/** navigation.json の dynamicMenu フラグを menu/*.json から生成した子メニューに展開する */
+/** navigation.json の dynamicMenu フラグを menu/*.md から生成した子メニューに展開する */
 function expandDynamic(items: NavItem[]): NavItem[] {
   const menu = getMenuItems();
   const groups = (["treatment", "concern", "device", "mens"] as const)
     .map((kind) => ({
       label: kindLabels[kind],
       en: "",
-      href: kind === "treatment" ? "/menu/" : "",
+      href: "",
       dynamicMenu: false,
       children: menu
         .filter((m) => m.kind === kind)
@@ -40,94 +39,118 @@ function expandDynamic(items: NavItem[]): NavItem[] {
 export function SiteHeader() {
   const site = getSite();
   const items = expandDynamic(getNavigation());
-  const telHref = `tel:${site.tel.replaceAll("-", "")}`;
 
   return (
-    <header className="sticky top-0 z-40 border-b border-accent/60 bg-background/95 backdrop-blur">
-      {/* 上段: ロゴ + 電話/予約 */}
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <Link href="/" className="leading-tight">
-          <span className="block font-serif text-lg font-semibold tracking-wide md:text-xl">
-            {site.name}
-          </span>
-          <span className="block text-[10px] tracking-[0.2em] text-primary-dark">
-            {site.nameEn}
-          </span>
-        </Link>
-        <div className="flex items-center gap-2">
-          <a
-            href={telHref}
-            className="hidden items-center gap-1.5 rounded-full border border-primary px-4 py-2 text-sm font-bold text-primary-dark md:flex"
-          >
-            <PhoneIcon />
-            {site.tel}
-          </a>
-          {site.reserveUrl && (
-            <a
-              href={site.reserveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden rounded-full bg-primary px-5 py-2 text-sm font-bold text-white md:block"
-            >
-              WEB予約
-            </a>
-          )}
-          <MobileMenu items={items} tel={site.tel} reserveUrl={site.reserveUrl} />
+    <header id="header">
+      <div className="inner">
+        <div className="headerinner">
+          {/* ロゴ(キャッチコピー + ロゴ画像) */}
+          <h1 className="header-title">
+            {site.tagline}
+            <Link href="/">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/norris/logo.png" alt={site.name} />
+            </Link>
+          </h1>
+
+          {/* SPナビ(画像アイコン5個) */}
+          <ul id="spnav">
+            <li>
+              <Link href="/">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/images/norris/sp_nav01.png" alt="HOME" />
+              </Link>
+            </li>
+            <li>
+              <Link href="/clinic/">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/images/norris/sp_nav02.png" alt="クリニック紹介" />
+              </Link>
+            </li>
+            <li>
+              <a href={`tel:${site.tel.replaceAll("-", "")}`}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/images/norris/sp_nav03.png" alt="電話" />
+              </a>
+            </li>
+            <li>
+              <Link href="/access/">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/images/norris/sp_nav04.png" alt="アクセス・診療時間" />
+              </Link>
+            </li>
+            <MobileMenu items={items} tel={site.tel} />
+          </ul>
+
+          {/* PCナビ */}
+          <nav id="gnav" aria-label="グローバルナビゲーション">
+            <ul>
+              {items.map((item) => {
+                const hasChildren = item.children.length > 0;
+                const isMega =
+                  item.children.some((c) => c.children.length > 0);
+                return (
+                  <li
+                    key={item.label}
+                    className={`${hasChildren ? "has-children " : ""}${
+                      isMega ? "mega" : ""
+                    }`}
+                  >
+                    {item.href ? (
+                      <Link href={item.href}>
+                        <span className="wrap">
+                          {item.label}
+                          {item.en && (
+                            <span className="nav-en">{item.en}</span>
+                          )}
+                        </span>
+                      </Link>
+                    ) : (
+                      <span className="navlink">
+                        <span className="wrap">
+                          {item.label}
+                          {item.en && (
+                            <span className="nav-en">{item.en}</span>
+                          )}
+                        </span>
+                      </span>
+                    )}
+
+                    {/* ワイドメガメニュー */}
+                    {isMega && (
+                      <div className="megamenu">
+                        <div className="submenu-inner">
+                          {item.children.map((group) => (
+                            <ul key={group.label} className="sub-menu">
+                              <li className="menutitle">{group.label}</li>
+                              {group.children.map((sub) => (
+                                <li key={sub.href}>
+                                  <Link href={sub.href}>{sub.label}</Link>
+                                </li>
+                              ))}
+                            </ul>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* 通常ドロップダウン */}
+                    {!isMega && hasChildren && (
+                      <ul className="sub-menu">
+                        {item.children.map((sub) => (
+                          <li key={sub.href}>
+                            <Link href={sub.href}>{sub.label}</Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
         </div>
       </div>
-
-      {/* 下段: PCナビ(ドロップダウン) */}
-      <nav className="hidden border-t border-accent/40 md:block">
-        <ul className="mx-auto flex max-w-6xl justify-center">
-          {items.map((item) => (
-            <li key={item.label} className="group relative">
-              <Link
-                href={item.href || "#"}
-                className="flex items-center gap-1 px-5 py-3 text-sm font-medium transition-colors hover:text-primary-dark"
-              >
-                <span>{item.label}</span>
-                {item.en && (
-                  <span className="text-[9px] tracking-widest text-primary-dark/70">
-                    {item.en}
-                  </span>
-                )}
-                {item.children.length > 0 && <ChevronDownIcon />}
-              </Link>
-              {item.children.length > 0 && (
-                <div className="invisible absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-0 opacity-0 shadow-lg transition-all duration-150 group-hover:visible group-hover:opacity-100">
-                  <div className="rounded-b border border-accent/60 bg-white py-2">
-                    {item.children.map((child, i) => (
-                      <div key={`${child.label}-${i}`}>
-                        {child.href ? (
-                          <Link
-                            href={child.href}
-                            className="block px-4 py-2 text-sm hover:bg-accent/30"
-                          >
-                            {child.label}
-                          </Link>
-                        ) : (
-                          <p className="px-4 pb-1 pt-3 text-[11px] font-bold tracking-wider text-primary-dark">
-                            {child.label}
-                          </p>
-                        )}
-                        {child.children.map((sub) => (
-                          <Link
-                            key={sub.href}
-                            href={sub.href}
-                            className="block px-6 py-1.5 text-[13px] text-text/80 hover:bg-accent/30 hover:text-text"
-                          >
-                            {sub.label}
-                          </Link>
-                        ))}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </li>
-          ))}
-        </ul>
-      </nav>
     </header>
   );
 }

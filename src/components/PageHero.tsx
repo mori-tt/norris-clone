@@ -5,27 +5,21 @@ type Props = {
   en?: string;
 };
 
-/** 下層ページ共通の見出し帯(パンくず付き) */
+/** 下層ページ共通の見出し帯(under_title.jpg 背景 + パンくず + ヘッダー分の余白) */
 export function PageHero({ ja, en }: Props) {
   return (
-    <div className="border-b border-accent/60 bg-accent/20 py-10 md:py-14">
-      <div className="mx-auto max-w-6xl px-4">
-        <h1 className="font-serif text-2xl font-semibold md:text-3xl">
+    <div className="page-offset">
+      <div className="page-title">
+        <h1 className="page-title-text">
           {ja}
-          {en && (
-            <span className="ml-3 text-sm tracking-[0.2em] text-primary-dark">
-              {en}
-            </span>
-          )}
+          {en && <span className="block text-sm tracking-[0.2em]">{en}</span>}
         </h1>
-        <p className="mt-3 text-xs text-text/60">
-          <Link href="/" className="hover:text-primary-dark">
-            HOME
-          </Link>
-          <span className="mx-1">&gt;</span>
-          {ja}
-        </p>
       </div>
+      <p className="bread">
+        <Link href="/">HOME</Link>
+        <span className="mx-1">&gt;</span>
+        {ja}
+      </p>
     </div>
   );
 }

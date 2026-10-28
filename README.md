@@ -110,8 +110,18 @@ NEWT_SPACE_UID=xxx NEWT_APP_UID=xxx NEWT_TOKEN=xxx npm run build
 ## 画像
 
 - `public/images/` に配置し、content から `/images/xxx.jpg` のように参照
-- 現在の画像は `npm run placeholders` で再生成できるダミーSVG。実写真(jpg/png/webp)に差し替えてください
 - 推奨サイズ: ヒーロー `1600×900`、カード/記事 `1200×800`、院長 `800×1000`、Instagram `800×800`
+
+### 参考元サイトのアセットについて(重要)
+
+`public/images/norris/` 配下の画像は `scripts/fetch-norris-assets.mjs` で **https://www.norris-beauty-clinic.com からダウンロードしたもの**です。見た目の再現確認用であり、**著作権・肖像権はノリスクリニックおよび各権利者に帰属します**。
+
+- このリポジトリをそのまま公開サイトとして運用・転用することは想定していません
+- 別クリニックのサイトを作る場合は、`public/images/norris/` を削除し、自院・購入素材に差し替えてください。レイアウトで参照している画像パスは `content/*.json` と `src/app/globals.css`(`sec02_bg` 等の背景指定)に集約されているため、同名ファイルを差し替えるだけで置き換えられます
+
+```bash
+node scripts/fetch-norris-assets.mjs   # 参考元サイトから画像を再取得する場合
+```
 
 ## 別クリニックサイトの作り方(2通り)
 
@@ -143,4 +153,5 @@ CONTENT_DIR=sites/clinic-b npm run build
 - 診療カレンダーは `schedule.json` の手動更新(月替わりで日付配列を編集)
 - Instagram セクションは固定画像+プロフィールリンク(リアルタイムフィードではありません)
 - Markdown・CMS 由来の本文HTMLはサニタイズしていません(自前コンテンツ前提)。外部入力を受け付ける場合は `src/components/Blocks.tsx` にサニタイザを導入してください
-- 本テンプレートの文言・画像はすべてダミーです。実サイト公開時は自院の素材に置き換えてください
+- Turbopack は稀に古いCSSをキャッシュすることがあります。見た目が変わらない場合は `rm -rf .next out && npm run build` でクリーンビルドしてください
+- `public/images/norris/` は参考サイト由来のアセットです(権利は上記「画像」節を参照)。公開運用するサイトでは自院素材への差し替えが必須です

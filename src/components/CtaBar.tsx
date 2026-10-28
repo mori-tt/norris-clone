@@ -1,66 +1,116 @@
 import { getSite } from "@/lib/content";
-import { InstagramIcon, LineIcon, PhoneIcon } from "./icons";
 
-/** モバイル固定フッターCTA(電話/予約/SNS) */
+/** 画面右サイド(PC)と下部(SP)の固定CTA — 本家の side01-04 画像ボタン */
 export function CtaBar() {
   const site = getSite();
-  const items = [
-    {
-      href: `tel:${site.tel.replaceAll("-", "")}`,
-      label: "電話",
-      icon: <PhoneIcon className="h-5 w-5" />,
-      external: false,
-      primary: true,
-    },
-    site.reserveUrl && {
-      href: site.reserveUrl,
-      label: "WEB予約",
-      icon: null,
-      external: true,
-      primary: false,
-    },
-    site.instagramUrl && {
-      href: site.instagramUrl,
-      label: "Instagram",
-      icon: <InstagramIcon className="h-5 w-5" />,
-      external: true,
-      primary: false,
-    },
-    site.lineUrl && {
-      href: site.lineUrl,
-      label: "LINE",
-      icon: <LineIcon className="h-5 w-5" />,
-      external: true,
-      primary: false,
-    },
-  ].filter(Boolean) as {
-    href: string;
-    label: string;
-    icon: React.ReactNode;
-    external: boolean;
-    primary: boolean;
-  }[];
+  const tel = `tel:${site.tel.replaceAll("-", "")}`;
 
   return (
-    <nav
-      aria-label="お問い合わせ"
-      className="fixed bottom-0 left-0 right-0 z-40 grid grid-flow-col border-t border-accent bg-white md:hidden"
-    >
-      {items.map((item) => (
-        <a
-          key={item.label}
-          href={item.href}
-          {...(item.external
-            ? { target: "_blank", rel: "noopener noreferrer" }
-            : {})}
-          className={`flex flex-col items-center justify-center gap-0.5 py-2 text-[10px] font-medium ${
-            item.primary ? "bg-primary text-white" : "text-primary-dark"
-          }`}
-        >
-          {item.icon}
-          {item.label}
+    <div id="aside-cta">
+      <div className="pagetop">
+        <a href="#top" aria-label="一番上に戻る">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/norris/pagetop.png"
+            alt="一番上に戻る"
+            className="pc-only"
+          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/norris/sp_pagetop.png"
+            alt="一番上に戻る"
+            className="sp-only"
+          />
         </a>
-      ))}
-    </nav>
+      </div>
+
+      {/* PC: 右サイド縦積み */}
+      <div className="bnr-right">
+        <a href={tel} className="pc-only">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/norris/side01.png"
+            alt={`お電話でのお問い合わせ ${site.tel}`}
+          />
+        </a>
+        {site.reserveUrl && (
+          <a
+            href={site.reserveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pc-only"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/norris/side02.png" alt="WEB予約" />
+          </a>
+        )}
+        {site.instagramUrl && (
+          <a
+            href={site.instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pc-only"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/norris/side03.png" alt="Instagram" />
+          </a>
+        )}
+        {site.lineUrl && (
+          <a
+            href={site.lineUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pc-only"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/norris/side04.png" alt="LINE" />
+          </a>
+        )}
+      </div>
+
+      {/* SP: 下部バー */}
+      <div className="bnr-bottom">
+        <a href={tel} className="sp-side">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/norris/sp_side01.png"
+            alt={`お電話でのお問い合わせ ${site.tel}`}
+          />
+        </a>
+        {site.reserveUrl && (
+          <a
+            href={site.reserveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="sp-side"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/norris/sp_side02.png" alt="WEB予約" />
+          </a>
+        )}
+        {site.instagramUrl && (
+          <a
+            href={site.instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="sp-side"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/norris/sp_side03.png" alt="Instagram" />
+          </a>
+        )}
+        {site.lineUrl && (
+          <a
+            href={site.lineUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="sp-side"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/norris/sp_side04.png" alt="LINE" />
+          </a>
+        )}
+      </div>
+    </div>
   );
 }

@@ -1,6 +1,6 @@
 ---
 slug: picolaser
-name: ピコレーザー
+name: PicoWay（ピコレーザー）
 nameEn: PICO LASER
 kind: device
 catchcopy: ピコ秒照射でしみを粉砕
@@ -13,7 +13,7 @@ priceNote: "全顔1回 16,500円(税込)〜"
 related:
   - photofacial
   - blemish
-order: 30
+order: 4
 ---
 
 ピコレーザーは従来のQスイッチレーザーより短い照射時間で、周囲組織への熱ダメージを抑えながらメラニンを粉砕します。しみ・そばかすのほか、トーニングによる肝斑・くすみケアにも対応します。

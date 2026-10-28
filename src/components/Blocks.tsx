@@ -11,20 +11,9 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
           case "p":
             return <p key={i}>{b.text}</p>;
           case "h2":
-            return (
-              <h2
-                key={i}
-                className="mt-8 border-l-4 border-primary pl-3 font-serif text-xl font-semibold"
-              >
-                {b.text}
-              </h2>
-            );
+            return <h2 key={i}>{b.text}</h2>;
           case "h3":
-            return (
-              <h3 key={i} className="mt-6 font-bold text-primary-dark">
-                {b.text}
-              </h3>
-            );
+            return <h3 key={i}>{b.text}</h3>;
           case "ul":
             return (
               <ul key={i} className="list-disc space-y-1 pl-6">

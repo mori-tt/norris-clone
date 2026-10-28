@@ -15,7 +15,7 @@ related:
   - picolaser
   - blemish
   - dermapen
-order: 5
+order: 12
 ---
 
 フォトフェイシャルはIPL(Intense Pulsed Light)の光を肌に照射し、メラニンやヘモグロビンに反応させることで、シミ・そばかす・赤み・くすみを総合的に改善する治療です。コラーゲン生成も促すため、ハリ・キメの改善にもつながります。

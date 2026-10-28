@@ -1,177 +1,331 @@
-import Image from "next/image";
 import Link from "next/link";
-import {
-  getHome,
-  getMenuByKind,
-  getPosts,
-  getSchedule,
-  getSite,
-} from "@/lib/content";
+import { getHome, getPosts, getSite } from "@/lib/content";
 import { HeroSlider } from "@/components/HeroSlider";
 import { SectionHeading } from "@/components/SectionHeading";
-import { PostList, MoreLink } from "@/components/PostList";
-import { MenuCard } from "@/components/MenuCard";
-import { ScheduleCalendar } from "@/components/ScheduleCalendar";
-import {
-  ArrowRightIcon,
-  InstagramIcon,
-  MapPinIcon,
-  PhoneIcon,
-} from "@/components/icons";
+import { Blocks } from "@/components/Blocks";
+import { formatDate } from "@/lib/content";
 
 export default async function HomePage() {
   const site = getSite();
   const home = getHome();
   const news = (await getPosts("news")).slice(0, 3);
-  const treatments = getMenuByKind("treatment");
-  const schedule = getSchedule();
 
   return (
     <>
       <HeroSlider slides={home.hero.slides} />
 
-      {/* 特徴 */}
-      <section className="py-14 md:py-20">
-        <div className="mx-auto max-w-6xl px-4">
-          <SectionHeading en="Feature" ja={home.features.title} />
-          <ul className="grid gap-6 md:grid-cols-3">
-            {home.features.items.map((f, i) => (
-              <li
-                key={f.title}
-                className="rounded border border-accent/60 bg-white p-6 text-center"
-              >
-                <p className="font-serif text-3xl font-semibold text-accent">
-                  {String(i + 1).padStart(2, "0")}
+      {/* 泌尿器科バナー */}
+      {home.banner && (
+        <div className="bnr-block">
+          <div className="topinner">
+            <p>
+              <Link href={home.banner.href || "#"}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={home.banner.image} alt={home.banner.alt} />
+              </Link>
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* sec01: News + Schedule */}
+      <section className="sec_news py-[4%]">
+        <div className="topinner">
+          <div className="columns">
+            <div className="column col_2 news">
+              <div className="heading">
+                <h3>
+                  <span className="en">News</span>お知らせ
+                </h3>
+                <div className="btn-style">
+                  <Link href="/news/">一覧へ</Link>
+                </div>
+              </div>
+              <dl>
+                {news.map((p) => (
+                  <div key={p.slug} className="contents">
+                    <dt>
+                      <time dateTime={p.date}>{formatDate(p.date)}</time>
+                    </dt>
+                    <dd>
+                      <Link href={`/news/${p.slug}/`}>{p.title}</Link>
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+            <div className="column col_2">
+              <h3>
+                <span className="en">Schedule</span>
+                {home.scheduleTitle}
+              </h3>
+              {home.scheduleImage && (
+                <p>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={home.scheduleImage} alt={home.scheduleTitle} />
                 </p>
-                <p className="mt-3 font-bold">{f.title}</p>
-                <p className="mt-2 text-sm leading-relaxed text-text/70">
-                  {f.text}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* お知らせ */}
-      <section className="bg-white py-14 md:py-20">
-        <div className="mx-auto max-w-6xl px-4">
-          <SectionHeading en="News" ja="お知らせ" />
-          <PostList posts={news} basePath="news" />
-          <MoreLink href="/news/" />
-        </div>
-      </section>
-
-      {/* 診療カレンダー */}
-      <section className="py-14 md:py-20">
-        <div className="mx-auto max-w-6xl px-4">
-          <SectionHeading en="Schedule" ja="診療日" />
-          <ScheduleCalendar calendar={schedule.calendar} />
-        </div>
-      </section>
-
-      {/* 診療メニュー */}
-      <section className="bg-white py-14 md:py-20">
-        <div className="mx-auto max-w-6xl px-4">
-          <SectionHeading en="Menu" ja="診療メニュー" />
-          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {treatments.map((m) => (
-              <li key={m.slug}>
-                <MenuCard item={m} />
-              </li>
-            ))}
-          </ul>
-          <MoreLink href="/menu/" />
+              )}
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Instagram */}
-      {site.instagramUrl && (
-        <section className="py-14 md:py-20">
-          <div className="mx-auto max-w-6xl px-4">
-            <SectionHeading en="Instagram" ja={site.instagramUser} />
-            {home.instagramNote && (
-              <p className="mb-6 text-center text-sm text-text/70">
-                {home.instagramNote}
-              </p>
-            )}
-            <ul className="grid grid-cols-3 gap-2 md:grid-cols-6">
-              {[1, 2, 3, 4, 5, 6].map((n) => (
-                <li key={n}>
-                  <a
-                    href={site.instagramUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative block aspect-square overflow-hidden rounded"
-                  >
-                    <Image
-                      src={`/images/insta-${n}.svg`}
-                      alt={`Instagram投稿 ${n}`}
-                      fill
-                      sizes="(max-width:768px) 33vw, 16vw"
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-6 text-center">
+      {home.instagram && home.instagram.images.length > 0 && (
+        <section className="py-[4%]">
+          <div className="topinner">
+            <h2 className="ttl">{home.instagram.title}</h2>
+            <div className="insta-header">
+              {home.instagram.avatar && (
+                <>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={home.instagram.avatar}
+                    alt=""
+                    className="avatar"
+                  />
+                </>
+              )}
               <a
                 href={site.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-primary-dark underline"
+                className="insta-id"
               >
-                <InstagramIcon /> @{site.instagramUser}
+                {home.instagram.bio || `@${site.instagramUser}`}
               </a>
+            </div>
+            <div className="insta-grid">
+              {home.instagram.images.map((src, i) => (
+                <a
+                  key={src}
+                  href={site.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={src} alt={`Instagram投稿 ${i + 1}`} loading="lazy" />
+                </a>
+              ))}
             </div>
           </div>
         </section>
       )}
 
-      {/* アクセス */}
-      <section className="bg-white py-14 md:py-20">
-        <div className="mx-auto max-w-6xl px-4">
-          <SectionHeading en="Access" ja="アクセス" />
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="flex items-center justify-center gap-2">
-              <MapPinIcon className="h-4 w-4 shrink-0 text-primary-dark" />
-              <span>
-                〒{site.postalCode} {site.address}
-              </span>
-            </p>
-            {site.addressNote && (
-              <p className="mt-2 text-sm text-text/70">{site.addressNote}</p>
-            )}
-            <a
-              href={`tel:${site.tel.replaceAll("-", "")}`}
-              className="mt-4 inline-flex items-center gap-2 text-2xl font-bold text-primary-dark"
-            >
-              <PhoneIcon className="h-6 w-6" />
-              {site.tel}
-            </a>
-            <div className="mt-6 flex flex-wrap justify-center gap-3">
-              {site.reserveUrl && (
-                <a
-                  href={site.reserveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full bg-primary px-8 py-3 text-sm font-bold text-white"
-                >
-                  WEB予約はこちら
-                </a>
-              )}
-              <Link
-                href="/access/"
-                className="inline-flex items-center gap-2 rounded-full border border-primary px-8 py-3 text-sm text-primary-dark"
-              >
-                診療時間・アクセス
-                <ArrowRightIcon />
-              </Link>
+      {/* sec02: 再生医療メニュー + 診療メニュー */}
+      <section className="sec02">
+        <div className="topinner">
+          <SectionHeading ja={home.regen.title} ghost="menu" />
+          <p className="mb-[4%] text-center">{home.regen.text}</p>
+          {home.regen.bannerHref && (
+            <div className="bnr-block">
+              <div className="topinner">
+                <div className="btn">
+                  <Link href={home.regen.bannerHref}>
+                    {home.regen.bannerText}
+                  </Link>
+                </div>
+              </div>
             </div>
+          )}
+          <MenuCardRow cards={home.regen.cards} />
+
+          <h2 className="ttl ghost-menu">{home.menuCards.title}</h2>
+          <p className="mb-[4%] text-center">{home.menuCards.text}</p>
+          <MenuCardRow cards={home.menuCards.cards} />
+
+          <ul className="menu-link-list mt-[4%]">
+            {home.menuCards.links.map((l) => (
+              <li key={l.href}>
+                <Link href={l.href}>{l.label}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* sec06: 症状・お悩みから探す */}
+      <section className="sec06">
+        <div className="topinner">
+          <h2 className="ttl ghost-treatment">{home.concerns.title}</h2>
+          <p className="mb-[2%] text-center">{home.concerns.text}</p>
+          <ul className="columns wrap sp_col_2">
+            {home.concerns.items.map((c) => (
+              <li key={c.href} className="column col_3">
+                <Link href={c.href}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={c.image} alt={c.alt} loading="lazy" />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* sec03: 機器から探す */}
+      <section className="sec03">
+        <div className="topinner">
+          <h2 className="ttl ghost-machine">{home.devices.title}</h2>
+          <p className="mb-[4%] text-center">{home.devices.text}</p>
+          <div className="columns wrap sp_col_2">
+            {home.devices.items.map((d) => (
+              <div key={d.name} className="column col_3">
+                <Link href={d.href} className="box-link" aria-label={d.name} />
+                <figure>
+                  <picture>
+                    {d.imageSp && (
+                      <source media="(max-width: 767px)" srcSet={d.imageSp} />
+                    )}
+                    { }
+                    <img src={d.image} alt={d.name} loading="lazy" />
+                  </picture>
+                </figure>
+                <h3>{d.name}</h3>
+                <div className="txt-wrap">
+                  <p>{d.text}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
+
+      {/* sec04: 3つの特徴 */}
+      <section className="sec04">
+        <div className="topinner">
+          <h2 className="ttl ghost-features">{home.features.title}</h2>
+          <p className="mb-[4%] text-center">{home.features.text}</p>
+          <div className="columns con">
+            {home.features.items.map((f, i) => (
+              <div
+                key={f.title}
+                className="column col_3"
+                style={
+                  f.image ? { backgroundImage: `url(${f.image})` } : undefined
+                }
+              >
+                {f.href && (
+                  <Link href={f.href} className="box-link" aria-label={f.title} />
+                )}
+                <div className="txt-wrap">
+                  <h3>
+                    <span className="num">{String(i + 1).padStart(2, "0")}</span>
+                    {f.title}
+                  </h3>
+                  <p className="tac">{f.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* sec05: ごあいさつ */}
+      {home.greeting && (
+        <section className="sec05">
+          <div className="topinner">
+            <h2 className="ttl ghost-greeting">{home.greeting.title}</h2>
+            <div className="columns aic">
+              <div className="column col_2">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={home.greeting.image}
+                  alt={home.greeting.imageAlt}
+                  loading="lazy"
+                />
+              </div>
+              <div className="column col_2">
+                {home.greeting.text.split("\n").map((p) => (
+                  <p key={p.slice(0, 12)} className="mb-4">
+                    {p}
+                  </p>
+                ))}
+                <p className="name">
+                  <span className="s">{home.greeting.nameTitle}</span>
+                  <br />
+                  {home.greeting.name}
+                </p>
+                <div className="btn-style outline right">
+                  <Link href={home.greeting.href}>MORE</Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* sec07: テキスト + クリニック情報 */}
+      <section className="sec07">
+        <div className="topinner">
+          {home.textSection && (
+            <>
+              <h2 className="ttl">{home.textSection.title}</h2>
+              <div className="prose-clinic">
+                <Blocks blocks={home.textSection.blocks} />
+              </div>
+            </>
+          )}
+          {home.clinicTable && (
+            <div className="mt-12">
+              <h3 className="mb-6 text-center font-serif text-xl text-[#8e292c]">
+                {home.clinicTable.title}
+              </h3>
+              <table className="clinic-table">
+                <tbody>
+                  {home.clinicTable.rows.map((r) => (
+                    <tr key={r.label}>
+                      <th>{r.label}</th>
+                      <td>{r.value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      </section>
     </>
+  );
+}
+
+/** 本家 sec02 のカード行(タイトル帯背景 + 画像 + MORE ボタン) */
+function MenuCardRow({
+  cards,
+}: {
+  cards: {
+    title: string;
+    sub: string;
+    text: string;
+    image: string;
+    titleBg: string;
+    href: string;
+  }[];
+}) {
+  return (
+    <div className="columns wrap mb-[4%]">
+      {cards.map((c) => (
+        <div key={c.href} className="column col_3 sec02-card">
+          <p
+            className="card-ttl"
+            style={
+              c.titleBg ? { backgroundImage: `url(${c.titleBg})` } : undefined
+            }
+          >
+            {c.sub && <span className="sub">{c.sub}</span>}
+            {c.title}
+          </p>
+          <p className="card-body">{c.text}</p>
+          <div className="overbtn">
+            <figure>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={c.image} alt={c.title} loading="lazy" />
+            </figure>
+            <div className="btn-style">
+              <Link href={c.href}>MORE</Link>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
   );
 }

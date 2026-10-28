@@ -15,7 +15,7 @@ related:
   - botox
   - dermapen
   - photofacial
-order: 3
+order: 10
 ---
 
 HIFUは超音波の熱エネルギーを皮膚深部の筋膜(SMAS層)に点状に届け、コラーゲンの収縮と新生を促すことで、フェイスラインのたるみを引き締める治療です。
