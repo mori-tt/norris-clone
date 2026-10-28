@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { ColumnPageView } from "@/components/ColumnPageView";
 import {
   getScrapedPage,
   listScrapedPaths,
@@ -10,6 +11,7 @@ import {
  * /column/ サブサイト(SWELLテーマ)のページ。
  * 本家と同じく別テーマのサイトとして、body全体のスクレイプHTMLをそのまま描画する。
  * SWELL の CSS は public/swell/ にコピー済み。
+ * 英語/中国語は /en|zh/column/... (norris 側のロケールルート)で描画する。
  */
 export function generateStaticParams() {
   return listScrapedPaths()
@@ -36,7 +38,16 @@ export async function generateMetadata({
   params: Promise<{ slug?: string[] }>;
 }): Promise<Metadata> {
   const page = await loadPage(params);
-  return { title: page.docTitle };
+  return {
+    title: page.docTitle,
+    alternates: {
+      languages: {
+        ja: page.url,
+        en: `/en${page.url}`,
+        zh: `/zh${page.url}`,
+      },
+    },
+  };
 }
 
 export default async function ColumnPage({
@@ -45,17 +56,5 @@ export default async function ColumnPage({
   params: Promise<{ slug?: string[] }>;
 }) {
   const page = await loadPage(params);
-
-  return (
-    <div className={page.bodyClass ?? ""}>
-      {/* SWELL テーマのCSS(スクレイプ時に本家の link[rel=stylesheet] を取得) */}
-      {(page.cssLinks ?? []).map((href) => (
-        <link key={href} rel="stylesheet" href={href} />
-      ))}
-      {(page.styles ?? []).map((css, i) => (
-        <style key={i} dangerouslySetInnerHTML={{ __html: css }} />
-      ))}
-      <div dangerouslySetInnerHTML={{ __html: page.html }} />
-    </div>
-  );
+  return <ColumnPageView page={page} locale="ja" />;
 }

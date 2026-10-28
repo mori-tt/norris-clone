@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { getHome, getSite } from "@/lib/content";
+import { CHROME, localePrefix, type Locale } from "@/lib/i18n";
 
 /** 本家フッターと同じマークアップ(ロゴ・info・診療日画像・footer-nav・コラムリンク・クレジット) */
-export function SiteFooter() {
-  const site = getSite();
-  const home = getHome();
+export function SiteFooter({ locale = "ja" }: { locale?: Locale }) {
+  const site = getSite(locale);
+  const home = getHome(locale);
+  const chrome = CHROME[locale];
+  const prefix = localePrefix(locale);
 
   return (
     <footer id="footer" className="footer">
@@ -34,8 +37,8 @@ export function SiteFooter() {
               </li>
             </ul>
             <div className="btn-style left web">
-              <Link href="/contact/">
-                <span className="icon">お問い合わせフォーム</span>
+              <Link href={`${prefix}/contact/`}>
+                <span className="icon">{chrome.contactForm}</span>
               </Link>
             </div>
           </div>
@@ -54,15 +57,15 @@ export function SiteFooter() {
             <div className="menu-item-has-children">
               <ul className="sub-menu">
                 <li>
-                  <Link href="/sitemap/">サイトマップ</Link>
+                  <Link href={`${prefix}/sitemap/`}>{chrome.sitemap}</Link>
                 </li>
               </ul>
             </div>
           </div>
         </div>
         <div className="foot-credit">
-          <Link href="/medi-column/">
-            <span>ノリスメディカルコラム</span>
+          <Link href={`${prefix}/medi-column/`}>
+            <span>{chrome.mediColumn}</span>
           </Link>
         </div>
         <div className="copyright">&copy;{site.name}</div>

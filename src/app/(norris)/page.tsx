@@ -3,17 +3,39 @@ import { getHome, getPosts, getSite } from "@/lib/content";
 import { HeroSlider } from "@/components/HeroSlider";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
+import { CtaBar } from "@/components/CtaBar";
+import { HtmlLang } from "@/components/HtmlLang";
 import { Blocks } from "@/components/Blocks";
 import { formatDate } from "@/lib/content";
+import { CHROME, localePrefix, type Locale } from "@/lib/i18n";
 
-export default async function HomePage() {
-  const site = getSite();
-  const home = getHome();
+const NEWS_HEADING: Record<Locale, string> = {
+  ja: "お知らせ",
+  en: "News",
+  zh: "通知公告",
+};
+
+export default async function HomePage({
+  locale = "ja",
+}: {
+  locale?: Locale;
+}) {
+  const site = getSite(locale);
+  const home = getHome(locale);
+  const chrome = CHROME[locale];
+  const prefix = localePrefix(locale);
+  const lh = (href: string) =>
+    href.startsWith("/") && !href.startsWith("//") ? prefix + href : href;
   const news = (await getPosts("news")).slice(0, 3);
 
   return (
-    <div className="pbody home">
-      <SiteHeader />
+    <div
+      className="pbody home"
+      lang={locale === "zh" ? "zh-CN" : locale}
+    >
+      <HtmlLang locale={locale} />
+      <SiteHeader locale={locale} currentPath="/" />
       <HeroSlider slides={home.hero.slides} />
 
       {/* 泌尿器科バナー */}
@@ -21,7 +43,7 @@ export default async function HomePage() {
         <div className="bnr-block">
           <div className="topinner">
             <p>
-              <Link href={home.banner.href || "#"}>
+              <Link href={lh(home.banner.href || "#")}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={home.banner.image} alt={home.banner.alt} />
               </Link>
@@ -37,10 +59,11 @@ export default async function HomePage() {
             <div className="column col_2 news">
               <div className="heading">
                 <h3>
-                  <span className="en">News</span>お知らせ
+                  <span className="en">News</span>
+                  {NEWS_HEADING[locale]}
                 </h3>
                 <div className="btn-style">
-                  <Link href="/news/">一覧へ</Link>
+                  <Link href={`${prefix}/news/`}>{chrome.newsList}</Link>
                 </div>
               </div>
               <dl>
@@ -50,7 +73,7 @@ export default async function HomePage() {
                       <time dateTime={p.date}>{formatDate(p.date)}</time>
                     </dt>
                     <dd>
-                      <Link href={`/news/${p.slug}/`}>{p.title}</Link>
+                      <Link href={`${prefix}/news/${p.slug}/`}>{p.title}</Link>
                     </dd>
                   </div>
                 ))}
@@ -106,7 +129,7 @@ export default async function HomePage() {
                   rel="noopener noreferrer"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={src} alt={`Instagram投稿 ${i + 1}`} loading="lazy" />
+                  <img src={src} alt={`Instagram ${i + 1}`} loading="lazy" />
                 </a>
               ))}
             </div>
@@ -123,23 +146,23 @@ export default async function HomePage() {
             <div className="bnr-block">
               <div className="topinner">
                 <div className="btn">
-                  <Link href={home.regen.bannerHref}>
+                  <Link href={lh(home.regen.bannerHref)}>
                     {home.regen.bannerText}
                   </Link>
                 </div>
               </div>
             </div>
           )}
-          <MenuCardRow cards={home.regen.cards} />
+          <MenuCardRow cards={home.regen.cards} lh={lh} />
 
           <h2 className="ttl ghost-menu">{home.menuCards.title}</h2>
           <p className="mb-[4%] text-center">{home.menuCards.text}</p>
-          <MenuCardRow cards={home.menuCards.cards} />
+          <MenuCardRow cards={home.menuCards.cards} lh={lh} />
 
           <ul className="menu-link-list mt-[4%]">
             {home.menuCards.links.map((l) => (
               <li key={l.href}>
-                <Link href={l.href}>{l.label}</Link>
+                <Link href={lh(l.href)}>{l.label}</Link>
               </li>
             ))}
           </ul>
@@ -154,7 +177,7 @@ export default async function HomePage() {
           <ul className="columns wrap sp_col_2">
             {home.concerns.items.map((c) => (
               <li key={c.href} className="column col_3">
-                <Link href={c.href}>
+                <Link href={lh(c.href)}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={c.image} alt={c.alt} loading="lazy" />
                 </Link>
@@ -172,7 +195,7 @@ export default async function HomePage() {
           <div className="columns wrap sp_col_2">
             {home.devices.items.map((d) => (
               <div key={d.name} className="column col_3">
-                <Link href={d.href} className="box-link" aria-label={d.name} />
+                <Link href={lh(d.href)} className="box-link" aria-label={d.name} />
                 <figure>
                   <picture>
                     {d.imageSp && (
@@ -207,7 +230,7 @@ export default async function HomePage() {
                 }
               >
                 {f.href && (
-                  <Link href={f.href} className="box-link" aria-label={f.title} />
+                  <Link href={lh(f.href)} className="box-link" aria-label={f.title} />
                 )}
                 <div className="txt-wrap">
                   <h3>
@@ -248,7 +271,7 @@ export default async function HomePage() {
                   {home.greeting.name}
                 </p>
                 <div className="btn-style outline right">
-                  <Link href={home.greeting.href}>MORE</Link>
+                  <Link href={lh(home.greeting.href)}>MORE</Link>
                 </div>
               </div>
             </div>
@@ -286,6 +309,8 @@ export default async function HomePage() {
           )}
         </div>
       </section>
+      <SiteFooter locale={locale} />
+      <CtaBar locale={locale} />
     </div>
   );
 }
@@ -293,6 +318,7 @@ export default async function HomePage() {
 /** 本家 sec02 のカード行(タイトル帯背景 + 画像 + MORE ボタン) */
 function MenuCardRow({
   cards,
+  lh,
 }: {
   cards: {
     title: string;
@@ -302,6 +328,7 @@ function MenuCardRow({
     titleBg: string;
     href: string;
   }[];
+  lh: (href: string) => string;
 }) {
   return (
     <div className="columns wrap mb-[4%]">
@@ -323,7 +350,7 @@ function MenuCardRow({
               <img src={c.image} alt={c.title} loading="lazy" />
             </figure>
             <div className="btn-style">
-              <Link href={c.href}>MORE</Link>
+              <Link href={lh(c.href)}>MORE</Link>
             </div>
           </div>
         </div>

@@ -4155,3 +4155,32 @@ h2.ttl:before{
     background: url(/images/norris/sec02_bg06.jpg) no-repeat center/cover;
   }
 }/*# sourceMappingURL=local.css.map */
+
+/* ========== 言語切替(en/zh対応の追加要素) ========== */
+.langswitch {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  z-index: 60;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: .02em;
+}
+.langswitch a {
+  color: #8e7a4a;
+  padding: 2px 1px;
+  text-decoration: none;
+}
+.langswitch a:hover { text-decoration: underline; }
+.langswitch a.current { font-weight: 700; color: #8e292c; }
+#header .inner { position: relative; }
+@media (max-width: 767px) {
+  .langswitch {
+    top: 6px;
+    right: 6px;
+    font-size: 10px;
+    background: rgba(255,255,255,.75);
+    padding: 3px 6px;
+    border-radius: 3px;
+  }
+}

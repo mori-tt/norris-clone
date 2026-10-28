@@ -56,9 +56,10 @@ function respond_json(bool $success, string $message, int $status = 200): never 
 }
 
 // フォーム種別ごとの返却先。未知のパスは /contact/ に倒す。
+// 英語/中国語ページからの送信は /en|zh/(contact|reserve)/ を許可する。
 function safe_return_path(array $input): string {
     $path = (string)($input['return_path'] ?? '/contact/');
-    if (!preg_match('#^/(?:contact|reserve)/$#', $path)) {
+    if (!preg_match('#^/(?:en/|zh/)?(?:contact|reserve)/$#', $path)) {
         return '/contact/';
     }
     return $path;

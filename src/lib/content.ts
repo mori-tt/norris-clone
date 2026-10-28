@@ -86,23 +86,45 @@ function readDirMd(...segments: string[]): { fileSlug: string; data: Record<stri
     );
 }
 
-export const getSite = (): Site => readJson(siteSchema, "site.json");
+/**
+ * content/i18n/<locale>/<name>.json が存在すればそれを使い、
+ * 無ければ日本語ファイルにフォールバックする。
+ */
+function readJsonLocale<S extends z.ZodType>(
+  schema: S,
+  locale: string,
+  name: string,
+): z.infer<S> {
+  if (locale !== "ja") {
+    const i18nFile = path.join(contentDir, "i18n", locale, name);
+    if (existsSync(i18nFile)) return readJson(schema, "i18n", locale, name);
+  }
+  return readJson(schema, name);
+}
 
-export const getNavigation = (): NavItem[] =>
-  readJson(navigationSchema, "navigation.json").items;
+export const getSite = (locale = "ja"): Site =>
+  readJsonLocale(siteSchema, locale, "site.json");
 
-export const getHome = (): Home => readJson(homeSchema, "home.json");
+export const getNavigation = (locale = "ja"): NavItem[] =>
+  readJsonLocale(navigationSchema, locale, "navigation.json").items;
 
-export const getClinic = (): Clinic => readJson(clinicSchema, "clinic.json");
+export const getHome = (locale = "ja"): Home =>
+  readJsonLocale(homeSchema, locale, "home.json");
 
-export const getDoctor = (): Doctor => readJson(doctorSchema, "doctor.json");
+export const getClinic = (locale = "ja"): Clinic =>
+  readJsonLocale(clinicSchema, locale, "clinic.json");
 
-export const getSchedule = (): Schedule =>
-  readJson(scheduleSchema, "schedule.json");
+export const getDoctor = (locale = "ja"): Doctor =>
+  readJsonLocale(doctorSchema, locale, "doctor.json");
 
-export const getAccess = (): Access => readJson(accessSchema, "access.json");
+export const getSchedule = (locale = "ja"): Schedule =>
+  readJsonLocale(scheduleSchema, locale, "schedule.json");
 
-export const getFee = (): Fee => readJson(feeSchema, "fee.json");
+export const getAccess = (locale = "ja"): Access =>
+  readJsonLocale(accessSchema, locale, "access.json");
+
+export const getFee = (locale = "ja"): Fee =>
+  readJsonLocale(feeSchema, locale, "fee.json");
 
 /** menu/*.json と menu/*.md(frontmatter)の両対応 */
 export const getMenuItems = (): MenuItem[] => {

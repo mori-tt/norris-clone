@@ -26,9 +26,16 @@ function pagesRoot() {
 }
 
 /** "/botox/" のようなURLパスで読む(先頭末尾スラッシュ有無どちらでも可) */
-export function getScrapedPage(pathname: string): ScrapedPage | null {
+export function getScrapedPage(pathname: string, locale = "ja"): ScrapedPage | null {
   const rel = pathname.replace(/^\/+|\/+$/g, "");
   if (!rel) return null;
+  // 翻訳版(content/i18n/<locale>/pages/...)があれば優先、無ければ日本語
+  if (locale !== "ja") {
+    const i18nFile = path.join(contentDir, "i18n", locale, "pages", rel, "index.json");
+    if (existsSync(i18nFile)) {
+      return JSON.parse(readFileSync(i18nFile, "utf8")) as ScrapedPage;
+    }
+  }
   const file = path.join(pagesRoot(), rel, "index.json");
   if (!existsSync(file)) return null;
   return JSON.parse(readFileSync(file, "utf8")) as ScrapedPage;

@@ -1,12 +1,8 @@
-import { SiteFooter } from "@/components/SiteFooter";
-import { CtaBar } from "@/components/CtaBar";
-
-export default function NorrisLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <>
-      {children}
-      <SiteFooter />
-      <CtaBar />
-    </>
-  );
+export default function NorrisLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  // フッター/CTAはロケールをpropsで受け取るため各ページ側で描画する
+  return <>{children}</>;
 }
