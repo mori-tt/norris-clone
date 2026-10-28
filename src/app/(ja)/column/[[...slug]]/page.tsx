@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ColumnPageView } from "@/components/ColumnPageView";
 import {
+  getPageDescription,
   getScrapedPage,
   listScrapedPaths,
   scrapedPathFromSlug,
   slugUrlForm,
 } from "@/lib/pages";
+import { pageMetadata } from "@/lib/seo";
 
 /**
  * /column/ サブサイト(SWELLテーマ)のページ。
@@ -39,16 +41,12 @@ export async function generateMetadata({
   params: Promise<{ slug?: string[] }>;
 }): Promise<Metadata> {
   const page = await loadPage(params);
-  return {
+  return pageMetadata({
+    url: page.url,
     title: page.docTitle,
-    alternates: {
-      languages: {
-        ja: page.url,
-        en: `/en${page.url}`,
-        zh: `/zh${page.url}`,
-      },
-    },
-  };
+    description: getPageDescription(page.url),
+    locale: "ja",
+  });
 }
 
 export default async function ColumnPage({

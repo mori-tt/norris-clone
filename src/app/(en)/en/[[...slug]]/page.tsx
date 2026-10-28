@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import HomePage from "../../page";
+import HomePage from "../../../(ja)/page";
 import { ColumnPageView } from "@/components/ColumnPageView";
 import { UnderPageView } from "@/components/UnderPageView";
 import { getSite } from "@/lib/content";
@@ -11,12 +11,14 @@ import {
   scrapedPathFromSlug,
   slugUrlForm,
 } from "@/lib/pages";
+import { pageMetadata } from "@/lib/seo";
 
-const LOCALE: Locale = "zh";
+const LOCALE: Locale = "en";
 
 /**
- * 中国語版ルート(/zh/...)。翻訳JSON(content/i18n/zh/pages/...)があればそれを、
- * 無ければ日本語本文に中国語クロームを付けて描画する。
+ * 英語版ルート(/en/...)。翻訳JSON(content/i18n/en/pages/...)があればそれを、
+ * 無ければ日本語本文に英語クロームを付けて描画する。
+ * /en/ はトップ、/en/column/... はSWELLサブサイト。
  */
 export function generateStaticParams() {
   const params = listScrapedPaths().map((p) => ({
@@ -44,23 +46,19 @@ export async function generateMetadata({
   params: Params;
 }): Promise<Metadata> {
   const { page } = await resolve(params);
+  const site = getSite(LOCALE);
   if (!page) {
-    const site = getSite(LOCALE);
-    return {
-      title: { absolute: `${site.name} | ${site.tagline}` },
-      description: site.description,
-    };
+    return pageMetadata({
+      url: "/",
+      title: `${site.name} | ${site.tagline}`,
+      locale: LOCALE,
+    });
   }
-  return {
+  return pageMetadata({
+    url: page.url,
     title: page.docTitle,
-    alternates: {
-      languages: {
-        ja: page.url,
-        en: `/en${page.url}`,
-        zh: `/zh${page.url}`,
-      },
-    },
-  };
+    locale: LOCALE,
+  });
 }
 
 export default async function LocalizedPage({ params }: { params: Params }) {

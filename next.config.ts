@@ -10,6 +10,9 @@ process.env.NEXT_PUBLIC_BASE_PATH = basePath;
 const nextConfig: NextConfig = {
   // レンタルサーバー(ロリポップ等)へアップロードするため静的HTMLを出力
   output: "export",
+  // (ja)/(en)/(zh) でルートレイアウトを分けているため、未マッチURL用の
+  // グローバル404は専用ファイル(global-not-found.tsx)で描画する
+  experimental: { globalNotFound: true },
   basePath,
   // /menu/botox/ -> out/menu/botox/index.html (Apache がそのまま配信できる形式)
   trailingSlash: true,

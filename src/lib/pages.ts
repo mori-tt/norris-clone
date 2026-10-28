@@ -25,6 +25,18 @@ function pagesRoot() {
   return path.join(contentDir, "pages");
 }
 
+let _descriptions: Record<string, string> | undefined;
+/**
+ * 本家から取得したページ固有のmeta description(content/descriptions.json)。
+ * 無いページは undefined を返す(呼び出し側でサイト共通descriptionにフォールバック)。
+ */
+export function getPageDescription(url: string): string | undefined {
+  _descriptions ??= JSON.parse(
+    readFileSync(path.join(contentDir, "descriptions.json"), "utf8"),
+  ) as Record<string, string>;
+  return _descriptions[url];
+}
+
 /** "/botox/" のようなURLパスで読む(先頭末尾スラッシュ有無どちらでも可) */
 export function getScrapedPage(pathname: string, locale = "ja"): ScrapedPage | null {
   const rel = pathname.replace(/^\/+|\/+$/g, "");

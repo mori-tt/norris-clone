@@ -1,9 +1,8 @@
-import type { Metadata } from "next";
 import { Noto_Sans_JP, Shippori_Mincho } from "next/font/google";
 import { getSite } from "@/lib/content";
 import { ImageRetry } from "@/components/ImageRetry";
-import "./globals.css";
-import "./norris.css";
+import "@/app/globals.css";
+import "@/app/norris.css";
 
 const notoSans = Noto_Sans_JP({
   subsets: ["latin"],
@@ -17,25 +16,25 @@ const shipporiMincho = Shippori_Mincho({
   variable: "--font-shippori-mincho",
 });
 
-const site = getSite();
-
-export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
-  title: {
-    default: `${site.name} | ${site.tagline}`,
-    template: `%s | ${site.name}`,
-  },
-  description: site.description,
-};
-
-export default function RootLayout({ children }: LayoutProps<"/">) {
-  const t = site.theme;
+/** 各ロケール用ルートレイアウトが共有する<html>/<body>シェル */
+export function RootShell({
+  lang,
+  children,
+}: {
+  lang: string;
+  children: React.ReactNode;
+}) {
+  const t = getSite().theme;
   return (
     <html
-      lang="ja"
+      lang={lang}
       className={`${notoSans.variable} ${shipporiMincho.variable} antialiased`}
     >
-      <body id="pagetop" className="font-sans text-text" style={{ background: "var(--background)" }}>
+      <body
+        id="pagetop"
+        className="font-sans text-text"
+        style={{ background: "var(--background)" }}
+      >
         {/* site.json の theme を CSS 変数として注入(サイト複製時に色を変えられる) */}
         <style
           dangerouslySetInnerHTML={{

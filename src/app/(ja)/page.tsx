@@ -1,21 +1,31 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { Fragment } from "react";
 import { getAccess, getHome, getPosts, getSite } from "@/lib/content";
 import { HeroSlider } from "@/components/HeroSlider";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { CtaBar } from "@/components/CtaBar";
-import { HtmlLang } from "@/components/HtmlLang";
 import { Blocks } from "@/components/Blocks";
 import { formatDate } from "@/lib/content";
 import { asset } from "@/lib/asset";
 import { CHROME, localePrefix, type Locale } from "@/lib/i18n";
+import { pageMetadata } from "@/lib/seo";
 
 const NEWS_HEADING: Record<Locale, string> = {
   ja: "お知らせ",
   en: "News",
   zh: "通知公告",
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const site = getSite("ja");
+  return pageMetadata({
+    url: "/",
+    title: `${site.name} | ${site.tagline}`,
+    locale: "ja",
+  });
+}
 
 export default async function HomePage({
   locale = "ja",
@@ -36,7 +46,6 @@ export default async function HomePage({
       className="pbody home"
       lang={locale === "zh" ? "zh-CN" : locale}
     >
-      <HtmlLang locale={locale} />
       <SiteHeader locale={locale} currentPath="/" />
       <HeroSlider slides={home.hero.slides} />
 

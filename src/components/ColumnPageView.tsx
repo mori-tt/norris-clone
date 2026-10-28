@@ -1,5 +1,4 @@
 import { asset } from "@/lib/asset";
-import { HtmlLang } from "./HtmlLang";
 import { localePrefix, type Locale } from "@/lib/i18n";
 import type { ScrapedPage } from "@/lib/pages";
 
@@ -33,7 +32,6 @@ export function ColumnPageView({
       className={page.bodyClass ?? ""}
       lang={locale === "zh" ? "zh-CN" : locale}
     >
-      <HtmlLang locale={locale} />
       {/* SWELL テーマのCSS(スクレイプ時に本家の link[rel=stylesheet] を取得) */}
       {(page.cssLinks ?? []).map((href) => (
         <link key={href} rel="stylesheet" href={asset(href)} />

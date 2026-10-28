@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { UnderPageView } from "@/components/UnderPageView";
 import {
+  getPageDescription,
   getScrapedPage,
   listScrapedPaths,
   scrapedPathFromSlug,
   slugUrlForm,
 } from "@/lib/pages";
+import { pageMetadata } from "@/lib/seo";
 
 /** 本家サイトの下層ページ(スクレイプ済みHTMLをそのまま描画) */
 export function generateStaticParams() {
@@ -26,16 +28,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const page = getScrapedPage(scrapedPathFromSlug(slug));
   if (!page) return {};
-  return {
+  return pageMetadata({
+    url: page.url,
     title: page.docTitle,
-    alternates: {
-      languages: {
-        ja: page.url,
-        en: `/en${page.url}`,
-        zh: `/zh${page.url}`,
-      },
-    },
-  };
+    description: getPageDescription(page.url),
+    locale: "ja",
+  });
 }
 
 export default async function UnderPage({

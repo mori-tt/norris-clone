@@ -31,6 +31,9 @@ jobs:
         run: npm run build
         env:
           BASE_PATH: /norris-clone
+          # canonical/hreflang/sitemap の正規化先。独自ドメイン取得後は
+          # リポジトリ変数 SITE_URL を Settings > Variables に登録する
+          SITE_URL: ${{ vars.SITE_URL || 'https://mori-tt.github.io/norris-clone' }}
 
       - name: Prefix raw absolute paths in exported HTML/CSS
         run: node scripts/fix-base-path.mjs out /norris-clone

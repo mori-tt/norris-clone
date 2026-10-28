@@ -6,7 +6,6 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { CtaBar } from "@/components/CtaBar";
 import { CHROME, localizeFormHtml, localePrefix, type Locale } from "@/lib/i18n";
 import type { ScrapedPage } from "@/lib/pages";
-import { HtmlLang } from "./HtmlLang";
 
 /**
  * スクレイプしたCF7フォームを静的ホスティング上の contact.php に接続する。
@@ -82,7 +81,6 @@ export function UnderPageView({
       className={`pbody ${page.bodyClass ?? ""}`}
       lang={locale === "zh" ? "zh-CN" : locale}
     >
-      <HtmlLang locale={locale} />
       {needsSwellCss ? (
         <>
           <link rel="stylesheet" href={asset("/ed/wp-includes/css/dashicons.min.css")} />
