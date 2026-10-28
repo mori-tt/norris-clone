@@ -7,19 +7,69 @@
       "href": "",
       "children": [
         { "label": "院長紹介", "href": "/doctor/" },
-        { "label": "クリニック紹介", "href": "/clinic/" },
-        { "label": "設備紹介", "href": "/clinic/#facilities" }
+        { "label": "クリニック紹介", "href": "/clinic/#a01" },
+        { "label": "設備紹介", "href": "/clinic/#a02" }
       ]
     },
-    { "label": "診療メニュー", "en": "MENU", "href": "", "dynamicMenu": true },
+    {
+      "label": "診療メニュー",
+      "en": "MENU",
+      "href": "/",
+      "children": [
+        {
+          "label": "診療メニュー",
+          "children": [
+            { "label": "再生医療", "href": "/regenerate/" },
+            { "label": "幹細胞治療", "href": "/stem_cell/" },
+            { "label": "PRP療法", "href": "/prp/" },
+            { "label": "エクソソーム療法", "href": "/exosome/" },
+            { "label": "脱毛", "href": "/epilation/" },
+            { "label": "ボトックス", "href": "/botox/" },
+            { "label": "ヒアルロン酸注射", "href": "/hyaluronic/" },
+            { "label": "水光注射", "href": "/vital/" },
+            { "label": "ホルモン注射", "href": "/hormone/" },
+            { "label": "美容点滴", "href": "/beauty/" },
+            { "label": "HIFU", "href": "/hifu/" },
+            { "label": "ダーマペン", "href": "/dermapen/" },
+            { "label": "フォトフェイシャル", "href": "/photofacial/" },
+            { "label": "美肌診断", "href": "/beautiful_skin/" },
+            { "label": "HARG療法(薄毛治療)", "href": "/harg/" },
+            { "label": "泌尿器科", "href": "/urology/" },
+            { "label": "メンズメニュー", "href": "/mens_menu/" }
+          ]
+        },
+        {
+          "label": "症状・お悩みから探す",
+          "children": [
+            { "label": "しみ・そばかす・肝斑・くすみ", "href": "/blemish/" },
+            { "label": "しわ・たるみ", "href": "/wrinkles/" },
+            { "label": "いぼ・ほくろ・タトゥー除去", "href": "/mole/" },
+            { "label": "ニキビ・ニキビ跡、毛穴", "href": "/acne/" },
+            { "label": "エイジングケア治療", "href": "/rejuvenation/" },
+            { "label": "その他(美肌点滴・ピアス)", "href": "/others/" }
+          ]
+        },
+        {
+          "label": "機器から探す",
+          "children": [
+            { "label": "ライトシェアデュエット(脱毛)", "href": "/epilation/#a02" },
+            { "label": "ルミナスIPL M22(フォトフェイシャル)", "href": "/photofacial/" },
+            { "label": "ウルトラセルQ+(HIFU)", "href": "/hifu/" },
+            { "label": "PicoWay(ピコレーザー)", "href": "/picolaser/" },
+            { "label": "re-Beau2(肌診断)", "href": "/beautiful_skin/" },
+            { "label": "ダーマペン4", "href": "/dermapen/" }
+          ]
+        }
+      ]
+    },
     { "label": "料金一覧", "en": "PRICE", "href": "/fee/" },
     {
       "label": "診療時間・アクセス",
       "en": "SCHEDULE・ACCESS",
       "href": "/access/",
       "children": [
-        { "label": "診療時間", "href": "/access/#schedule" },
-        { "label": "アクセス", "href": "/access/#access" }
+        { "label": "診療時間", "href": "/access/#a02" },
+        { "label": "アクセス", "href": "/access/#a03" }
       ]
     }
   ]

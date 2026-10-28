@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { getHome, getSite } from "@/lib/content";
 
-/** 本家フッター:ロゴ + 住所/TEL/アクセス(アイコン付き) + 診療日画像 + サイトマップ */
+/** 本家フッターと同じマークアップ(ロゴ・info・診療日画像・footer-nav・コラムリンク・クレジット) */
 export function SiteFooter() {
   const site = getSite();
   const home = getHome();
 
   return (
-    <footer id="footer">
+    <footer id="footer" className="footer">
       <div className="inner">
         <div className="logo">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -25,45 +25,45 @@ export function SiteFooter() {
                 <a href={`tel:${site.tel.replaceAll("-", "")}`}>{site.tel}</a>
               </li>
               <li className="access">
-                <span>
-                  {site.addressNote.split(" / ").map((line) => (
-                    <span key={line} className="block">
-                      {line}
-                    </span>
-                  ))}
-                </span>
+                {site.addressNote.split(" / ").map((line, i, arr) => (
+                  <span key={line}>
+                    {line}
+                    {i < arr.length - 1 && <br />}
+                  </span>
+                ))}
               </li>
             </ul>
-            {site.contactUrl && (
-              <div className="btn-style web">
-                <a href={site.contactUrl} target="_blank" rel="noopener noreferrer">
-                  <span className="icon">お問い合わせフォーム</span>
-                </a>
-              </div>
-            )}
+            <div className="btn-style left web">
+              <Link href="/contact/">
+                <span className="icon">お問い合わせフォーム</span>
+              </Link>
+            </div>
           </div>
           <div className="column col_2">
             <h3>{home.scheduleTitle}</h3>
             {home.scheduleImage && (
               <p>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={home.scheduleImage} alt={home.scheduleTitle} />
+                <img src={home.scheduleImage} alt="" className="aligncenter" />
               </p>
             )}
           </div>
         </div>
-        <div className="footer-nav">
-          <ul>
-            <li>
-              <Link href="/site-map/">サイトマップ</Link>
-            </li>
-            <li>
-              <Link href="/column/">メディカルコラム</Link>
-            </li>
-            <li>
-              <Link href="/privacy/">プライバシーポリシー</Link>
-            </li>
-          </ul>
+        <div className="menu-footer-nav-container clearfix">
+          <div id="menu-footer-nav" className="menu">
+            <div className="menu-item-has-children">
+              <ul className="sub-menu">
+                <li>
+                  <Link href="/sitemap/">サイトマップ</Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="foot-credit">
+          <Link href="/medi-column/">
+            <span>ノリスメディカルコラム</span>
+          </Link>
         </div>
         <div className="copyright">&copy;{site.name}</div>
       </div>

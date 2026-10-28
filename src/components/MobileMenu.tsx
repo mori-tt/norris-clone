@@ -7,11 +7,10 @@ import type { NavItem } from "@/lib/schemas";
 
 type Props = {
   items: NavItem[];
-  tel: string;
 };
 
 /** SPナビの「メニュー」アイコンから開く全画面メニュー */
-export function MobileMenu({ items, tel }: Props) {
+export function MobileMenu({ items }: Props) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -45,7 +44,7 @@ export function MobileMenu({ items, tel }: Props) {
   );
 
   return (
-    <li>
+    <li id="toggle">
       <button
         type="button"
         aria-label="メニューを開く"
@@ -74,12 +73,6 @@ export function MobileMenu({ items, tel }: Props) {
                 <CloseIcon />
               </button>
             </div>
-            <a
-              href={`tel:${tel.replaceAll("-", "")}`}
-              className="mb-4 flex items-center justify-center gap-1 bg-[#8e292c] px-3 py-2.5 text-sm text-white"
-            >
-              電話 {tel}
-            </a>
             <nav>{renderItems(items)}</nav>
           </div>
         </div>

@@ -1,0 +1,19 @@
+{
+ "url": "/contact/",
+ "title": "お問い合わせ",
+ "docTitle": "お問い合わせ | ノリスクリニック 美容皮膚科・泌尿器科・再生医療",
+ "mainClass": "mainblock under",
+ "bodyClass": "page-template-default page page-id-68 under-page page page-name-contact",
+ "pageTitleHtml": "<div class=\"page-title\"><h2 class=\"page-title-text\">お問い合わせ</h2></div>",
+ "breadcrumb": [
+  {
+   "label": "HOME",
+   "href": "/"
+  },
+  {
+   "label": "お問い合わせ",
+   "href": null
+  }
+ ],
+ "html": "\n\t\t\t<!-- temp-page -->\n<div role=\"form\" class=\"wpcf7\" id=\"wpcf7-f8-p68-o2\" lang=\"ja\" dir=\"ltr\">\n<div class=\"screen-reader-response\"><p role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"></p> <ul></ul></div>\n<form action=\"/contact/#wpcf7-f8-p68-o2\" method=\"post\" class=\"wpcf7-form init\" novalidate=\"novalidate\" data-status=\"init\">\n<div style=\"display: none;\">\n<input type=\"hidden\" name=\"_wpcf7\" value=\"8\">\n<input type=\"hidden\" name=\"_wpcf7_version\" value=\"5.5.2\">\n<input type=\"hidden\" name=\"_wpcf7_locale\" value=\"ja\">\n<input type=\"hidden\" name=\"_wpcf7_unit_tag\" value=\"wpcf7-f8-p68-o2\">\n<input type=\"hidden\" name=\"_wpcf7_container_post\" value=\"68\">\n<input type=\"hidden\" name=\"_wpcf7_posted_data_hash\" value=\"\">\n<input type=\"hidden\" name=\"_wpcf7_recaptcha_response\" value=\"\">\n</div>\n<dl>\n<dt>お名前 <span class=\"attention\">(必須)</span> </dt>\n<dd><span class=\"wpcf7-form-control-wrap your-name\"><input type=\"text\" name=\"your-name\" value=\"\" size=\"40\" class=\"wpcf7-form-control wpcf7-text wpcf7-validates-as-required\" aria-required=\"true\" aria-invalid=\"false\"></span> </dd>\n<dt>ふりがな <span class=\"attention\">(必須)</span> </dt>\n<dd><span class=\"wpcf7-form-control-wrap your-kana\"><input type=\"text\" name=\"your-kana\" value=\"\" size=\"40\" class=\"wpcf7-form-control wpcf7-text wpcf7-validates-as-required\" aria-required=\"true\" aria-invalid=\"false\"></span> </dd>\n<dt>電話番号 <span class=\"attention\">(必須)</span> </dt>\n<dd><span class=\"wpcf7-form-control-wrap your-tel\"><input type=\"tel\" name=\"your-tel\" value=\"\" size=\"40\" class=\"wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel\" aria-required=\"true\" aria-invalid=\"false\"></span></dd>\n<dt>メールアドレス <span class=\"attention\">(必須)</span> </dt>\n<dd><span class=\"wpcf7-form-control-wrap your-email\"><input type=\"email\" name=\"your-email\" value=\"\" size=\"40\" class=\"wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email\" aria-required=\"true\" aria-invalid=\"false\"></span> </dd>\n<dt>お問い合わせ内容</dt>\n<dd><span class=\"wpcf7-form-control-wrap your-message\"><textarea name=\"your-message\" cols=\"40\" rows=\"10\" class=\"wpcf7-form-control wpcf7-textarea\" aria-invalid=\"false\"></textarea></span></dd>\n</dl>\n<p><span class=\"wpcf7-form-control-wrap acceptance-707\"><span class=\"wpcf7-form-control wpcf7-acceptance\"><span class=\"wpcf7-list-item\"><input type=\"checkbox\" name=\"acceptance-707\" value=\"1\" aria-invalid=\"false\"></span></span></span><span class=\"attention\">※送信内容を確認したらチェックをいれてください。</span></p>\n<div class=\"btn-style\"><input type=\"submit\" value=\"送信する\" class=\"wpcf7-form-control has-spinner wpcf7-submit\"></div>\n<div class=\"wpcf7-response-output\" aria-hidden=\"true\"></div></form></div>\n\t\t"
+}

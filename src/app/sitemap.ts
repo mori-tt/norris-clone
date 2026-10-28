@@ -1,36 +1,15 @@
 import type { MetadataRoute } from "next";
-import { getMenuItems, getPosts, getSite } from "@/lib/content";
+import { getSite } from "@/lib/content";
+import { listScrapedPaths } from "@/lib/pages";
 
 export const dynamic = "force-static";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+export default function sitemap(): MetadataRoute.Sitemap {
   const site = getSite();
   const base = site.url.replace(/\/$/, "");
 
-  const staticPages = [
-    "",
-    "/clinic/",
-    "/doctor/",
-    "/menu/",
-    "/fee/",
-    "/access/",
-    "/news/",
-    "/column/",
-    "/privacy/",
-    "/site-map/",
-  ].map((p) => ({ url: `${base}${p}` }));
-
-  const menuPages = getMenuItems().map((m) => ({
-    url: `${base}/menu/${m.slug}/`,
-  }));
-  const newsPages = (await getPosts("news")).map((p) => ({
-    url: `${base}/news/${p.slug}/`,
-    lastModified: p.date,
-  }));
-  const columnPages = (await getPosts("column")).map((p) => ({
-    url: `${base}/column/${p.slug}/`,
-    lastModified: p.date,
-  }));
-
-  return [...staticPages, ...menuPages, ...newsPages, ...columnPages];
+  return [
+    { url: `${base}/` },
+    ...listScrapedPaths().map((p) => ({ url: `${base}${p}` })),
+  ];
 }

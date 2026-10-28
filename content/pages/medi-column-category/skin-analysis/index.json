@@ -1,0 +1,23 @@
+{
+ "url": "/medi-column-category/skin-analysis/",
+ "title": "大阪の再生医療・幹細胞治療なら",
+ "docTitle": "肌診断 | ノリスクリニック 美容皮膚科・泌尿器科・再生医療",
+ "mainClass": "mainblock",
+ "bodyClass": "archive tax-medi-column-category term-skin-analysis term-12",
+ "pageTitleHtml": "<div class=\"page-title\"><h1 class=\"page-title-text\">ノリスメディカルコラム</h1></div>",
+ "breadcrumb": [
+  {
+   "label": "HOME",
+   "href": "/"
+  },
+  {
+   "label": "ノリスメディカルコラム",
+   "href": "/medi-column/"
+  },
+  {
+   "label": "肌診断",
+   "href": null
+  }
+ ],
+ "html": "\n\t\t\t  <div class=\"article_list\">\n    <ul>\n    <li id=\"post-5588\" class=\"post-5588 medi_column type-medi_column status-publish has-post-thumbnail hentry medi-column-category-skin-analysis\">\n        <a href=\"/medi-column/visia-tokyo/\" rel=\"noopener\">\n            <figure><img src=\"/images/norris/uploads/visia-tokyo-recommend.png\" class=\"attachment-post-thumbnail size-post-thumbnail wp-post-image\" alt=\"東京でVISIA肌診断ができるクリニックおすすめ12選！料金・エリア別に比較\" srcset=\"/images/norris/uploads/visia-tokyo-recommend.png 866w, /images/norris/uploads/visia-tokyo-recommend-770x405.png 770w, /images/norris/uploads/visia-tokyo-recommend-768x404.png 768w\" sizes=\"(max-width: 866px) 100vw, 866px\"></figure>\n                            <h2 class=\"article_list_head\">東京でVISIA肌診断ができるクリニックおすすめ12選！料金・エリア別に比較</h2>\n                        <p><time datetime=\"2026-09-28\">更新日：2026年9月28日</time>\n\n「東京でVISIA診断を受けたいけれど、どのクリニックが自分に合っているか分からない」\n「無料と…</p>\n        </a>\n    </li>\n\t  </ul></div>\n<style>\n.article_list ul {\n    margin: 15px auto 30px;\n    padding: 0;\n    display: flex;\n    gap: 2%;\n    flex-wrap: wrap;\n    align-items: stretch;\n    max-width: 860px;\n    line-height: 1.2em;\n}\n.article_list ul li {\n    list-style: none;\n    margin: 0 0 3%;\n    padding: 0;\n    width: 32%;\n    background: #fff;\n    box-shadow: rgba(0,0,0,0.2) 2px 2px 4px;\n    border-radius: 10px;\n    border: 1px solid #8E292C;\n}\n.article_list ul li a {\n    display: block;\n    padding: 10px;\n    font-size: 14px;\n    line-height: 1.4em;\n    color: #333;\n    text-decoration: none;\n    transition: all 0.5s linear;\n}\n.article_list ul li a figure {\n    position: relative;\n    padding: 70% 0 0;\n    margin: 0;\n    height: 0;\n    overflow: hidden;\n}\n.article_list ul li a figure img {\n    position: absolute;\n    object-fit: cover;\n    width: 100%;\n    height: 100%;\n    left: 50%;\n    top: 50%;\n    transform: translate(-50%,-50%);\n}\n.article_list ul li a .article_list_head {\n    font-size: 115%;\n    line-height: 1.2em;\n    font-weight: bold;\n    margin: 10px 0 5px;\n}\n.article_list ul li a p {\n    margin: 0;\n}\n.article_list ul li a:hover {\n    opacity: 0.7;\n    transition: all 0.2s linear;\n}\n.article_list ul li a p time {\n    display: block;\n    font-size: 90%;\n    font-weight: bold;\n    background: #8E292C;\n    color: #fff;\n    padding: 3px;\n    text-align: center;\n    margin: 0 0 5px;\n    border-radius: 5px;\n    opacity: 0.5;\n}\n@media (max-width: 768px) {\n    .article_list ul {\n        gap: 4%;\n        margin: 30px 10px;\n    }\n    .article_list ul li {\n        list-style: none;\n        width: 48%;\n    }\n    .article_list ul li a {\n        padding: 10px;\n    }\n}\n@media (max-width: 480px) {\n    .article_list ul li {\n        list-style: none;\n        width: 100%;\n    }\n}\n</style>\n\t\t"
+}

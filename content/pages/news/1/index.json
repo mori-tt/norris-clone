@@ -1,0 +1,23 @@
+{
+ "url": "/news/1/",
+ "title": "大阪の再生医療・幹細胞治療なら",
+ "docTitle": "ホームページを公開しました。 | ノリスクリニック 美容皮膚科・泌尿器科・再生医療",
+ "mainClass": "mainblock",
+ "bodyClass": "post-template-default single single-post postid-1 single-format-standard category-name-news single-post single single-in- caegory-in-news",
+ "pageTitleHtml": "<div class=\"page-title\"><h2 class=\"page-title-text\">新着情報</h2></div>",
+ "breadcrumb": [
+  {
+   "label": "HOME",
+   "href": "/"
+  },
+  {
+   "label": "新着情報",
+   "href": "/news/"
+  },
+  {
+   "label": "ホームページを公開しました。",
+   "href": null
+  }
+ ],
+ "html": "\n\t\t\t\n<div class=\"entry-block clearfix block\">\n    <div class=\"dateBlock\">2021.11.12</div>\n            <h3>ホームページを公開しました。</h3>\n        <div class=\"entry\">\n        <p>ノリス美容クリニックのホームページを公開しました。</p>\n    </div>\n</div>\n\n\t\t"
+}

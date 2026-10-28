@@ -20,14 +20,14 @@
         "image": "/images/norris/mainimage04.jpg",
         "imageSp": "/images/norris/sp_mainimage04.jpg",
         "alt": "泌尿器科 その違和感見過ごしていませんか 安心して相談できる泌尿器科",
-        "href": "/menu/urology/"
+        "href": "/urology/"
       }
     ]
   },
   "banner": {
     "image": "/images/norris/hinyou.png",
     "alt": "泌尿器科のご案内",
-    "href": "/menu/urology/"
+    "href": "/urology/"
   },
   "scheduleTitle": "10月診療日",
   "scheduleImage": "/images/norris/calendar.png",
@@ -35,21 +35,21 @@
     "title": "再生医療メニュー",
     "text": "当院の再生医療は、厚生労働省が認めた特定認定再生医療等委員会において、厳しく審査が行われ、治療の妥当性・安全性・医師体制などが適切と認められた医療機関です。",
     "bannerText": "再生医療メニュー",
-    "bannerHref": "/menu/regenerate/",
+    "bannerHref": "/regenerate/",
     "cards": [
       {
         "title": "幹細胞治療",
         "text": "幹細胞は、自己複製の能力を備え、同時に血管、心筋、骨、脂肪などさまざまな種類の細胞へ分化できる能力も持っています。",
         "image": "/images/norris/sec_02_bnrimg001.jpg",
         "titleBg": "/images/norris/sec_02_ttlbg001.jpg",
-        "href": "/menu/stem_cell/"
+        "href": "/stem_cell/"
       },
       {
         "title": "PRP",
         "text": "血液を加工し、PRPを患部へ注射投与することで、組織の自己修復力を高めます。コラーゲンやエラスチンの生成が活発になることで、美容面でもさまざまな効果が期待できます。",
         "image": "/images/norris/sec_02_bnrimg002.jpg",
         "titleBg": "/images/norris/sec_02_ttlbg002.jpg",
-        "href": "/menu/prp/"
+        "href": "/prp/"
       },
       {
         "title": "エクソソーム",
@@ -57,7 +57,7 @@
         "text": "細胞外に分泌される小胞のことを指し、特に重要な役割は細胞間の情報伝達にあります。これらのエクソソームは袋状の構造を持ち、内部には核酸（マイクロRNAやメッセンジャーRNA）やタンパク質など、遺伝子に関わる重要な情報が含まれていいます。",
         "image": "/images/norris/sec_02_bnrimg003.jpg",
         "titleBg": "/images/norris/sec_02_ttlbg003.jpg",
-        "href": "/menu/exosome/"
+        "href": "/exosome/"
       }
     ]
   },
@@ -71,7 +71,7 @@
         "text": "脂肪幹細胞から抽出した150種類以上の成長因子を含む「HARGカクテル」を頭皮に注入することで、薄毛を改善し、毛髪再生・発毛を促す再生医療です。",
         "image": "/images/norris/sec_02_bnrimg004.jpg",
         "titleBg": "/images/norris/sec_02_ttlbg004.jpg",
-        "href": "/menu/harg/"
+        "href": "/harg/"
       },
       {
         "title": "レーザー治療",
@@ -79,7 +79,7 @@
         "text": "3種類の波長を備えたピコレーザー（PicoWay）の照射によって、シミ・ニキビの改善、肌質改善を含めたトータルでの美肌効果が期待できます。",
         "image": "/images/norris/sec_02_bnrimg005.jpg",
         "titleBg": "/images/norris/sec_02_ttlbg005.jpg",
-        "href": "/menu/picolaser/"
+        "href": "/picolaser/"
       },
       {
         "title": "医療脱毛",
@@ -87,22 +87,22 @@
         "text": "大型の照射口、吸引・冷却システムを備えた「ライトシェアデュエット」を導入しています。",
         "image": "/images/norris/sec_02_bnrimg006.jpg",
         "titleBg": "/images/norris/sec_02_ttlbg006.jpg",
-        "href": "/menu/epilation/"
+        "href": "/epilation/"
       }
     ],
     "links": [
-      { "label": "ボトックス", "href": "/menu/botox/" },
-      { "label": "ヒアルロン酸注射", "href": "/menu/hyaluronic/" },
-      { "label": "水光注射", "href": "/menu/vital/" },
-      { "label": "ホルモン注射", "href": "/menu/hormone/" },
-      { "label": "美容点滴", "href": "/menu/beauty/" },
-      { "label": "HIFU", "href": "/menu/hifu/" },
-      { "label": "ダーマペン", "href": "/menu/dermapen/" },
-      { "label": "リフトアップ（糸リフト）", "href": "/menu/liftup/" },
-      { "label": "フォトフェイシャル", "href": "/menu/photofacial/" },
-      { "label": "美肌診断", "href": "/menu/beautiful_skin/" },
-      { "label": "メンズメニュー", "href": "/menu/mens_menu/" },
-      { "label": "泌尿器科", "href": "/menu/urology/" }
+      { "label": "ボトックス", "href": "/botox/" },
+      { "label": "ヒアルロン酸注射", "href": "/hyaluronic/" },
+      { "label": "水光注射", "href": "/vital/" },
+      { "label": "ホルモン注射", "href": "/hormone/" },
+      { "label": "美容点滴", "href": "/beauty/" },
+      { "label": "HIFU", "href": "/hifu/" },
+      { "label": "ダーマペン", "href": "/dermapen/" },
+      { "label": "リフトアップ（糸リフト）", "href": "/liftup/" },
+      { "label": "フォトフェイシャル", "href": "/photofacial/" },
+      { "label": "美肌診断", "href": "/beautiful_skin/" },
+      { "label": "メンズメニュー", "href": "/mens_menu/" },
+      { "label": "泌尿器科", "href": "/urology/" }
     ]
   },
   "concerns": {
@@ -112,32 +112,32 @@
       {
         "image": "/images/norris/sec06_bnr01.png",
         "alt": "しみ・そばかす・肝斑・くすみ",
-        "href": "/menu/blemish/"
+        "href": "/blemish/"
       },
       {
         "image": "/images/norris/sec06_bnr02.png",
         "alt": "しわ・たるみ",
-        "href": "/menu/wrinkles/"
+        "href": "/wrinkles/"
       },
       {
         "image": "/images/norris/sec06_bnr03.png",
         "alt": "イボ・ほくろ・タトゥー除去",
-        "href": "/menu/mole/"
+        "href": "/mole/"
       },
       {
         "image": "/images/norris/sec06_bnr04.png",
         "alt": "ニキビ・ニキビ跡・毛穴",
-        "href": "/menu/acne/"
+        "href": "/acne/"
       },
       {
         "image": "/images/norris/sec06_bnr05.png",
         "alt": "エイジングケア",
-        "href": "/menu/rejuvenation/"
+        "href": "/rejuvenation/"
       },
       {
         "image": "/images/norris/sec06_bnr06.png",
         "alt": "その他（美容点滴・ピアス）",
-        "href": "/menu/others/"
+        "href": "/others/"
       }
     ]
   },
@@ -150,42 +150,42 @@
         "text": "熱破壊式ダイオードレーザー脱毛機器。2種のハンドピースを使用します。",
         "image": "/images/norris/sec03_img01.jpg",
         "imageSp": "/images/norris/sp_sec03_img01.jpg",
-        "href": "/menu/epilation/"
+        "href": "/epilation/"
       },
       {
         "name": "ルミナスIPL M22",
         "text": "ルミナス社のフォトフェイシャル機器。7種類の光から一人ひとりのお悩みに最適な光を選択し、照射します。シミ、そばかす、肝斑、ニキビ跡、赤ら顔、美肌等に効果的です。",
         "image": "/images/norris/sec03_img02.jpg",
         "imageSp": "/images/norris/sp_sec03_img02.jpg",
-        "href": "/menu/photofacial/"
+        "href": "/photofacial/"
       },
       {
         "name": "ウルトラセルQ+（HIFU）",
         "text": "3つのカートリッジを用いることで、通常のレーザーでは届かない深い3層へアプローチが可能で、皮膚を内側から引き上げることができます。肌の引き締め、たるみ解消、リフトアップに効果的です。",
         "image": "/images/norris/sec03_img03.jpg",
         "imageSp": "/images/norris/sp_sec03_img03.jpg",
-        "href": "/menu/hifu/"
+        "href": "/hifu/"
       },
       {
         "name": "PicoWay",
         "text": "シネロン・キャンデラ社製の皮膚レーザー。短い照射時間で、皮膚へのダメージを最小限に抑えての施術が可能です。シミ、そばかす、ニキビ跡、シワ、色素沈着などに効果的です。",
         "image": "/images/norris/sec03_img04.jpg",
         "imageSp": "/images/norris/sp_sec03_img04.jpg",
-        "href": "/menu/picolaser/"
+        "href": "/picolaser/"
       },
       {
         "name": "re-Beau 2",
         "text": "肉眼では見えづらい肌状態、隠れシミ、赤みを画像化し、肌診断を行います。診断後はお一人お一人に合った治療やケア方法をご提案いたします。",
         "image": "/images/norris/sec03_img05.jpg",
         "imageSp": "/images/norris/sp_sec03_img05.jpg",
-        "href": "/menu/beautiful_skin/"
+        "href": "/beautiful_skin/"
       },
       {
         "name": "ダーマペン4",
         "text": "微細な針で肌に穴を開け、自然治癒力を生かし肌状態をより美しくします。世界最速の振動数/秒で少ないダウンタイムでの治療が可能。ニキビ跡や毛穴の引き締めに効果的です。",
         "image": "/images/norris/sec03_img06.jpg",
         "imageSp": "/images/norris/sp_sec03_img06.jpg",
-        "href": "/menu/dermapen/"
+        "href": "/dermapen/"
       }
     ]
   },
@@ -197,13 +197,13 @@
         "title": "お悩みをトータルケアできるエイジングケア",
         "text": "お顔だけでなく、全身のトータルケアができるクリニックです。高い技術と最新の機器の融合により、お一人お一人にとってのエイジングケアをサポートします。",
         "image": "/images/norris/sec04_bg01.jpg",
-        "href": "/menu/rejuvenation/"
+        "href": "/rejuvenation/"
       },
       {
         "title": "幹細胞治療に基づいた根本からの肌改善",
         "text": "細胞の活性化、コラーゲンの生成を促す再生医療「幹細胞治療」によって、表面的ではない、根本からの肌改善をいたします。",
         "image": "/images/norris/sec04_bg02.jpg",
-        "href": "/menu/stem_cell/"
+        "href": "/stem_cell/"
       },
       {
         "title": "不要なアップセルは行いません",

@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP, Shippori_Mincho } from "next/font/google";
 import { getSite } from "@/lib/content";
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
-import { CtaBar } from "@/components/CtaBar";
 import "./globals.css";
+import "./norris.css";
 
 const notoSans = Noto_Sans_JP({
   subsets: ["latin"],
@@ -36,17 +34,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="ja"
       className={`${notoSans.variable} ${shipporiMincho.variable} antialiased`}
     >
-      <body id="top" className="font-sans text-text" style={{ background: "var(--background)" }}>
+      <body id="pagetop" className="font-sans text-text" style={{ background: "var(--background)" }}>
         {/* site.json の theme を CSS 変数として注入(サイト複製時に色を変えられる) */}
         <style
           dangerouslySetInnerHTML={{
             __html: `:root{--primary:${t.primary};--primary-dark:${t.primaryDark};--accent:${t.accent};--background:${t.background};--text:${t.text}}`,
           }}
         />
-        <SiteHeader />
-        <main>{children}</main>
-        <SiteFooter />
-        <CtaBar />
+        {children}
       </body>
     </html>
   );

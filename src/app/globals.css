@@ -965,6 +965,10 @@ body:not(.top-page) #footer,
   line-height: 1.4;
   color: var(--primary);
 }
+.page-name-mens_menu .page-title .page-title-text,
+.page-name-mens_testicle .page-title .page-title-text {
+  color: #fff;
+}
 .bread {
   width: 1200px;
   max-width: 96%;

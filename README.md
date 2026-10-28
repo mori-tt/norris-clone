@@ -1,12 +1,12 @@
-# norris-clone — 美容クリニック 静的サイト テンプレート
+# norris-clone — 美容クリニック 静的サイト(Next.js)
 
-美容クリニック向けのウェブサイトテンプレートです。コンテンツは **JSON と Markdown で管理**しており、文章と画像を差し替えるだけで同構成の別クリニックサイトを量産できます。
+https://www.norris-beauty-clinic.com の**全ページ完全クローン**を Next.js + TypeScript で静的生成したプロジェクトです。下層ページは本家HTMLをスクレイプして `content/pages/` に保存し、そのまま静的描画するため、UI/UX・文言・画像が本家と一致します。
 
 - Next.js 16(App Router)+ TypeScript + Tailwind CSS v4
 - `output: "export"` で完全静的書き出し → ロリポップ等のレンタルサーバーにそのままアップロード可能
-- 記事・診療メニューは **Markdown ファイル**、サイト設定・料金等は **JSON** で管理
-- **3つの編集方法**を用意: ①ファイルを直接編集 ②ローカル管理画面(Decap CMS)③ヘッドレスCMS(microCMS/Newt)
-- JSON/frontmatter は zod で検証。形式を間違えるとビルド時にエラーで止まるため安全
+- **141ルート**を静的生成(下層ページ ~120 + `/column/` SWELLサブサイト 14 + TOP + 404 等)
+- 本家テーマCSS(`common.css`/`style.css`/`index.css`→ `src/app/norris.css`)+ SWELLテーマCSS(`public/swell/`)を取り込み済み
+- TOPページと共有パーツ(ヘッダー/フッター/CTA)は `content/*.json` で管理し差し替え可能
 
 ## 開発・ビルド
 
@@ -21,137 +21,69 @@ npm run cms        # Decap CMS ローカルプロキシ(:8081)
 ## デプロイ(ロリポップ等のレンタルサーバー)
 
 1. `npm run build`
-2. `out/` フォルダの**中身をすべて** FTP やファイルマネージャーで公開ディレクトリ(例: `public_html/`)にアップロード
-   - `_next/`(CSS・JS)と `images/`、`index.html`、各ページフォルダごとアップする
-3. `trailingSlash` 構成のため `/menu/botox/` は `menu/botox/index.html` として出力済み。Apache ではそのまま動作します
-4. 404 ページは `out/404.html`。サーバー側で 404 設定を `404.html` に向けると綺麗に動きます
+2. `out/` フォルダの**中身をすべて** 公開ディレクトリにアップロード
+   - `_next/`、`images/`、`swell/`、`index.html`、各ページフォルダごと
+3. `trailingSlash` 構成のため `/botox/` は `botox/index.html` として出力済み
+4. 404 ページは `out/404.html`
 
-独自ドメインを変えた場合は `content/site.json` の `url` を更新して再ビルド(sitemap.xml / OGP / robots.txt に反映)。
+独自ドメインを変えた場合は `content/site.json` の `url` を更新して再ビルド(sitemap.xml / robots.txt に反映)。
 
-## コンテンツの編集
+## ディレクトリ構成とページの生成方法
 
-### 1. ファイルを直接編集(基本)
+```
+content/pages/<path>/index.json   # スクレイプ済みページ(全下層ページ)
+  → src/app/(norris)/[...slug]/   # キャッチオールで /access/ /botox/ 等を描画
+  → src/app/column/[[...slug]]/   # /column/ サブサイト(SWELLテーマ)を別レイアウトで描画
 
-`content/` 配下のファイルを編集するだけでサイトが更新されます。スキーマ定義は `src/lib/schemas.ts`。
+content/*.json                    # 共有設定(サイト情報・ナビ・TOPセクション)
+public/images/norris/             # 本家テーマ画像 + uploads/(本文画像 782件)
+public/swell/                     # /column/ 用SWELLテーマ CSS・フォント
+src/app/norris.css                # 本家 common.css+style.css+index.css(body→.pbody変換済み)
+```
 
-**単一ファイル(JSON)**
+### スクレイプ済みページの仕組み
+
+`scripts/scrape-norris-pages.mjs` が本家サイトマップの全URLを巡回し、各ページから以下を抽出して `content/pages/<path>/index.json` に保存します:
+
+- `.header_title` テキスト(ヘッダーH1用)、`title`、パンくず
+- `.page-title` 帯、`#main` の class と innerHTML
+- `body` の class(`page-name-botox` 等。ページ別配色に必須)
+- 本文内画像のDL(`public/images/norris/uploads/`)+ URL書き換え、内部リンクの相対化
+
+`/column/` 配下は別WordPress(SWELLテーマ)のため body 全体 + インライン `<style>` を `layout:"swell"` で保存し、専用ルートで SWELL CSS と共に描画します。
+
+```bash
+node scripts/scrape-norris-pages.mjs   # 再スクレイプ(画像は既存ならDLスキップ)
+```
+
+### コンテンツ編集(content/*.json)
 
 | ファイル | 内容 |
 |---|---|
 | `site.json` | クリニック名・電話番号・住所・SNS/予約URL・テーマカラー・サイトURL |
-| `navigation.json` | ヘッダーナビ。`"dynamicMenu": true` の項目は `menu/` から子メニュー自動生成 |
-| `home.json` | ヒーロースライド・「選ばれる理由」・Instagram注記 |
-| `clinic.json` | クリニック紹介・設備 |
-| `doctor.json` | 院長紹介(経歴・資格・メッセージ) |
-| `schedule.json` | 診療時間表・当月カレンダー(休診日は日付の配列で指定) |
-| `access.json` | 電車/車でのアクセス、Googleマップ埋め込みURL |
-| `fee.json` | 料金一覧(カテゴリ→項目の表) |
+| `navigation.json` | PCヘッダーナビ(メガメニュー3列含む)・SPナビ |
+| `home.json` | TOPのヒーロースライド・各セクション文言・カード・リンク |
+| `news/*.md` | TOP「お知らせ」一覧の最新3件(slug=実記事ID `/news/<id>/`) |
 
-**1ファイル=1ページ(Markdown + frontmatter)**
+※ 下層ページ(施術・料金・アクセス・記事等)は `content/pages/` のスクレイプJSONが直接描画します。文言差し替えは各 `index.json` の `html` を編集するか、別クリニック用には scraper を別サイト向けに改造してください。
 
-| ディレクトリ | 内容 | パス |
-|---|---|---|
-| `menu/*.md` | 施術ページ | `/menu/<slug>/` |
-| `news/*.md` | お知らせ記事 | `/news/<slug>/` |
-| `column/*.md` | コラム記事 | `/column/<slug>/` |
+## 画像・アセットの権利(重要)
 
-`menu/*.md` の frontmatter 例(`kind`: `treatment` / `concern` / `device` / `mens`):
-
-```md
----
-slug: botox
-name: ボトックス注射
-kind: treatment
-image: /images/menu-1.svg
-features: ["施術時間:約10分"]
-related: [hyaluronic, hifu]
-order: 1
----
-
-本文は普通に Markdown で書けます。## 見出しや - 箇条書き も使えます。
-```
-
-記事・メニューの追加は `.md` ファイルを増やすだけで、一覧・詳細・sitemap が自動生成されます(`.json` 形式のファイルも併用可能です)。
-
-### 2. ローカル管理画面(Decap CMS)
-
-非エンジニアでもブラウザの管理画面から編集できます。Gitプロキシが `content/` のファイルを直接書き換えるため、外部サービスへの登録は不要です。
-
-```bash
-# ターミナル1
-npm run dev        # または静的サーバー
-# ターミナル2
-npm run cms        # decap-server を :8081 で起動
-```
-
-`http://localhost:3000/admin/` を開くと管理画面が表示され、お知らせ・コラム・メニュー・サイト設定をフォームで編集できます。保存すると `content/` 内のファイルが更新されるので、確認後 `npm run build` → アップロード。
-
-※ 公開済みサイト上の `/admin/` にはバックエンドが無いためログインできません(ローカル専用として運用してください)。
-※ `decap-server` はローカル開発ツールです。依存パッケージに既知の脆弱性がありますが、公開物(`out/`)には含まれません。
-
-### 3. ヘッドレスCMS(microCMS / Newt)
-
-環境変数を設定すると、ビルド時に外部CMSの記事をローカルの `news`/`column` にマージします(同slugはCMS優先)。クリニック側がブラウザから記事を書き、手元で `npm run build` してアップする運用が可能です。
-
-```bash
-# microCMS の場合
-MICROCMS_SERVICE_DOMAIN=xxxx \
-MICROCMS_API_KEY=xxxx \
-MICROCMS_NEWS_ENDPOINT=news \
-MICROCMS_COLUMN_ENDPOINT=column \
-npm run build
-
-# Newt の場合
-NEWT_SPACE_UID=xxx NEWT_APP_UID=xxx NEWT_TOKEN=xxx npm run build
-```
-
-想定フィールド: `title`(text), `slug`(text,省略時はID), `date`(date), `category`(text/select), `image`(image), `excerpt`(text), `body`(リッチテキスト)。設定は `src/lib/external-cms.ts`。
-
-## 画像
-
-- `public/images/` に配置し、content から `/images/xxx.jpg` のように参照
-- 推奨サイズ: ヒーロー `1600×900`、カード/記事 `1200×800`、院長 `800×1000`、Instagram `800×800`
-
-### 参考元サイトのアセットについて(重要)
-
-`public/images/norris/` 配下の画像は `scripts/fetch-norris-assets.mjs` で **https://www.norris-beauty-clinic.com からダウンロードしたもの**です。見た目の再現確認用であり、**著作権・肖像権はノリスクリニックおよび各権利者に帰属します**。
+`public/images/norris/` 配下の画像・`content/pages/` の文言は **https://www.norris-beauty-clinic.com から取得したもの**で、著作権・肖像権はノリスクリニックおよび各権利者に帰属します。
 
 - このリポジトリをそのまま公開サイトとして運用・転用することは想定していません
-- 別クリニックのサイトを作る場合は、`public/images/norris/` を削除し、自院・購入素材に差し替えてください。レイアウトで参照している画像パスは `content/*.json` と `src/app/globals.css`(`sec02_bg` 等の背景指定)に集約されているため、同名ファイルを差し替えるだけで置き換えられます
+- 別クリニックのサイトを作る場合は画像・文言を自院の素材に差し替えてください
 
 ```bash
-node scripts/fetch-norris-assets.mjs   # 参考元サイトから画像を再取得する場合
+node scripts/fetch-norris-assets.mjs    # テーマ画像を再取得
+node scripts/scrape-norris-pages.mjs    # ページ本文+画像を再取得
 ```
-
-## 別クリニックサイトの作り方(2通り)
-
-### A. コンテンツだけ差し替え(推奨)
-
-コードは1本のまま、コンテンツディレクトリだけ分けられます:
-
-```bash
-CONTENT_DIR=sites/clinic-a npm run build   # out/ をA院用にリネーム/アップ
-CONTENT_DIR=sites/clinic-b npm run build
-```
-
-`CONTENT_DIR` は絶対パスでも可。画像は `public/` 側参照なので、サイトごとにプロジェクトをコピーするか `public/` を差し替えてビルドしてください。
-
-### B. プロジェクトごと複製
-
-フォルダを丸ごとコピーして `content/` と `public/images/` を差し替えるだけ。テーマカラーは `site.json` の `theme` を変えるだけで全ページに反映されます。
-
-## フォーム・予約について
-
-静的サイトのため問い合わせフォームは動作しません。以下のいずれかを `site.json` の `contactUrl` / `reserveUrl` に設定してください。
-
-- 予約システム(STORES予約、LINE予約等)の公開URL
-- Googleフォーム等の外部フォーム
-- レンタルサーバーのPHPメールフォームを別途設置してリンク
 
 ## 注意点・制約
 
-- 診療カレンダーは `schedule.json` の手動更新(月替わりで日付配列を編集)
-- Instagram セクションは固定画像+プロフィールリンク(リアルタイムフィードではありません)
-- Markdown・CMS 由来の本文HTMLはサニタイズしていません(自前コンテンツ前提)。外部入力を受け付ける場合は `src/components/Blocks.tsx` にサニタイザを導入してください
-- Turbopack は稀に古いCSSをキャッシュすることがあります。見た目が変わらない場合は `rm -rf .next out && npm run build` でクリーンビルドしてください
-- `public/images/norris/` は参考サイト由来のアセットです(権利は上記「画像」節を参照)。公開運用するサイトでは自院素材への差し替えが必須です
+- 本家由来のデッドリンク(`/liftup/` 等)は本家と同じく404になります
+- `script/iframe/noscript/onclick` はスクレイプ時に除去済み(GTM・予約JS等は含まれません)
+- `/contact/` は本家のフォームページを静的描画(フォーム送信は動きません)。`site.json` の `contactUrl`/`reserveUrl` に外部URLを設定する運用が現実的です
+- スクレイプHTML・Markdown由来の本文はサニタイズしていません(自前コンテンツ前提)
+- Turbopack は稀に古いCSSをキャッシュします。見た目が変わらない場合は `rm -rf .next out && npm run build`
+- `decap-server` はローカル開発ツールです(公開物には含まれません)

@@ -1,154 +1,116 @@
 import Link from "next/link";
-import { getMenuItems, getNavigation, getSite } from "@/lib/content";
-import type { NavItem } from "@/lib/schemas";
+import { getNavigation, getSite } from "@/lib/content";
 import { MobileMenu } from "./MobileMenu";
 
-const kindLabels: Record<string, string> = {
-  treatment: "診療メニュー",
-  concern: "症状・お悩みから探す",
-  device: "機器から探す",
-  mens: "メンズ",
+type Props = {
+  /** 下層ページでは h1 にページタイトルが入る。トップはキャッチコピー */
+  title?: string;
 };
 
-/** navigation.json の dynamicMenu フラグを menu/*.md から生成した子メニューに展開する */
-function expandDynamic(items: NavItem[]): NavItem[] {
-  const menu = getMenuItems();
-  const groups = (["treatment", "concern", "device", "mens"] as const)
-    .map((kind) => ({
-      label: kindLabels[kind],
-      en: "",
-      href: "",
-      dynamicMenu: false,
-      children: menu
-        .filter((m) => m.kind === kind)
-        .map((m) => ({
-          label: m.name,
-          en: "",
-          href: `/menu/${m.slug}/`,
-          dynamicMenu: false,
-          children: [],
-        })),
-    }))
-    .filter((g) => g.children.length > 0);
-
-  return items.map((item) =>
-    item.dynamicMenu ? { ...item, children: groups } : item,
-  );
-}
-
-export function SiteHeader() {
+export function SiteHeader({ title }: Props) {
   const site = getSite();
-  const items = expandDynamic(getNavigation());
+  const items = getNavigation();
 
   return (
     <header id="header">
-      <div className="inner">
+      <div className="inner ">
         <div className="headerinner">
-          {/* ロゴ(キャッチコピー + ロゴ画像) */}
-          <h1 className="header-title">
-            {site.tagline}
-            <Link href="/">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/norris/logo.png" alt={site.name} />
-            </Link>
-          </h1>
-
-          {/* SPナビ(画像アイコン5個) */}
-          <ul id="spnav">
-            <li>
+          <div className="textwidget">
+            <h1 className="header_title">
+              {title ?? site.tagline}
               <Link href="/">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/images/norris/sp_nav01.png" alt="HOME" />
+                <img src="/images/norris/logo.png" alt={site.name} />
               </Link>
-            </li>
-            <li>
-              <Link href="/clinic/">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/images/norris/sp_nav02.png" alt="クリニック紹介" />
-              </Link>
-            </li>
-            <li>
-              <a href={`tel:${site.tel.replaceAll("-", "")}`}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/images/norris/sp_nav03.png" alt="電話" />
-              </a>
-            </li>
-            <li>
-              <Link href="/access/">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/images/norris/sp_nav04.png" alt="アクセス・診療時間" />
-              </Link>
-            </li>
-            <MobileMenu items={items} tel={site.tel} />
-          </ul>
+            </h1>
+            <ul className="sp" id="sp_nav">
+              <li>
+                <Link href="/">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/images/norris/sp_nav01.png" alt="HOME" />
+                </Link>
+              </li>
+              <li>
+                <Link href="/clinic/">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/images/norris/sp_nav02.png" alt="クリニック紹介" />
+                </Link>
+              </li>
+              <li>
+                <a href={`tel:${site.tel.replaceAll("-", "")}`}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/images/norris/sp_nav03.png" alt="電話" />
+                </a>
+              </li>
+              <li>
+                <Link href="/access/">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/images/norris/sp_nav04.png" alt="アクセス・診療時間" />
+                </Link>
+              </li>
+              <MobileMenu items={items} />
+            </ul>
+            <div id="nav">
+              <div className="inner">
+                <div className="menu-header-nav-container">
+                  <ul className="menu" id="menu-header-nav">
+                    {items.map((item, i) => {
+                      const hasChildren = item.children.length > 0;
+                      const isWide = item.children.some(
+                        (c) => c.children.length > 0,
+                      );
+                      return (
+                        <li
+                          key={item.label}
+                          className={`nav0${i + 1} menu-item${hasChildren ? " has_children" : ""}${isWide ? " wide" : ""}`}
+                        >
+                          <Link href={item.href || "#"}>
+                            <span className="wrap">
+                              {item.label}
+                              {item.en && (
+                                <span className="nav_span">{item.en}</span>
+                              )}
+                            </span>
+                          </Link>
 
-          {/* PCナビ */}
-          <nav id="gnav" aria-label="グローバルナビゲーション">
-            <ul>
-              {items.map((item) => {
-                const hasChildren = item.children.length > 0;
-                const isMega =
-                  item.children.some((c) => c.children.length > 0);
-                return (
-                  <li
-                    key={item.label}
-                    className={`${hasChildren ? "has-children " : ""}${
-                      isMega ? "mega" : ""
-                    }`}
-                  >
-                    {item.href ? (
-                      <Link href={item.href}>
-                        <span className="wrap">
-                          {item.label}
-                          {item.en && (
-                            <span className="nav-en">{item.en}</span>
+                          {isWide && (
+                            <div className="submenu-wrap submenu-sp">
+                              <div className="submenu-inner">
+                                {item.children.map((group) => (
+                                  <ul key={group.label} className="sub-menu">
+                                    <li className="menutitle">
+                                      <a className="off">{group.label}</a>
+                                    </li>
+                                    {group.children.map((sub) => (
+                                      <li key={sub.href + sub.label}>
+                                        <Link href={sub.href}>
+                                          {sub.label}
+                                        </Link>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                ))}
+                              </div>
+                            </div>
                           )}
-                        </span>
-                      </Link>
-                    ) : (
-                      <span className="navlink">
-                        <span className="wrap">
-                          {item.label}
-                          {item.en && (
-                            <span className="nav-en">{item.en}</span>
-                          )}
-                        </span>
-                      </span>
-                    )}
 
-                    {/* ワイドメガメニュー */}
-                    {isMega && (
-                      <div className="megamenu">
-                        <div className="submenu-inner">
-                          {item.children.map((group) => (
-                            <ul key={group.label} className="sub-menu">
-                              <li className="menutitle">{group.label}</li>
-                              {group.children.map((sub) => (
-                                <li key={sub.href}>
+                          {!isWide && hasChildren && (
+                            <ul className="sub-menu submenu-sp">
+                              {item.children.map((sub) => (
+                                <li key={sub.href + sub.label}>
                                   <Link href={sub.href}>{sub.label}</Link>
                                 </li>
                               ))}
                             </ul>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* 通常ドロップダウン */}
-                    {!isMega && hasChildren && (
-                      <ul className="sub-menu">
-                        {item.children.map((sub) => (
-                          <li key={sub.href}>
-                            <Link href={sub.href}>{sub.label}</Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
+                          )}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </header>

@@ -1,0 +1,19 @@
+{
+ "url": "/access/",
+ "title": "診療時間・アクセス",
+ "docTitle": "診療時間･アクセス｜上本町･谷九のノリスクリニック美容皮膚科・泌尿器科・再生医療",
+ "mainClass": "mainblock under",
+ "bodyClass": "page-template-default page page-id-147 under-page page page-name-access",
+ "pageTitleHtml": "<div class=\"page-title\"><h2 class=\"page-title-text\">診療時間・アクセス</h2></div>",
+ "breadcrumb": [
+  {
+   "label": "HOME",
+   "href": "/"
+  },
+  {
+   "label": "診療時間・アクセス",
+   "href": null
+  }
+ ],
+ "html": "\n\t\t\t<!-- temp-page -->\n<div class=\"block\">\n<ul class=\"page-list float-list float-list2\">\n<li><a href=\"#a01\">医院情報</a></li>\n<li><a href=\"#a02\">診療時間</a></li>\n<li><a href=\"#a03\">アクセス</a></li>\n</ul>\n</div>\n<div id=\"a01\" class=\"h3\">\n<h3>医院情報</h3>\n</div>\n<h4>名称</h4>\n<p>ノリスクリニック　美容皮膚科・泌尿器科・再生医療</p>\n<h4>院長</h4>\n<p class=\"name\">千原　良友</p>\n<h4>住所</h4>\n<p>〒543-0031<br>\n大阪府大阪市天王寺区石ケ辻町18−21 <span>上六ときビル 4階</span></p>\n<h4>TEL</h4>\n<p>06-6772-3456</p>\n<div id=\"a02\" class=\"h3\">\n<h3>10月診療日</h3>\n</div>\n<p><img src=\"/images/norris/uploads/6b5ff2bab597ca80aca4ab9a8da2da95-948x1000.png\" alt=\"\" class=\"aligncenter wp-image-5642 size-large\" width=\"948\" height=\"1000\" srcset=\"/images/norris/uploads/6b5ff2bab597ca80aca4ab9a8da2da95-948x1000.png 948w, /images/norris/uploads/6b5ff2bab597ca80aca4ab9a8da2da95-730x770.png 730w, /images/norris/uploads/6b5ff2bab597ca80aca4ab9a8da2da95-768x810.png 768w, /images/norris/uploads/6b5ff2bab597ca80aca4ab9a8da2da95.png 1221w\" sizes=\"(max-width: 948px) 100vw, 948px\"></p>\n<p><!--\n\n\n\n<table class=\"time-table\">\n\n\n<thead>\n\n\n<tr>\n\n\n<th></th>\n\n\n\n\n<th>月</th>\n\n\n\n\n<th>火</th>\n\n\n\n\n<th>水</th>\n\n\n\n\n<th>木</th>\n\n\n\n\n<th>金</th>\n\n\n\n\n<th>土</th>\n\n\n\n\n<th>日</th>\n\n\n</tr>\n\n\n</thead>\n\n\n\n\n<tbody>\n\n\n<tr>\n\n\n<th>10:30～19:00</th>\n\n\n\n\n<td>―</td>\n\n\n\n\n<td>―</td>\n\n\n\n\n<td><span class=\"color01\">●</span></td>\n\n\n\n\n<td><span class=\"color01\">●</span></td>\n\n\n\n\n<td><span class=\"color01\">●</span></td>\n\n\n\n\n<td><span class=\"color01\">●</span></td>\n\n\n\n\n<td><span class=\"color01\">●</span></td>\n\n\n</tr>\n\n\n</tbody>\n\n\n</table>\n\n\n\n\n<p>※休診日：月・火</p>\n\n\n\n--></p>\n<div id=\"a03\" class=\"h3\">\n<h3>アクセス</h3>\n</div>\n<div class=\"googlemap\"><iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3281.621564901758!2d135.520492!3d34.664259!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e751807f8e51%3A0xe50077810a0aa9a9!2z44CSNTQzLTAwMzEg5aSn6Ziq5bqc5aSn6Ziq5biC5aSp546L5a-65Yy655-z44Kx6L6755S677yR77yY4oiS77yS77yR!5e0!3m2!1sja!2sjp!4v1642413633127!5m2!1sja!2sjp\"></iframe></div>\n<h4>電車でお越しの方</h4>\n<div class=\"columns\">\n<div class=\"column col_2\">\n<h5>近鉄</h5>\n<p>大阪線・奈良線「大阪上本町駅」より徒歩1分</p>\n</div>\n<div class=\"column col_2\">\n<h5>大阪メトロ</h5>\n<p>千日前線・谷町線「谷町九丁目駅」徒歩7分</p>\n<p>【難波より】千日前線 各停 南巽行　なんば駅⇒谷町九丁目駅<br>\n【心斎橋より】御堂筋線 各停 天王寺行　心斎橋駅⇒なんば駅⇒谷町九丁目駅</p>\n</div>\n</div>\n<h4>車でお越しの方</h4>\n<p>専用駐車場はございません。<br>\nお近くのパーキングをご利用ください。</p>\n\t\t"
+}
