@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+/* site.json の theme が layout.tsx で上書き注入されるデフォルト値 */
+:root {
+  --primary: #b8896f;
+  --primary-dark: #96684f;
+  --accent: #e8d5c8;
+  --background: #faf7f4;
+  --text: #3f3a36;
+}
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-accent: var(--accent);
+  --color-background: var(--background);
+  --color-text: var(--text);
+  --font-sans: var(--font-noto-sans-jp);
+  --font-serif: var(--font-shippori-mincho);
+}
+
+body {
+  background: var(--background);
+  color: var(--text);
+}
+
+/* 記事本文(Blocks)の行間 */
+.prose-clinic p {
+  line-height: 1.9;
+}

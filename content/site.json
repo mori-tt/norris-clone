@@ -1,0 +1,24 @@
+{
+  "name": "サンプル美容クリニック",
+  "nameEn": "SAMPLE BEAUTY CLINIC",
+  "tagline": "一人ひとりに寄り添う美容医療",
+  "description": "サンプル美容クリニックは美容皮膚科・脱毛・注入治療を中心としたクリニックです。",
+  "url": "https://example.com",
+  "tel": "00-0000-0000",
+  "postalCode": "000-0000",
+  "address": "大阪府大阪市○○区○○町1-2-3 サンプルビル 4階",
+  "addressNote": "○○駅より徒歩1分",
+  "director": "山田 花子",
+  "reserveUrl": "https://example.com/reserve",
+  "contactUrl": "https://example.com/contact",
+  "lineUrl": "https://line.me/",
+  "instagramUrl": "https://www.instagram.com/",
+  "instagramUser": "sample_clinic",
+  "theme": {
+    "primary": "#b8896f",
+    "primaryDark": "#96684f",
+    "accent": "#e8d5c8",
+    "background": "#faf7f4",
+    "text": "#3f3a36"
+  }
+}

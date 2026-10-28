@@ -1,0 +1,32 @@
+{
+  "items": [
+    { "label": "HOME", "en": "", "href": "/" },
+    {
+      "label": "クリニック紹介",
+      "en": "CLINIC",
+      "href": "/clinic/",
+      "children": [
+        { "label": "院長紹介", "href": "/doctor/" },
+        { "label": "クリニック紹介", "href": "/clinic/#about" },
+        { "label": "設備紹介", "href": "/clinic/#facilities" }
+      ]
+    },
+    { "label": "診療メニュー", "en": "MENU", "href": "/menu/", "dynamicMenu": true },
+    { "label": "料金一覧", "en": "PRICE", "href": "/fee/" },
+    {
+      "label": "診療時間・アクセス",
+      "en": "ACCESS",
+      "href": "/access/",
+      "children": [
+        { "label": "診療時間", "href": "/access/#schedule" },
+        { "label": "アクセス", "href": "/access/#access" }
+      ]
+    },
+    {
+      "label": "お知らせ",
+      "en": "NEWS",
+      "href": "/news/",
+      "children": [{ "label": "メディカルコラム", "href": "/column/" }]
+    }
+  ]
+}

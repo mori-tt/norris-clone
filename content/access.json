@@ -1,0 +1,9 @@
+{
+  "byTrain": [
+    { "line": "○○線", "detail": "「○○駅」より徒歩1分" },
+    { "line": "△△線", "detail": "「△△駅」より徒歩7分" }
+  ],
+  "byCar": "専用駐車場はございません。お近くのコインパーキングをご利用ください。",
+  "mapEmbedUrl": "",
+  "mapNote": "Googleマップの埋め込みURLを access.json の mapEmbedUrl に設定すると地図が表示されます。"
+}
