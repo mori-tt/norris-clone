@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { asset } from "@/lib/asset";
 import { getNavigation, getSite } from "@/lib/content";
 import {
   CHROME,
@@ -54,7 +55,7 @@ export function SiteHeader({ title, locale = "ja", currentPath = "/" }: Props) {
               {title ?? site.tagline}
               <Link href={prefix || "/"}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/images/norris/logo.png" alt={site.name} />
+                <img src={asset("/images/norris/logo.png")} alt={site.name} />
               </Link>
             </h1>
             <ul className="sp" id="sp_nav">
@@ -62,7 +63,7 @@ export function SiteHeader({ title, locale = "ja", currentPath = "/" }: Props) {
                 <Link href={prefix || "/"}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/images/norris/sp_nav01.png"
+                    src={asset("/images/norris/sp_nav01.png")}
                     alt={chrome.spNav.home}
                   />
                 </Link>
@@ -71,7 +72,7 @@ export function SiteHeader({ title, locale = "ja", currentPath = "/" }: Props) {
                 <Link href={`${prefix}/clinic/`}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/images/norris/sp_nav02.png"
+                    src={asset("/images/norris/sp_nav02.png")}
                     alt={chrome.spNav.clinic}
                   />
                 </Link>
@@ -80,7 +81,7 @@ export function SiteHeader({ title, locale = "ja", currentPath = "/" }: Props) {
                 <a href={`tel:${site.tel.replaceAll("-", "")}`}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/images/norris/sp_nav03.png"
+                    src={asset("/images/norris/sp_nav03.png")}
                     alt={chrome.spNav.tel}
                   />
                 </a>
@@ -89,12 +90,12 @@ export function SiteHeader({ title, locale = "ja", currentPath = "/" }: Props) {
                 <Link href={`${prefix}/access/`}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/images/norris/sp_nav04.png"
+                    src={asset("/images/norris/sp_nav04.png")}
                     alt={chrome.spNav.access}
                   />
                 </Link>
               </li>
-              <MobileMenu items={items} locale={locale} />
+              <MobileMenu locale={locale} />
             </ul>
             <div id="nav">
               <div className="inner">

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { asset } from "@/lib/asset";
 import { getHome, getSite } from "@/lib/content";
 import { CHROME, localePrefix, type Locale } from "@/lib/i18n";
 
@@ -14,7 +15,7 @@ export function SiteFooter({ locale = "ja" }: { locale?: Locale }) {
       <div className="inner">
         <div className="logo">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/norris/logo.png" alt={site.name} />
+          <img src={asset("/images/norris/logo.png")} alt={site.name} />
         </div>
         <div className="columns">
           <div className="column col_2">
@@ -47,7 +48,7 @@ export function SiteFooter({ locale = "ja" }: { locale?: Locale }) {
             {home.scheduleImage && (
               <p>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={home.scheduleImage} alt="" className="aligncenter" />
+                <img src={asset(home.scheduleImage)} alt="" className="aligncenter" />
               </p>
             )}
           </div>

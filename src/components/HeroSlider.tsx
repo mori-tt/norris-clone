@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { asset } from "@/lib/asset";
 
 type Slide = {
   image: string;
@@ -29,10 +30,9 @@ export function HeroSlider({ slides }: { slides: Slide[] }) {
         const pic = (
           <picture>
             {s.imageSp && (
-              <source media="(max-width: 767px)" srcSet={s.imageSp} />
+              <source media="(max-width: 767px)" srcSet={asset(s.imageSp)} />
             )}
-            { }
-            <img src={s.image} alt={s.alt} />
+            <img src={asset(s.image)} alt={s.alt} />
           </picture>
         );
         return (

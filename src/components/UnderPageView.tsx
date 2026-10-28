@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { asset } from "@/lib/asset";
 import { FormEnhance } from "@/components/FormEnhance";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -84,42 +85,29 @@ export function UnderPageView({
       <HtmlLang locale={locale} />
       {needsSwellCss ? (
         <>
-          {/* eslint-disable-next-line @next/next/no-css-tags */}
-          <link rel="stylesheet" href="/ed/wp-includes/css/dashicons.min.css" />
-          {/* eslint-disable-next-line @next/next/no-css-tags */}
-          <link rel="stylesheet" href="/ed/wp-includes/css/dist/block-library/style.min.css" />
-          {/* eslint-disable-next-line @next/next/no-css-tags */}
-          <link rel="stylesheet" href="/ed/wp-content/themes/swell/build/css/swell-icons.css" />
-          {/* eslint-disable-next-line @next/next/no-css-tags */}
-          <link rel="stylesheet" href="/ed/wp-content/themes/swell/build/css/main.css" />
-          {/* eslint-disable-next-line @next/next/no-css-tags */}
-          <link rel="stylesheet" href="/ed/wp-content/themes/swell/build/css/blocks.css" />
-          {/* eslint-disable-next-line @next/next/no-css-tags */}
-          <link rel="stylesheet" href="/ed/wp-content/plugins/flexible-table-block/build/style-index.css" />
-          {/* eslint-disable-next-line @next/next/no-css-tags */}
-          <link rel="stylesheet" href="/ed/wp-content/themes/swell_child/style.css" />
-          {/* eslint-disable-next-line @next/next/no-css-tags */}
-          <link rel="stylesheet" href="/ed/wp-content/plugins/useful-blocks/dist/css/front.css" />
+          <link rel="stylesheet" href={asset("/ed/wp-includes/css/dashicons.min.css")} />
+          <link rel="stylesheet" href={asset("/ed/wp-includes/css/dist/block-library/style.min.css")} />
+          <link rel="stylesheet" href={asset("/ed/wp-content/themes/swell/build/css/swell-icons.css")} />
+          <link rel="stylesheet" href={asset("/ed/wp-content/themes/swell/build/css/main.css")} />
+          <link rel="stylesheet" href={asset("/ed/wp-content/themes/swell/build/css/blocks.css")} />
+          <link rel="stylesheet" href={asset("/ed/wp-content/plugins/flexible-table-block/build/style-index.css")} />
+          <link rel="stylesheet" href={asset("/ed/wp-content/themes/swell_child/style.css")} />
+          <link rel="stylesheet" href={asset("/ed/wp-content/plugins/useful-blocks/dist/css/front.css")} />
           {/* 本家がJSで注入するカスタムCSS(:root変数・cap_box等) */}
-          {/* eslint-disable-next-line @next/next/no-css-tags */}
-          <link rel="stylesheet" href="/ed/custom-styles.css" />
+          <link rel="stylesheet" href={asset("/ed/custom-styles.css")} />
         </>
       ) : (
         needsBlockCss && (
-          /* eslint-disable-next-line @next/next/no-css-tags */
-          <link rel="stylesheet" href="/css/wp-block-library.css" />
+          <link rel="stylesheet" href={asset("/css/wp-block-library.css")} />
         )
       )}
       {needsCf7 && (
-        /* eslint-disable-next-line @next/next/no-css-tags */
-        <link rel="stylesheet" href="/css/cf7.css" />
+        <link rel="stylesheet" href={asset("/css/cf7.css")} />
       )}
       {needsAuthorCss && (
         <>
-          {/* eslint-disable-next-line @next/next/no-css-tags */}
-          <link rel="stylesheet" href="/css/wp-author.css" />
-          {/* eslint-disable-next-line @next/next/no-css-tags */}
-          <link rel="stylesheet" href="/css/wp-author-contributor.css" />
+          <link rel="stylesheet" href={asset("/css/wp-author.css")} />
+          <link rel="stylesheet" href={asset("/css/wp-author-contributor.css")} />
         </>
       )}
       {(page.styles ?? []).map((css, i) => (

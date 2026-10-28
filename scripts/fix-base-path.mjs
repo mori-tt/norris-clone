@@ -20,23 +20,32 @@ const name = base.replace(/^\//, "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const notPrefixed = `(?!\\/|${name}(?=[/"'?)#\\s]|$))`;
 // "//"(プロトコル相対) と "ベースパス付与済み" は除外
 // ※ 大文字小文字を区別しない(React は srcSet 等のキャメルケース属性を出力する)
+// ※ RSC/Flightペイロード内は src=\"...\" のように引用符がエスケープされている
+//   ため \\\\? で任意のバックスラッシュを許容する
 const attrRe = new RegExp(
-  `((?:href|src|action|poster|content|data-src|data-href)\\s*=\\s*["'])\\/${notPrefixed}`,
+  `((?:href|src|action|poster|content|data-src|data-href)\\s*=\\s*\\\\?["'])\\/${notPrefixed}`,
   "gi",
 );
-const srcsetRe = /(srcset\s*=\s*)(["'])([^"']*)\2/gi;
-const urlRe = new RegExp(`url\\(\\s*(['"]?)\\/${notPrefixed}`, "gi");
+const srcsetRe = /(srcset\s*=\s*)(\\?)(["'])([^"']*?)\2\3/gi;
+const urlRe = new RegExp(`url\\(\\s*(\\\\?['"]?)\\/${notPrefixed}`, "gi");
+// Flightペイロード(JSONプロパティ)内の "src":"/..." 形式。
+// href/action は <Link> がクライアント側で basePath を付与するため二重付与を避けて対象外
+const jsonRe = new RegExp(
+  `("(?:src|srcset|srcSet|poster|data-src|data-href|content)"\\s*:\\s*")\\/${notPrefixed}`,
+  "g",
+);
 
 function fix(content) {
   return content
     .replace(attrRe, `$1${base}/`)
-    .replace(srcsetRe, (m, pre, q, list) =>
-      `${pre}${q}${list.replace(
+    .replace(srcsetRe, (m, pre, esc, q, list) =>
+      `${pre}${esc}${q}${list.replace(
         new RegExp(`(^|,\\s*)\\/${notPrefixed}`, "g"),
         `$1${base}/`,
-      )}${q}`,
+      )}${esc}${q}`,
     )
-    .replace(urlRe, `url($1${base}/`);
+    .replace(urlRe, `url($1${base}/`)
+    .replace(jsonRe, `$1${base}/`);
 }
 
 async function walk(dir) {

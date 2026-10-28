@@ -8,6 +8,7 @@ import { CtaBar } from "@/components/CtaBar";
 import { HtmlLang } from "@/components/HtmlLang";
 import { Blocks } from "@/components/Blocks";
 import { formatDate } from "@/lib/content";
+import { asset } from "@/lib/asset";
 import { CHROME, localePrefix, type Locale } from "@/lib/i18n";
 
 const NEWS_HEADING: Record<Locale, string> = {
@@ -46,7 +47,7 @@ export default async function HomePage({
             <p>
               <Link href={lh(home.banner.href || "#")}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={home.banner.image} alt={home.banner.alt} />
+                <img src={asset(home.banner.image)} alt={home.banner.alt} />
               </Link>
             </p>
           </div>
@@ -88,7 +89,7 @@ export default async function HomePage({
               {home.scheduleImage && (
                 <p>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={home.scheduleImage} alt={home.scheduleTitle} />
+                  <img src={asset(home.scheduleImage)} alt={home.scheduleTitle} />
                 </p>
               )}
             </div>
@@ -106,7 +107,7 @@ export default async function HomePage({
                 <>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={home.instagram.avatar}
+                    src={asset(home.instagram.avatar)}
                     alt=""
                     className="avatar"
                   />
@@ -130,7 +131,7 @@ export default async function HomePage({
                   rel="noopener noreferrer"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={src} alt={`Instagram ${i + 1}`} loading="lazy" />
+                  <img src={asset(src)} alt={`Instagram ${i + 1}`} loading="lazy" />
                 </a>
               ))}
             </div>
@@ -201,7 +202,7 @@ export default async function HomePage({
               <li key={c.href} className="column col_3">
                 <Link href={lh(c.href)}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={c.image} alt={c.alt} loading="lazy" />
+                  <img src={asset(c.image)} alt={c.alt} loading="lazy" />
                 </Link>
               </li>
             ))}
@@ -225,11 +226,11 @@ export default async function HomePage({
                 </div>
                 <figure>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={d.image} alt={d.name} loading="lazy" className="pc" />
+                  <img src={asset(d.image)} alt={d.name} loading="lazy" className="pc" />
                   {d.imageSp && (
                     /* eslint-disable-next-line @next/next/no-img-element */
                     <img
-                      src={d.imageSp}
+                      src={asset(d.imageSp)}
                       alt={d.name}
                       loading="lazy"
                       className="sp"
@@ -266,7 +267,7 @@ export default async function HomePage({
               key={f.title}
               className={`column col_3 con0${i + 1}`}
               style={
-                f.image ? { backgroundImage: `url(${f.image})` } : undefined
+                f.image ? { backgroundImage: `url(${asset(f.image)})` } : undefined
               }
             >
               {f.href && (
@@ -295,7 +296,7 @@ export default async function HomePage({
               <div className="column col_2 col_img">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={home.greeting.image}
+                  src={asset(home.greeting.image)}
                   alt={home.greeting.imageAlt}
                   loading="lazy"
                 />
@@ -428,7 +429,7 @@ function MenuCardRow({
                 className={`sec02_ttl sec_02_ttl0${firstTtl + i}`}
                 style={
                   c.titleBg
-                    ? { backgroundImage: `url(${c.titleBg})` }
+                    ? { backgroundImage: `url(${asset(c.titleBg)})` }
                     : undefined
                 }
               >
@@ -440,7 +441,7 @@ function MenuCardRow({
               <div className="overbtn">
                 <figure>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={c.image} alt={c.title} loading="lazy" />
+                  <img src={asset(c.image)} alt={c.title} loading="lazy" />
                 </figure>
                 <div className="btn-style">
                   <Link href={lh(c.href)}>MORE</Link>

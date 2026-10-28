@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import HomePage from "../../page";
 import { ColumnPageView } from "@/components/ColumnPageView";
 import { UnderPageView } from "@/components/UnderPageView";
+import { getSite } from "@/lib/content";
 import type { Locale } from "@/lib/i18n";
 import {
   getScrapedPage,
@@ -43,7 +44,13 @@ export async function generateMetadata({
   params: Params;
 }): Promise<Metadata> {
   const { page } = await resolve(params);
-  if (!page) return {};
+  if (!page) {
+    const site = getSite(LOCALE);
+    return {
+      title: { absolute: `${site.name} | ${site.tagline}` },
+      description: site.description,
+    };
+  }
   return {
     title: page.docTitle,
     alternates: {

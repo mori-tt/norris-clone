@@ -95,6 +95,11 @@ input[type="reset"]:disabled {
   background: rgba(255, 255, 255, 0.8);
 }
 
+/* ============ スムーススクロール(本家 script.js の animate 相当) ============ */
+html {
+  scroll-behavior: smooth;
+}
+
 /* ============ メインイメージスライダー ============ */
 .mainimage {
   position: relative;
