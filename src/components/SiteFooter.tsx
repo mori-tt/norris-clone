@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getHome, getSite } from "@/lib/content";
 import { CHROME, localePrefix, type Locale } from "@/lib/i18n";
+import { ScheduleCalendar } from "./ScheduleCalendar";
 
 /** 本家フッターと同じマークアップ(ロゴ・info・診療日画像・footer-nav・コラムリンク・クレジット) */
 export function SiteFooter({ locale = "ja" }: { locale?: Locale }) {
@@ -44,11 +45,15 @@ export function SiteFooter({ locale = "ja" }: { locale?: Locale }) {
           </div>
           <div className="column col_2">
             <h3>{home.scheduleTitle}</h3>
-            {home.scheduleImage && (
-              <p>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={home.scheduleImage} alt="" className="aligncenter" />
-              </p>
+            {locale === "ja" ? (
+              home.scheduleImage && (
+                <p>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={home.scheduleImage} alt="" className="aligncenter" />
+                </p>
+              )
+            ) : (
+              <ScheduleCalendar locale={locale} />
             )}
           </div>
         </div>

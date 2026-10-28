@@ -254,3 +254,322 @@ input[type="reset"]:disabled {
     width: 100%;
   }
 }
+
+/* ============================================================
+   多言語表示: 焼き込み日本語画像の代替(en/zh)
+   ============================================================ */
+
+/* --- ヒーロースライドの翻訳コピーオーバーレイ --- */
+.slide-copy {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 56%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.9em;
+  padding: 3% 5%;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.8);
+  -webkit-backdrop-filter: blur(22px) saturate(0.95);
+  backdrop-filter: blur(22px) saturate(0.95);
+}
+.slide-copy.pos-left {
+  left: 0;
+}
+.slide-copy.pos-right {
+  right: 0;
+}
+.slide-copy-title {
+  font-family: var(--font-serif);
+  color: var(--primary);
+  font-size: clamp(16px, 2.3vw, 32px);
+  line-height: 1.4;
+}
+.slide-copy-sub {
+  font-size: clamp(11px, 1.05vw, 15px);
+  line-height: 1.8;
+  color: #4a463e;
+}
+.slide-copy-bullets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.slide-copy-bullets li {
+  border: 1px solid var(--accent);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--accent);
+  padding: 0.3em 0.9em;
+  font-size: clamp(10px, 0.95vw, 14px);
+  white-space: nowrap;
+}
+.slide-copy-bullets.solid li {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* --- 泌尿器科バナーの翻訳オーバーレイ --- */
+.hinyou-i18n {
+  position: relative;
+  display: block;
+}
+.hinyou-copy {
+  position: absolute;
+  left: 4%;
+  top: 9%;
+  bottom: 9%;
+  width: 53%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5em;
+  padding: 1.5% 3%;
+  background: #f8f4ec;
+  border: 1px solid rgba(160, 143, 93, 0.3);
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
+  pointer-events: none;
+}
+.hinyou-tag {
+  font-size: clamp(8px, 0.9vw, 12px);
+  letter-spacing: 0.08em;
+  color: #8a7a52;
+  border-bottom: 1px solid #cfc0a0;
+  padding-bottom: 0.5em;
+}
+.hinyou-title {
+  font-family: var(--font-serif);
+  color: var(--primary);
+  font-size: clamp(12px, 1.75vw, 23px);
+  line-height: 1.45;
+}
+.hinyou-sub {
+  font-size: clamp(9px, 1vw, 13px);
+  color: #5c5748;
+}
+.hinyou-btn {
+  align-self: flex-start;
+  margin-top: 0.6em;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.45em 1.4em;
+  font-size: clamp(9px, 1vw, 13px);
+}
+
+/* --- 症状・お悩みバナーの翻訳ラベル --- */
+.concern-link {
+  position: relative;
+  display: block;
+}
+.concern-label {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 12%;
+  background: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(9px) brightness(1.05);
+  backdrop-filter: blur(9px) brightness(1.05);
+  color: var(--primary);
+  font-family: var(--font-serif);
+  font-size: clamp(11px, 1.5vw, 19px);
+  line-height: 1.45;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+}
+
+/* --- 診療カレンダー(en/zh) --- */
+.cal-i18n {
+  max-width: 460px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 22px 20px 18px;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.07);
+  text-align: center;
+}
+.cal-ym {
+  font-family: var(--font-serif);
+  color: var(--primary);
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+.cal-i18n table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.cal-i18n th {
+  font-size: 11px;
+  font-weight: 500;
+  color: #8a7a52;
+  padding: 6px 0;
+  border-bottom: 1px solid #e8e2d4;
+}
+.cal-i18n th.sun,
+.cal-i18n td:first-child {
+  color: #b04a4a;
+}
+.cal-i18n th.sat,
+.cal-i18n td:last-child {
+  color: #4a70b0;
+}
+.cal-i18n td {
+  position: relative;
+  height: 42px;
+  font-size: 14px;
+  border-bottom: 1px solid #f0ebe0;
+}
+.cal-i18n td.closed::after {
+  content: "✕";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c0392b;
+  font-size: 22px;
+  font-weight: 600;
+}
+.cal-legend {
+  margin-top: 14px;
+  font-size: 12px;
+  color: #666;
+}
+.cal-legend .cal-x {
+  color: #c0392b;
+  font-weight: 700;
+  margin-right: 2px;
+}
+.cal-note {
+  margin-top: 8px;
+  font-size: 11px;
+  color: #999;
+  line-height: 1.6;
+}
+
+/* --- 固定CTAバーの翻訳フィギュア(side01/02 代替) --- */
+.cta-figure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 260px;
+  height: 60px;
+  color: #fff;
+  text-align: center;
+}
+.cta-tel {
+  background: #b3a373;
+  font-family: var(--font-serif);
+}
+.cta-tel .cta-ic {
+  width: 24px;
+  height: 24px;
+  flex: none;
+}
+.cta-txt {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+.cta-txt small {
+  font-size: 11px;
+  opacity: 0.95;
+}
+.cta-txt strong {
+  font-size: 20px;
+  letter-spacing: 0.04em;
+}
+.cta-reserve {
+  background: var(--accent);
+  font-family: var(--font-serif);
+  font-size: 18px;
+  gap: 6px;
+}
+.cta-reserve .cta-ic {
+  width: 16px;
+  height: 16px;
+}
+
+/* --- SPナビの翻訳フィギュア(sp_nav02-05 代替) --- */
+.spnav-fig {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  aspect-ratio: 140 / 76;
+  color: var(--primary);
+  font-size: 9px;
+  line-height: 1.2;
+  text-align: center;
+  padding: 2px 4px;
+  box-sizing: border-box;
+}
+.spnav-ic {
+  width: 26px;
+  height: 26px;
+  flex: none;
+}
+
+@media screen and (max-width: 767px) {
+  /* ヒーロー: SP画像は焼き込み要素が全体に散るため全面をぼかし覆う */
+  .slide-copy {
+    inset: 0;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    padding: 8% 7%;
+    gap: 0.7em;
+    background: rgba(255, 255, 255, 0.55);
+    -webkit-backdrop-filter: blur(12px) saturate(0.95);
+    backdrop-filter: blur(12px) saturate(0.95);
+  }
+  .slide-copy-title {
+    font-size: clamp(15px, 4.6vw, 22px);
+  }
+  .slide-copy-sub {
+    font-size: clamp(10px, 3vw, 13px);
+  }
+  .slide-copy-bullets li {
+    font-size: clamp(9px, 2.6vw, 12px);
+  }
+  .hinyou-copy {
+    left: 3%;
+    width: 56%;
+    padding: 2% 3%;
+  }
+  /* CTAバー: SP は縦積み */
+  .cta-figure {
+    flex-direction: column;
+    gap: 3px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 256 / 130;
+    padding: 8px 4px;
+  }
+  .cta-tel .cta-ic {
+    width: 20px;
+    height: 20px;
+  }
+  .cta-txt small {
+    font-size: 9px;
+  }
+  .cta-txt strong {
+    font-size: 14px;
+  }
+  .cta-reserve {
+    font-size: 12px;
+  }
+  .cta-reserve .cta-ic {
+    width: 12px;
+    height: 12px;
+  }
+}
