@@ -16,16 +16,7 @@
   "calendar": {
     "year": 2026,
     "month": 10,
-    "closedDays": [
-      5,
-      9,
-      13,
-      14,
-      19,
-      23,
-      27,
-      28
-    ],
+    "closedDays": [],
     "note": "Clinic dates are subject to change. Please call us to confirm before your visit."
   }
 }

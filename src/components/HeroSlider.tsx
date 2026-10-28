@@ -3,8 +3,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import type { HeroCopy } from "@/lib/i18n";
-
 type Slide = {
   image: string;
   imageSp: string;
@@ -13,14 +11,7 @@ type Slide = {
 };
 
 /** 本家サイトと同じフェードスライダー(3秒・文言は画像焼き込み) */
-export function HeroSlider({
-  slides,
-  copy,
-}: {
-  slides: Slide[];
-  /** スライド画像の焼き込み日本語を覆う翻訳コピー(en/zh のみ) */
-  copy?: HeroCopy[];
-}) {
+export function HeroSlider({ slides }: { slides: Slide[] }) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -44,7 +35,6 @@ export function HeroSlider({
             <img src={s.image} alt={s.alt} />
           </picture>
         );
-        const c = copy?.[i];
         return (
           <div
             key={s.image}
@@ -52,21 +42,6 @@ export function HeroSlider({
             aria-hidden={i !== index}
           >
             {s.href ? <Link href={s.href}>{pic}</Link> : pic}
-            {c && (
-              <div className={`slide-copy pos-${c.pos}`} aria-hidden="true">
-                <p className="slide-copy-title">{c.title}</p>
-                {c.sub && <p className="slide-copy-sub">{c.sub}</p>}
-                {c.bullets && (
-                  <ul
-                    className={`slide-copy-bullets${c.solidBullets ? " solid" : ""}`}
-                  >
-                    {c.bullets.map((b) => (
-                      <li key={b}>{b}</li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            )}
           </div>
         );
       })}

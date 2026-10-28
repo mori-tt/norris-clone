@@ -9,7 +9,6 @@ import {
   type Locale,
 } from "@/lib/i18n";
 import { MobileMenu } from "./MobileMenu";
-import { ClinicIcon, MapPinIcon, PhoneIcon } from "./icons";
 
 type Props = {
   /** 下層ページでは h1 にページタイトルが入る。トップはキャッチコピー */
@@ -70,50 +69,29 @@ export function SiteHeader({ title, locale = "ja", currentPath = "/" }: Props) {
               </li>
               <li>
                 <Link href={`${prefix}/clinic/`}>
-                  {locale === "ja" ? (
-                    /* eslint-disable-next-line @next/next/no-img-element */
-                    <img
-                      src="/images/norris/sp_nav02.png"
-                      alt={chrome.spNav.clinic}
-                    />
-                  ) : (
-                    <span className="spnav-fig">
-                      <ClinicIcon className="spnav-ic" />
-                      <span>{chrome.spNav.clinic}</span>
-                    </span>
-                  )}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/images/norris/sp_nav02.png"
+                    alt={chrome.spNav.clinic}
+                  />
                 </Link>
               </li>
               <li>
                 <a href={`tel:${site.tel.replaceAll("-", "")}`}>
-                  {locale === "ja" ? (
-                    /* eslint-disable-next-line @next/next/no-img-element */
-                    <img
-                      src="/images/norris/sp_nav03.png"
-                      alt={chrome.spNav.tel}
-                    />
-                  ) : (
-                    <span className="spnav-fig">
-                      <PhoneIcon className="spnav-ic" />
-                      <span>{chrome.spNav.tel}</span>
-                    </span>
-                  )}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/images/norris/sp_nav03.png"
+                    alt={chrome.spNav.tel}
+                  />
                 </a>
               </li>
               <li>
                 <Link href={`${prefix}/access/`}>
-                  {locale === "ja" ? (
-                    /* eslint-disable-next-line @next/next/no-img-element */
-                    <img
-                      src="/images/norris/sp_nav04.png"
-                      alt={chrome.spNav.access}
-                    />
-                  ) : (
-                    <span className="spnav-fig">
-                      <MapPinIcon className="spnav-ic" />
-                      <span>{chrome.spNav.access}</span>
-                    </span>
-                  )}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/images/norris/sp_nav04.png"
+                    alt={chrome.spNav.access}
+                  />
                 </Link>
               </li>
               <MobileMenu items={items} locale={locale} />

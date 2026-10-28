@@ -8,14 +8,7 @@ import { CtaBar } from "@/components/CtaBar";
 import { HtmlLang } from "@/components/HtmlLang";
 import { Blocks } from "@/components/Blocks";
 import { formatDate } from "@/lib/content";
-import {
-  CHROME,
-  HERO_COPY,
-  UROLOGY_BANNER,
-  localePrefix,
-  type Locale,
-} from "@/lib/i18n";
-import { ScheduleCalendar } from "@/components/ScheduleCalendar";
+import { CHROME, localePrefix, type Locale } from "@/lib/i18n";
 
 const NEWS_HEADING: Record<Locale, string> = {
   ja: "お知らせ",
@@ -44,10 +37,7 @@ export default async function HomePage({
     >
       <HtmlLang locale={locale} />
       <SiteHeader locale={locale} currentPath="/" />
-      <HeroSlider
-        slides={home.hero.slides}
-        copy={locale === "ja" ? undefined : HERO_COPY[locale]}
-      />
+      <HeroSlider slides={home.hero.slides} />
 
       {/* 泌尿器科バナー */}
       {home.banner && (
@@ -55,31 +45,8 @@ export default async function HomePage({
           <div className="topinner">
             <p>
               <Link href={lh(home.banner.href || "#")}>
-                {locale === "ja" ? (
-                  /* eslint-disable-next-line @next/next/no-img-element */
-                  <img src={home.banner.image} alt={home.banner.alt} />
-                ) : (
-                  <span className="hinyou-i18n">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={home.banner.image} alt={home.banner.alt} />
-                    <span className="hinyou-copy" aria-hidden="true">
-                      <span className="hinyou-tag">
-                        UROLOGY
-                        {UROLOGY_BANNER[locale].tag &&
-                          ` / ${UROLOGY_BANNER[locale].tag}`}
-                      </span>
-                      <span className="hinyou-title">
-                        {UROLOGY_BANNER[locale].title}
-                      </span>
-                      <span className="hinyou-sub">
-                        {UROLOGY_BANNER[locale].sub}
-                      </span>
-                      <span className="hinyou-btn">
-                        {UROLOGY_BANNER[locale].cta}
-                      </span>
-                    </span>
-                  </span>
-                )}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={home.banner.image} alt={home.banner.alt} />
               </Link>
             </p>
           </div>
@@ -118,15 +85,11 @@ export default async function HomePage({
                 <span className="en">Schedule</span>
                 {home.scheduleTitle}
               </h3>
-              {locale === "ja" ? (
-                home.scheduleImage && (
-                  <p>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={home.scheduleImage} alt={home.scheduleTitle} />
-                  </p>
-                )
-              ) : (
-                <ScheduleCalendar locale={locale} />
+              {home.scheduleImage && (
+                <p>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={home.scheduleImage} alt={home.scheduleTitle} />
+                </p>
               )}
             </div>
           </div>
@@ -236,14 +199,9 @@ export default async function HomePage({
           <ul className="columns wrap sp_col_2 sp_wrap">
             {home.concerns.items.map((c) => (
               <li key={c.href} className="column col_3">
-                <Link href={lh(c.href)} className="concern-link">
+                <Link href={lh(c.href)}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={c.image} alt={c.alt} loading="lazy" />
-                  {locale !== "ja" && (
-                    <span className="concern-label" aria-hidden="true">
-                      {c.alt}
-                    </span>
-                  )}
                 </Link>
               </li>
             ))}

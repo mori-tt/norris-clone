@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { CloseIcon, MenuIcon } from "./icons";
+import { CloseIcon } from "./icons";
 import type { NavItem } from "@/lib/schemas";
 import { CHROME, localePrefix, navLabel, type Locale } from "@/lib/i18n";
 
@@ -54,15 +54,8 @@ export function MobileMenu({ items, locale = "ja" }: Props) {
         aria-label={chrome.openMenu}
         onClick={() => setOpen(true)}
       >
-        {locale === "ja" ? (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img src="/images/norris/sp_nav05.png" alt={chrome.drawerMenu} />
-        ) : (
-          <span className="spnav-fig">
-            <MenuIcon className="spnav-ic" />
-            <span>{chrome.spNav.menu}</span>
-          </span>
-        )}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/images/norris/sp_nav05.png" alt={chrome.drawerMenu} />
       </button>
       {open && (
         <div className="fixed inset-0 z-50">
