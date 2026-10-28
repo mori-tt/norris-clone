@@ -76,27 +76,37 @@ export function slugUrlForm(seg: string): string {
 
 /**
  * slug配列からコンテンツ上のパスへ。%エンコードされたディレクトリ名に対応。
- * slugにはデコード済み・URLエンコード済み(大小文字問わず)のどちらも来得るため、
- * ディレクトリを1セグメントずつ辿りながら実在する名前を解決する。
+ * Nextが渡すslugはURL形式(%E3%82%AF…)だが、環境・経路によっては
+ * デコード済みや二重エンコードも来るため、実在するディレクトリ名と
+ * 「完全デコードした形」同士を比較して解決する(形式不変・大小文字不問)。
  */
+function fullyDecode(seg: string): string {
+  let s = seg;
+  for (let i = 0; i < 5; i++) {
+    if (!/%[0-9a-fA-F]{2}/.test(s)) break;
+    try {
+      const d = decodeURIComponent(s);
+      if (d === s) break;
+      s = d;
+    } catch {
+      break;
+    }
+  }
+  return s;
+}
+
 export function scrapedPathFromSlug(slug: string[]): string {
   let dir = pagesRoot();
   const parts: string[] = [];
   for (const seg of slug) {
-    let dec = seg;
+    const want = fullyDecode(seg);
+    let found: string | undefined;
     try {
-      dec = decodeURIComponent(seg);
+      found = readdirSync(dir).find((n) => fullyDecode(n) === want);
     } catch {
-      dec = seg;
+      found = undefined;
     }
-    const candidates = [
-      seg,
-      seg.toLowerCase(),
-      dec,
-      encodeURIComponent(dec).toLowerCase(),
-    ];
-    const found = candidates.find((c) => existsSync(path.join(dir, c)));
-    const name = found ?? encodeURIComponent(dec).toLowerCase();
+    const name = found ?? encodeURIComponent(want).toLowerCase();
     parts.push(name);
     dir = path.join(dir, name);
   }
