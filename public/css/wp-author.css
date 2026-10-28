@@ -1,0 +1,187 @@
+/**
+ * WP Author Extension - フロントエンドスタイル
+ *
+ * モダンな著者ボックスデザイン
+ */
+
+/* ====================================
+   著者セクション
+   ==================================== */
+.wpae-author-section {
+    margin: 2.5em 0;
+    padding: 0;
+}
+
+.wpae-author-heading {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 0 0 1em;
+    padding-bottom: 0.5em;
+    border-bottom: 2px solid #e0e0e0;
+    color: #333;
+}
+
+/* ====================================
+   著者ボックス
+   ==================================== */
+.wpae-author-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+    padding: 1.5em;
+    background: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #e8e8e8;
+}
+
+/* 左カラム（アバター・名前） */
+.wpae-author-box__left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 140px;
+    flex-shrink: 0;
+    text-align: center;
+    word-break: break-word;
+}
+
+.wpae-author-box__avatar {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 0.75em;
+}
+
+.wpae-author-box__avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.wpae-author-box__name-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+}
+
+.wpae-author-box__name {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a.wpae-author-box__name:hover {
+    color: #0073aa;
+}
+
+.wpae-author-box__position {
+    font-size: 0.85em;
+    color: #666;
+}
+
+/* 右カラム（プロフィール・SNS） */
+.wpae-author-box__right {
+    flex: 1;
+    min-width: 200px;
+}
+
+.wpae-author-box__desc {
+    font-size: 0.95em;
+    line-height: 1.7;
+    color: #555;
+    margin: 0 0 1em;
+}
+
+/* ====================================
+   SNSリスト
+   ==================================== */
+.wpae-author-box__sns-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    list-style: none;
+    margin: 0 0 1em;
+    padding: 0;
+}
+
+.wpae-author-box__sns-item {
+    margin: 0;
+    padding: 0;
+}
+
+.wpae-author-box__sns-item a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #e0e0e0;
+    color: #555;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.wpae-author-box__sns-item a:hover {
+    background: #333;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.wpae-icon {
+    display: block;
+}
+
+/* ====================================
+   記事一覧ボタン
+   ==================================== */
+.wpae-author-box__more {
+    margin-top: 1em;
+}
+
+.wpae-author-box__more-link {
+    display: inline-block;
+    padding: 0.6em 1.5em;
+    font-size: 0.9em;
+    font-weight: 500;
+    color: #fff;
+    background: #333;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.wpae-author-box__more-link:hover {
+    background: #555;
+    transform: translateY(-1px);
+}
+
+/* ====================================
+   レスポンシブ
+   ==================================== */
+@media (max-width: 600px) {
+    .wpae-author-box {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .wpae-author-box__left {
+        width: 100%;
+    }
+
+    .wpae-author-box__right {
+        width: 100%;
+    }
+
+    .wpae-author-box__sns-list {
+        justify-content: center;
+    }
+
+    .wpae-author-box__more {
+        text-align: center;
+    }
+}

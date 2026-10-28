@@ -48,19 +48,10 @@ export default async function ColumnPage({
 
   return (
     <div className={page.bodyClass ?? ""}>
-      {/* SWELL テーマのCSS */}
-      {/* eslint-disable-next-line @next/next/no-css-tags */}
-      <link rel="stylesheet" href="/swell/css/main.css" />
-      {/* eslint-disable-next-line @next/next/no-css-tags */}
-      <link rel="stylesheet" href="/swell/css/blocks.css" />
-      {/* eslint-disable-next-line @next/next/no-css-tags */}
-      <link rel="stylesheet" href="/swell/css/swell-icons.css" />
-      {/* eslint-disable-next-line @next/next/no-css-tags */}
-      <link rel="stylesheet" href="/swell/css/modules/page/single.css" />
-      {/* eslint-disable-next-line @next/next/no-css-tags */}
-      <link rel="stylesheet" href="/swell/css/modules/parts/footer.css" />
-      {/* eslint-disable-next-line @next/next/no-css-tags */}
-      <link rel="stylesheet" href="/swell/child/style.css" />
+      {/* SWELL テーマのCSS(スクレイプ時に本家の link[rel=stylesheet] を取得) */}
+      {(page.cssLinks ?? []).map((href) => (
+        <link key={href} rel="stylesheet" href={href} />
+      ))}
       {(page.styles ?? []).map((css, i) => (
         <style key={i} dangerouslySetInnerHTML={{ __html: css }} />
       ))}

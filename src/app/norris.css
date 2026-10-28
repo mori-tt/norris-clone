@@ -920,12 +920,12 @@ width:100%;
     top: 0;
     left: 0;
   }
-  .headerinner ul li {
+  .headerinner ul.sp > li {
     width: 20%;
     border-right: 1px solid #e7e7e7;
     box-sizing: border-box;
   }
-  .headerinner ul li:last-child {
+  .headerinner ul.sp > li:last-child {
     border: none;
   }
   .headerinner ul img {

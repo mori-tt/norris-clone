@@ -62,6 +62,9 @@ async function collectUrls() {
     "/column/category/sexually-transmitted-disease-test/",
   ];
   for (const p of columnPaths) urls.add(p);
+  // サイトマップ非掲載だが本文内リンク先にあるカテゴリ
+  urls.add("/medi-column-category/datsumo/");
+  urls.add("/medi-column-category/%e8%82%8c%e7%ae%a1%e7%90%86/");
   return [...urls];
 }
 
@@ -167,6 +170,26 @@ async function scrapePage(pagePath) {
       const t = $(el).html();
       if (t && t.trim()) styles.push(t);
     });
+    // SWELLテーマの外部CSSをDLしてローカルパスに置き換え
+    const cssLinks = [];
+    for (const el of $("link[rel=stylesheet]").toArray()) {
+      const href = $(el).attr("href");
+      if (!href) continue;
+      const u = new URL(href, BASE);
+      const m1 = u.pathname.match(/^\/column\/wp-content\/themes\/swell\/build\/(.*)$/);
+      const m2 = u.pathname.match(/^\/column\/wp-content\/themes\/swell_child\/(.*)$/);
+      const local = m1 ? `/swell/${m1[1]}` : m2 ? `/swell/child/${m2[1]}` : null;
+      if (!local || cssLinks.includes(local)) continue;
+      cssLinks.push(local);
+      try {
+        const dest = path.join("public", local);
+        const buf = Buffer.from(await (await fetch(u.href)).arrayBuffer());
+        await mkdir(path.dirname(dest), { recursive: true });
+        await writeFile(dest, buf);
+      } catch {
+        /* ignore */
+      }
+    }
     const bodyClass = ($("body").attr("class") || "").trim();
     const root0 = cheerio.load("<div id=__r></div>", null, false);
     root0("#__r").html(bodyHtml0);
@@ -218,6 +241,7 @@ async function scrapePage(pagePath) {
           layout: "swell",
           bodyClass,
           styles,
+          cssLinks,
           breadcrumb: [],
           html: bodyHtml,
         },
@@ -238,6 +262,13 @@ async function scrapePage(pagePath) {
   const bodyClass = ($("body").attr("class") || "").trim().replace(/\s+/g, " ");
   const pageTitleEl = $(".page-title").first();
   const pageTitleHtml = pageTitleEl.length ? $.html(pageTitleEl) : "";
+
+  // ページ内 <style>(global-styles等のWPインラインCSS)も保持
+  const styles = [];
+  $("style").each((_, el) => {
+    const t = $(el).html();
+    if (t && t.trim()) styles.push(t);
+  });
 
   const breadcrumb = [];
   $("ul.bread li").each((_, li) => {
@@ -307,13 +338,17 @@ async function scrapePage(pagePath) {
     bodyClass,
     pageTitleHtml,
     breadcrumb,
+    styles,
     html: bodyHtml,
   };
   await writeFile(path.join(outDir, "index.json"), JSON.stringify(data, null, 1));
   console.log(`OK ${pagePath} (title=${data.title.slice(0, 30)})`);
 }
 
-const urls = await collectUrls();
+const allUrls = await collectUrls();
+// `node scrape-norris-pages.mjs /fee/ /access/` のように部分指定可能
+const only = process.argv.slice(2);
+const urls = only.length ? allUrls.filter((u) => only.includes(u)) : allUrls;
 console.log(`${urls.length} pages to scrape`);
 const CONCURRENCY = 4;
 for (let i = 0; i < urls.length; i += CONCURRENCY) {

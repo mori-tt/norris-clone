@@ -17,6 +17,8 @@ export type ScrapedPage = {
   html: string;
   layout?: "swell";
   styles?: string[];
+  /** SWELLサブサイトの外部CSS(/swell/以下のローカルパス) */
+  cssLinks?: string[];
 };
 
 function pagesRoot() {

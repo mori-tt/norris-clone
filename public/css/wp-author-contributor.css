@@ -1,0 +1,105 @@
+/**
+ * 監修者ボックス用CSS
+ */
+
+/* 監修者ラベル（左上にベタ塗り） */
+.wpae-contributor-section {
+    position: relative;
+}
+
+.wpae-contributor-label {
+    position: absolute;
+    top: -8px;
+    left: 16px;
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+    background: #555;
+    padding: 2px 10px;
+    border-radius: 3px;
+    z-index: 2;
+    line-height: 1.4;
+}
+
+/* 資格・認定（モダンでシンプル） */
+.wpae-credentials {
+    margin-top: 1em;
+}
+
+.wpae-credentials__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    cursor: pointer;
+    font-size: 0.9em;
+    color: #555;
+    padding: 0.3em 0;
+    border-bottom: 1px dashed #ccc;
+    transition: color 0.2s ease;
+}
+
+.wpae-credentials__toggle:hover {
+    color: #333;
+}
+
+.wpae-credentials__icon {
+    font-size: 1em;
+    color: #888;
+    transition: transform 0.2s ease;
+}
+
+.wpae-credentials__toggle.is-open .wpae-credentials__icon {
+    transform: rotate(45deg);
+}
+
+.wpae-credentials__list {
+    margin: 0.75em 0 0;
+    padding: 0 0 0 1em;
+    list-style: disc;
+}
+
+.wpae-credentials__list li {
+    padding: 0.25em 0;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.wpae-credentials__list a {
+    color: #2271b1;
+    text-decoration: none;
+}
+
+.wpae-credentials__list a:hover {
+    text-decoration: underline;
+}
+
+/* SNSアイコンリストのマーカー削除 */
+.wpae-contributor-section .p-authorBox__iconList,
+.wpae-contributor-section .c-iconList,
+.wpae-author-section .wpae-author-box__sns-list,
+.p-authorBox .c-iconList {
+    margin-top: 8px !important;
+    list-style: none !important;
+    padding-left: 0 !important;
+}
+
+.wpae-contributor-section .p-authorBox__iconList li,
+.wpae-contributor-section .c-iconList li,
+.wpae-author-section .wpae-author-box__sns-list li,
+.p-authorBox .c-iconList li {
+    list-style: none !important;
+    list-style-type: none !important;
+}
+
+.wpae-contributor-section .p-authorBox__iconList li::before,
+.wpae-contributor-section .p-authorBox__iconList li::marker,
+.wpae-contributor-section .c-iconList li::before,
+.wpae-contributor-section .c-iconList li::marker,
+.wpae-author-section .wpae-author-box__sns-list li::before,
+.wpae-author-section .wpae-author-box__sns-list li::marker,
+.p-authorBox .c-iconList li::before,
+.p-authorBox .c-iconList li::marker {
+    display: none !important;
+    content: none !important;
+}

@@ -37,16 +37,40 @@ img {
   vertical-align: bottom;
 }
 
-.sp-only {
-  display: none;
+/* フォーム要素: Tailwindプリフライトで消えたUAデフォルトを復元(本家は素のUAスタイル) */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="number"],
+input[type="date"],
+input[type="password"],
+input[type="search"],
+textarea,
+select {
+  border: 2px inset #767676;
+  background: #fff;
+  padding: 1px 2px;
 }
-
-/* ============ レイアウト共通 ============ */
-.inner,
-.topinner {
-  width: 1200px;
-  margin: 0 auto;
-  max-width: 96%;
+textarea {
+  border: 1px solid #767676;
+}
+input[type="checkbox"],
+input[type="radio"] {
+  appearance: auto;
+}
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+  border: 2px outset #767676;
+  background: #efefef;
+  font: inherit;
+  cursor: pointer;
+}
+input[type="submit"]:disabled,
+input[type="button"]:disabled,
+input[type="reset"]:disabled {
+  opacity: 0.5;
 }
 
 /* ============ ヘッダー ============ */
@@ -62,192 +86,6 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-#header .header-title {
-  font-family: var(--font-serif);
-  font-size: 17px;
-  color: var(--primary);
-  line-height: 1.3;
-  padding: 15px 0;
-  max-width: 344px;
-}
-#header .header-title img {
-  width: 100%;
-  display: block;
-}
-
-/* 下層ページはヘッダー高さ分を空ける(トップは画像がヘッダーの下に入る) */
-.page-offset {
-  padding-top: 120px;
-}
-@media screen and (max-width: 1520px) and (min-width: 768px) {
-  .page-offset {
-    padding-top: 90px;
-  }
-}
-
-/* ============ PCナビ ============ */
-#gnav {
-  height: 120px;
-}
-#gnav > ul {
-  display: flex;
-  justify-content: flex-end;
-  height: 100%;
-}
-#gnav > ul > li {
-  position: relative;
-}
-#gnav > ul > li > a,
-#gnav > ul > li > span.navlink {
-  font-size: 16px;
-  height: 120px;
-  padding: 10px 1em;
-  color: var(--text);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  text-decoration: none;
-  line-height: 1.5;
-  transition: 200ms;
-  cursor: pointer;
-}
-#gnav .nav-en {
-  font-size: 12px;
-  color: var(--accent);
-  display: block;
-}
-#gnav > ul > li > a:hover,
-#gnav > ul > li > span.navlink:hover {
-  color: #fff;
-  background: var(--primary);
-}
-#gnav > ul > li > a:hover .nav-en,
-#gnav > ul > li > span.navlink:hover .nav-en {
-  color: #fff;
-}
-/* 子メニュー持ちの矢印 */
-#gnav > ul > li.has-children > a::after,
-#gnav > ul > li.has-children > span.navlink::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 20px;
-  margin: auto;
-  width: 6px;
-  height: 6px;
-  border-bottom: 1px solid var(--accent);
-  border-right: 1px solid var(--accent);
-  transform: rotate(37deg) skewX(-15deg);
-}
-#gnav > ul > li.has-children > a:hover::after,
-#gnav > ul > li.has-children > span.navlink:hover::after {
-  border-color: #fff;
-}
-
-/* 通常ドロップダウン */
-#gnav .sub-menu {
-  position: absolute;
-  top: 100%;
-  left: -20%;
-  width: 140%;
-  z-index: 9;
-  background: var(--primary);
-  border-top: 1px solid #fff;
-  display: none;
-}
-#gnav li:hover > .sub-menu {
-  display: block;
-}
-#gnav .sub-menu li {
-  border-bottom: 1px solid #fff;
-}
-#gnav .sub-menu li a {
-  font-size: 14px;
-  text-align: center;
-  color: #fff;
-  padding: 10px;
-  display: block;
-  text-decoration: none;
-}
-#gnav .sub-menu li a:hover {
-  background: var(--primary-dark);
-}
-
-/* ワイドメガメニュー(診療メニュー) */
-#gnav li.mega {
-  position: static;
-}
-#gnav .megamenu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  z-index: 9;
-  background: var(--primary);
-  border-top: 1px solid #fff;
-  padding: 2em 0;
-  display: none;
-}
-#gnav li.mega:hover .megamenu {
-  display: block;
-}
-#gnav .megamenu .submenu-inner {
-  width: 1200px;
-  max-width: 96%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-}
-#gnav .megamenu ul.sub-menu {
-  position: static;
-  width: 32%;
-  background: none;
-  border-top: none;
-  display: block;
-  text-align: left;
-}
-#gnav .megamenu li.menutitle {
-  color: #fff;
-  font-size: 16px;
-  font-weight: bold;
-  border-bottom: 1px solid #ccc;
-  padding: 5px 0;
-  margin-bottom: 10px;
-}
-#gnav .megamenu ul.sub-menu li {
-  position: relative;
-  padding-left: 1.5em;
-  border-bottom: none;
-}
-#gnav .megamenu ul.sub-menu li:not(.menutitle)::before {
-  content: "";
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  top: 10px;
-  left: 10px;
-  border-top: solid 1px #fff;
-  border-right: solid 1px #fff;
-  transform: rotate(45deg);
-}
-#gnav .megamenu ul.sub-menu li a {
-  color: #fff;
-  text-align: left;
-  padding: 0.3em 0.2em;
-  font-size: 14px;
-  display: inline;
-}
-#gnav .megamenu ul.sub-menu li a:hover {
-  background: none;
-  text-decoration: underline;
-}
-
-/* ============ SPナビ(アイコン5個) ============ */
-#spnav {
-  display: none;
 }
 
 /* ============ メインイメージスライダー ============ */
@@ -269,10 +107,10 @@ img {
 }
 
 /* ============ バナーブロック ============ */
-.bnr-block {
+.home .bnr-block {
   margin: 5% 0 3%;
 }
-.bnr-block .btn a {
+.home .bnr-block .btn a {
   font-size: 30px;
   font-family: var(--font-serif);
   text-align: center;
@@ -288,7 +126,7 @@ img {
   text-decoration: none;
   transition: 200ms;
 }
-.bnr-block .btn a:hover {
+.home .bnr-block .btn a:hover {
   opacity: 0.7;
 }
 
@@ -341,7 +179,7 @@ h2.ttl.ghost-treatment {
 }
 
 /* ============ 汎用ボタン ============ */
-.btn-style a {
+.home .btn-style a {
   font-size: 16px;
   color: #fff;
   background: var(--accent);
@@ -356,7 +194,7 @@ h2.ttl.ghost-treatment {
   text-decoration: none;
   position: relative;
 }
-.btn-style a::after {
+.home .btn-style a::after {
   content: "";
   position: absolute;
   top: 0;
@@ -371,52 +209,52 @@ h2.ttl.ghost-treatment {
   transform: rotate(45deg);
   transition: 200ms;
 }
-.btn-style a:hover {
+.home .btn-style a:hover {
   opacity: 0.7;
 }
-.btn-style a:hover::after {
+.home .btn-style a:hover::after {
   right: 4%;
 }
-.btn-style.right a {
+.home .btn-style.right a {
   margin-left: auto;
   margin-right: 0;
 }
-.btn-style.outline a {
+.home .btn-style.outline a {
   background: transparent;
   border: 1px solid var(--accent);
   color: var(--accent);
   max-width: 240px;
 }
-.btn-style.outline a::after {
+.home .btn-style.outline a::after {
   border-color: var(--accent);
 }
 
 /* ============ カラム ============ */
-.columns {
+.home .columns {
   display: flex;
   justify-content: space-between;
 }
-.columns.wrap {
+.home .columns.wrap {
   flex-wrap: wrap;
 }
-.columns.aic {
+.home .columns.aic {
   align-items: center;
 }
-.columns:not(:last-child) {
+.home .columns:not(:last-child) {
   margin-bottom: 2%;
 }
-.col_2 {
+.home .col_2 {
   width: 48.34%;
 }
-.col_3 {
+.home .col_3 {
   width: 30%;
 }
-.col_4 {
+.home .col_4 {
   width: 23.5%;
 }
-.col_2:not(:nth-child(2n + 1)),
-.col_3:not(:nth-child(3n + 1)),
-.col_4:not(:nth-child(4n + 1)) {
+.home .col_2:not(:nth-child(2n + 1)),
+.home .col_3:not(:nth-child(3n + 1)),
+.home .col_4:not(:nth-child(4n + 1)) {
   margin-left: 2%;
 }
 
@@ -778,218 +616,75 @@ h2.ttl.ghost-treatment {
   padding-bottom: 0.5em;
   margin-bottom: 0.8em;
 }
-.clinic-table {
+/* ============ クリニック情報テーブル(トップのみ) ============ */
+.home .clinic-table {
   border-collapse: collapse;
   width: 100%;
   text-align: left;
 }
-.clinic-table th {
+.home .clinic-table th {
   width: 25%;
   background: var(--border-beige);
   border-bottom: 2px solid #fff;
 }
-.clinic-table th,
-.clinic-table td {
+.home .clinic-table th,
+.home .clinic-table td {
   padding: 10px 20px;
   vertical-align: middle;
 }
-.clinic-table a {
+.home .clinic-table a {
   text-decoration: none;
   color: var(--accent);
 }
-.clinic-table a:hover {
+.home .clinic-table a:hover {
   opacity: 0.7;
 }
 
-/* ============ 固定CTA(右サイド+下部) ============ */
-#aside-cta .pagetop {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  z-index: 100;
-  width: 80px;
+/* ============ 記事本文(markdown由来html・トップのみ) ============ */
+.home .prose-clinic p {
+  line-height: 1.9;
+  margin-bottom: 1em;
 }
-#aside-cta .bnr-right {
-  position: fixed;
-  right: 0;
-  bottom: 20%;
-  width: 100px;
-  z-index: 90;
+.home .prose-clinic ul,
+.home .prose-clinic ol {
+  padding-left: 1.5rem;
+  line-height: 1.9;
+  margin-bottom: 1em;
 }
-#aside-cta .bnr-right a {
-  display: block;
+.home .prose-clinic ul {
+  list-style: disc;
 }
-#aside-cta .bnr-right a + a {
-  margin-top: 10px;
+.home .prose-clinic ol {
+  list-style: decimal;
 }
-#aside-cta .bnr-bottom {
-  position: fixed;
-  bottom: 0;
-  right: calc(80px + 4%);
-  display: flex;
-  z-index: 90;
-}
-#aside-cta a:hover img {
-  opacity: 0.8;
-}
-#aside-cta .sp-side {
-  display: none;
-}
-
-/* ============ フッター ============ */
-#footer {
-  padding: 80px 0 0;
-}
-body:not(.top-page) #footer,
-.page-body #footer {
-  border-top: 1px solid var(--border-beige);
-}
-#footer .logo {
-  margin-bottom: 20px;
-  max-width: 344px;
-}
-#footer .info {
-  margin-bottom: 20px;
-}
-#footer .info li {
-  padding-left: 55px;
-  position: relative;
-  min-height: 40px;
-  display: flex;
-  align-items: center;
-}
-#footer .info li::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  margin: auto;
-  width: 40px;
-  height: 40px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-#footer .info li.address::before {
-  background-image: url(/images/norris/f_icon01.png);
-}
-#footer .info li.tel::before {
-  background-image: url(/images/norris/f_icon02.png);
-}
-#footer .info li.access::before {
-  background-image: url(/images/norris/f_icon03.png);
-}
-#footer .info li + li {
-  margin-top: 1em;
-}
-#footer .info .tel a {
-  text-decoration: none;
-  color: var(--text);
-}
-#footer h3 {
-  font-size: 22px;
-  font-family: var(--font-serif);
-  line-height: 1.3;
-  letter-spacing: 0.1em;
-  margin-bottom: 0.4em;
-}
-#footer .btn-style.web a {
-  max-width: 280px;
-  padding: 0.8em 1em;
-}
-#footer .btn-style.web a .icon {
-  padding-left: 32px;
-  position: relative;
-}
-#footer .btn-style.web a .icon::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  margin: auto;
-  width: 22px;
-  height: 16px;
-  background: url(/images/norris/f_icon04.png) no-repeat center / contain;
-}
-#footer .footer-nav {
-  margin-top: 4%;
-}
-#footer .footer-nav ul {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  list-style: none;
-  padding: 0;
-}
-#footer .footer-nav li {
-  line-height: 1.5;
-  position: relative;
-  margin: 0 0 0.5em;
-  padding-left: 1em;
-}
-#footer .footer-nav li:not(:last-child) {
-  margin-right: 1em;
-}
-#footer .footer-nav li::before {
-  content: ">";
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-#footer .footer-nav li a {
-  text-decoration: none;
-  color: var(--text);
-}
-#footer .footer-nav li a:hover {
+.home .prose-clinic a {
   color: var(--primary);
-}
-.copyright {
-  margin: 15px 0 70px;
-  font-size: 14px;
-  line-height: 1.5;
-  text-align: center;
-}
-
-/* ============ 下層ページタイトル ============ */
-.page-title {
-  background: url(/images/norris/under_title.jpg) no-repeat center / cover;
-  padding: 3.5em 0;
-}
-.page-title .page-title-text {
-  font-size: 32px;
-  font-family: var(--font-serif);
-  letter-spacing: 0.1em;
-  text-align: center;
-  line-height: 1.4;
-  color: var(--primary);
-}
-.page-name-mens_menu .page-title .page-title-text,
-.page-name-mens_testicle .page-title .page-title-text {
-  color: #fff;
-}
-.bread {
-  width: 1200px;
-  max-width: 96%;
-  margin: 0 auto;
-  padding: 0.4em 0;
-  font-size: 82%;
-}
-.bread a {
-  color: var(--accent);
-  text-decoration: none;
-}
-.bread a:hover {
   text-decoration: underline;
 }
-
-/* ============ 下層ページ本文 ============ */
-.under {
-  padding-bottom: 2.5em;
+.home .prose-clinic img {
+  margin: 1rem 0;
 }
-.under h3,
-.prose-clinic h2 {
+.home .prose-clinic blockquote {
+  border-left: 3px solid var(--border-beige);
+  padding-left: 1rem;
+  opacity: 0.8;
+}
+.home .prose-clinic hr {
+  border-color: var(--border-beige);
+  margin: 2rem 0;
+}
+.home .prose-clinic table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+.home .prose-clinic th,
+.home .prose-clinic td {
+  border: 1px solid var(--border-beige);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+.home .prose-clinic h2 {
   font-size: 30px;
   font-family: var(--font-serif);
   text-align: center;
@@ -1000,8 +695,7 @@ body:not(.top-page) #footer,
   margin: 1.5em auto 1em;
   position: relative;
 }
-.under h3::before,
-.prose-clinic h2::before {
+.home .prose-clinic h2::before {
   content: "";
   position: absolute;
   top: 0;
@@ -1012,8 +706,7 @@ body:not(.top-page) #footer,
   height: 60px;
   background: url(/images/norris/ttl_img.png) no-repeat center / contain;
 }
-.under h4,
-.prose-clinic h3 {
+.home .prose-clinic h3 {
   font-size: 20px;
   font-family: var(--font-serif);
   color: var(--primary);
@@ -1022,8 +715,7 @@ body:not(.top-page) #footer,
   margin: 2em 0 1em;
   position: relative;
 }
-.under h4::before,
-.prose-clinic h3::before {
+.home .prose-clinic h3::before {
   content: "";
   position: absolute;
   left: 0;
@@ -1033,133 +725,10 @@ body:not(.top-page) #footer,
   background: url(/images/norris/h4_img.png) no-repeat center / contain;
 }
 
-/* 料金表・時間表 */
-.time-table {
-  border-collapse: collapse;
-  width: 100%;
-  text-align: center;
-  margin: 1em 0 0.2em;
-}
-.time-table th,
-.time-table td {
-  border: 1px solid var(--border-beige);
-  padding: 0.6em 0.5em;
-}
-.time-table thead th {
-  background: var(--border-beige);
-}
-.time-table tbody th {
-  background: var(--border-beige);
-}
-.time-table .open-mark {
-  color: var(--primary);
-}
-.fee-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-.fee-table th,
-.fee-table td {
-  border: 1px solid var(--border-beige);
-  padding: 0.8em 1em;
-  text-align: left;
-}
-.fee-table th {
-  background: var(--border-beige);
-  width: 60%;
-}
-
-/* 記事一覧 */
-.post-list {
-  overflow: hidden;
-}
-.post-list dt {
-  padding: 1em 0 1em 4%;
-  width: 110px;
-  float: left;
-  clear: both;
-  color: var(--text);
-}
-.post-list dd {
-  padding: 1em 4% 1em calc(130px + 4%);
-  border-bottom: 1px solid #ccc;
-}
-.post-list dd a {
-  text-decoration: none;
-  color: var(--text);
-}
-.post-list dd a:hover {
-  color: var(--primary);
-}
-.post-list .cat {
-  display: inline-block;
-  font-size: 12px;
-  color: var(--accent);
-  border: 1px solid var(--accent);
-  padding: 0.1em 0.6em;
-  margin-left: 1em;
-  vertical-align: middle;
-}
-
-/* 記事本文(markdown由来html) */
-.prose-clinic p {
-  line-height: 1.9;
-  margin-bottom: 1em;
-}
-.prose-clinic ul,
-.prose-clinic ol {
-  padding-left: 1.5rem;
-  line-height: 1.9;
-  margin-bottom: 1em;
-}
-.prose-clinic ul {
-  list-style: disc;
-}
-.prose-clinic ol {
-  list-style: decimal;
-}
-.prose-clinic a {
-  color: var(--primary);
-  text-decoration: underline;
-}
-.prose-clinic img {
-  margin: 1rem 0;
-}
-.prose-clinic blockquote {
-  border-left: 3px solid var(--border-beige);
-  padding-left: 1rem;
-  opacity: 0.8;
-}
-.prose-clinic hr {
-  border-color: var(--border-beige);
-  margin: 2rem 0;
-}
-.prose-clinic table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.875rem;
-}
-.prose-clinic th,
-.prose-clinic td {
-  border: 1px solid var(--border-beige);
-  padding: 0.5rem 0.75rem;
-  text-align: left;
-}
-
 /* ============================================================
    レスポンシブ (SP: <768px)
    ============================================================ */
 @media screen and (max-width: 767px) {
-  .pc-only {
-    display: none;
-  }
-  .sp-only {
-    display: block;
-  }
-  .page-offset {
-    padding-top: 0;
-  }
-
   /* ヘッダー:ロゴ上段 + アイコンナビ */
   #header {
     position: static;
@@ -1168,37 +737,6 @@ body:not(.top-page) #footer,
   #header .headerinner {
     display: block;
   }
-  #header .header-title {
-    margin: 0 auto;
-    padding: 10px 15px;
-    font-size: 14px;
-    max-width: 100%;
-    text-align: center;
-  }
-  #header .header-title img {
-    max-width: 280px;
-    margin: 5px auto 0;
-  }
-  #gnav {
-    display: none;
-  }
-  #spnav {
-    display: flex;
-  }
-  #spnav > li {
-    width: 20%;
-    border-right: 1px solid #e7e7e7;
-  }
-  #spnav > li:last-child {
-    border-right: none;
-  }
-  #spnav > li > a,
-  #spnav > li > button {
-    display: block;
-    width: 100%;
-    padding: 0 2px;
-  }
-
   h2.ttl {
     font-size: 24px;
     min-height: 120px;
@@ -1210,25 +748,25 @@ body:not(.top-page) #footer,
     height: 45px;
   }
 
-  .columns {
+  .home .columns {
     display: block;
   }
-  .columns.wrap {
+  .home .columns.wrap {
     display: flex;
     flex-wrap: wrap;
   }
-  .col_2,
-  .col_3,
-  .col_4 {
+  .home .col_2,
+  .home .col_3,
+  .home .col_4 {
     width: 100%;
     margin-left: 0 !important;
     margin-bottom: 4%;
   }
-  .columns.sp_col_2 .column {
+  .home .columns.sp_col_2 .column {
     width: 48%;
     margin-left: 0 !important;
   }
-  .columns:not(:last-child) {
+  .home .columns:not(:last-child) {
     margin-bottom: 0;
   }
 
@@ -1241,20 +779,11 @@ body:not(.top-page) #footer,
   .sec_news .news dd {
     padding: 0 0 10px;
   }
-  .post-list dt {
-    width: 100%;
-    float: none;
-    padding: 10px 0 0;
-  }
-  .post-list dd {
-    padding: 0 0 10px;
-  }
-
   .insta-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .bnr-block .btn a {
+  .home .bnr-block .btn a {
     font-size: 20px;
   }
 
@@ -1291,47 +820,9 @@ body:not(.top-page) #footer,
     margin-top: 4%;
   }
 
-  /* 固定CTA: SPは下部バーのみ */
-  #aside-cta .bnr-right {
-    display: none;
-  }
-  #aside-cta .pagetop {
-    width: 56px;
-    bottom: 60px;
-  }
-  #aside-cta .bnr-bottom {
-    left: 0;
-    right: 0;
-    width: 100%;
-  }
-  #aside-cta .bnr-bottom a {
-    flex: 1;
-  }
-  #aside-cta .bnr-bottom img {
-    width: 100%;
-  }
-  #aside-cta .pc-side {
-    display: none;
-  }
-  #aside-cta .sp-side {
-    display: block;
-  }
-  body {
-    padding-bottom: 60px;
-  }
-
-  #footer {
-    padding: 40px 0 0;
-  }
-  #footer .info li {
-    padding-left: 45px;
-  }
-  .clinic-table th,
-  .clinic-table td {
+  .home .clinic-table th,
+  .home .clinic-table td {
     display: block;
     width: 100%;
-  }
-  .page-title .page-title-text {
-    font-size: 22px;
   }
 }
