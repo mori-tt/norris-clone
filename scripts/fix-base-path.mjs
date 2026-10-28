@@ -14,7 +14,8 @@
 // そのため T 行は「元の宣言長でテキスト境界を特定→内部だけ書き換え→
 // 新しいバイト長でヘッダを再計算」する必要がある。
 
-import { readdir, readFile, writeFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
+import { readdir, readFile, rename, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const [outDir = "out", baseArg = ""] = process.argv.slice(2);
@@ -186,3 +187,40 @@ for (const file of await walk(outDir)) {
   }
 }
 console.log(`fix-base-path: rewrote ${changed} file(s) under ${outDir} with base ${base}`);
+
+// %エンコード名のパス(日本語スラッグ由来: %E3%82%AF…等)をデコード名にリネーム。
+// output:export は generateStaticParams のURL形式をそのままディレクトリ名に
+// 使うが、GitHub Pages はリクエストパスをデコードしてからファイルを探すため、
+// 「out/.../%E3%82%AF…/index.html」は「/…/クマ取り/」に届かない。
+// 上から順にリネームしながら潜る(子のパスは親のリネームに追従する)。
+let renamed = 0;
+async function decodeOutPaths(dir) {
+  for (const ent of await readdir(dir, { withFileTypes: true })) {
+    let name = ent.name;
+    if (/%[0-9a-fA-F]{2}/.test(name)) {
+      try {
+        const dec = decodeURIComponent(name);
+        if (dec !== name && !dec.includes("/") && !dec.includes("\\")) {
+          const target = path.join(dir, dec);
+          if (existsSync(target)) {
+            console.warn(`fix-base-path: skip rename (exists): ${target}`);
+          } else {
+            await rename(path.join(dir, name), target);
+            name = dec;
+            renamed++;
+          }
+        }
+      } catch {
+        /* 不正な%列はそのまま */
+      }
+    }
+    const p = path.join(dir, name);
+    if (ent.isDirectory() || (await stat(p)).isDirectory()) {
+      await decodeOutPaths(p);
+    }
+  }
+}
+await decodeOutPaths(outDir);
+if (renamed > 0) {
+  console.log(`fix-base-path: decoded ${renamed} percent-encoded path(s) under ${outDir}`);
+}
