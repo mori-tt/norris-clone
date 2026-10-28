@@ -53,3 +53,22 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+      # デプロイ直後はCDN伝播遅延で一時的に404が返る。主要URLが200になるまで
+      # ポーリングして「実際に見えるようになったか」をワークフロー結果で確認する。
+      # タイムアウトしても警告のみ(デプロイ自体は成功済み)。
+      - name: Wait for Pages CDN propagation
+        run: |
+          for i in $(seq 1 30); do
+            ok=1
+            for u in "/" "/en/" "/zh/" "/images/norris/logo.png"; do
+              code=$(curl -s -o /dev/null -w "%{http_code}" \
+                "https://mori-tt.github.io/norris-clone$u")
+              echo "check $u -> $code"
+              [ "$code" = "200" ] || ok=0
+            done
+            [ "$ok" = "1" ] && echo "All checks passed - site is live" && exit 0
+            sleep 10
+          done
+          echo "::warning::CDN propagation check timed out (site may take a few more minutes to be fully visible)"
+          exit 0

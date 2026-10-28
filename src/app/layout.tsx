@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP, Shippori_Mincho } from "next/font/google";
 import { getSite } from "@/lib/content";
+import { ImageRetry } from "@/components/ImageRetry";
 import "./globals.css";
 import "./norris.css";
 
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           }}
         />
         {children}
+        <ImageRetry />
       </body>
     </html>
   );
