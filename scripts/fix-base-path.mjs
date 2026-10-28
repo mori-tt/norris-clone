@@ -19,12 +19,13 @@ if (!base.startsWith("/")) {
 const name = base.replace(/^\//, "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const notPrefixed = `(?!\\/|${name}(?=[/"'?)#\\s]|$))`;
 // "//"(プロトコル相対) と "ベースパス付与済み" は除外
+// ※ 大文字小文字を区別しない(React は srcSet 等のキャメルケース属性を出力する)
 const attrRe = new RegExp(
   `((?:href|src|action|poster|content|data-src|data-href)\\s*=\\s*["'])\\/${notPrefixed}`,
-  "g",
+  "gi",
 );
-const srcsetRe = /(srcset\s*=\s*)(["'])([^"']*)\2/g;
-const urlRe = new RegExp(`url\\(\\s*(['"]?)\\/${notPrefixed}`, "g");
+const srcsetRe = /(srcset\s*=\s*)(["'])([^"']*)\2/gi;
+const urlRe = new RegExp(`url\\(\\s*(['"]?)\\/${notPrefixed}`, "gi");
 
 function fix(content) {
   return content
@@ -43,7 +44,8 @@ async function walk(dir) {
   for (const ent of await readdir(dir, { withFileTypes: true })) {
     const p = path.join(dir, ent.name);
     if (ent.isDirectory()) files.push(...(await walk(p)));
-    else if (/\.(html|css)$/i.test(ent.name)) files.push(p);
+    // .txt は Next の Flight ペイロード(クライアント遷移用の埋め込みHTMLを含む)
+    else if (/\.(html|css|txt)$/i.test(ent.name)) files.push(p);
   }
   return files;
 }
