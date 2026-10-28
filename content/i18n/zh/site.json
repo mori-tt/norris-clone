@@ -1,0 +1,24 @@
+{
+  "name": "Norris Clinic 美容皮肤科/泌尿科/再生医学",
+  "nameEn": "NORRIS CLINIC",
+  "tagline": "天王寺和难波的美容皮肤科、泌尿科和再生医学",
+  "description": "位于大阪天王寺/难波的诺里斯诊所美容皮肤科/泌尿科/再生医学。我们通过去除污渍、改善皱纹、脱毛、Dermapen、HIFU、外泌体和干细胞治疗从根源上进行皮肤再生和改善。我们距离大阪上本町步行 4 分钟，距离谷町九丁目 7 分钟，周六和周日也营业。",
+  "url": "https://www.norris-beauty-clinic.com",
+  "tel": "06-6772-3456",
+  "postalCode": "543-0031",
+  "address": "大阪府大阪市天王寺区石辻町18-21 上六时大厦4楼",
+  "addressNote": "从近铁“大阪上本町站”步行1分钟/从Osaka Metro“谷町九丁目站”步行7分钟",
+  "director": "千原义智",
+  "reserveUrl": "https://www.norris-beauty-clinic.com/reserve/",
+  "contactUrl": "https://www.norris-beauty-clinic.com/contact/",
+  "lineUrl": "https://line.me/R/ti/p/@167qjgmu",
+  "instagramUrl": "https://www.instagram.com/norris_beautyclinic/",
+  "instagramUser": "norris_beautyclinic",
+  "theme": {
+    "primary": "#8e292c",
+    "primaryDark": "#6e090c",
+    "accent": "#a08f5d",
+    "background": "#f9f8f4",
+    "text": "#333"
+  }
+}

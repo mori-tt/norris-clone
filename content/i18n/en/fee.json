@@ -1,0 +1,128 @@
+{
+  "note": "All prices include tax.",
+  "categories": [
+    {
+      "name": "PRP",
+      "note": "",
+      "items": [
+        {
+          "name": "PRP 1cc",
+          "price": "￥33,000",
+          "note": "First time limited ¥12,800"
+        },
+        {
+          "name": "PRP 3cc",
+          "price": "￥55,000",
+          "note": "First time limited ¥23,000"
+        },
+        {
+          "name": "Premium PRP",
+          "price": "￥121,000",
+          "note": "+ Water light injection ¥22,000"
+        }
+      ]
+    },
+    {
+      "name": "photo facial",
+      "note": "",
+      "items": [
+        {
+          "name": "First time (same amount within 2 months)",
+          "price": "￥12,800",
+          "note": ""
+        },
+        {
+          "name": "Regular price",
+          "price": "￥15,000",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "High (HIFU)",
+      "note": "",
+      "items": [
+        {
+          "name": "HIFU (dot)",
+          "price": "￥75,000",
+          "note": "First time ¥66,000"
+        },
+        {
+          "name": "HIFU (linear) cheek or submandibular",
+          "price": "￥50,000",
+          "note": "First time ¥44,000"
+        },
+        {
+          "name": "HIFU (linear) body",
+          "price": "￥58,000",
+          "note": "First time ¥52,000"
+        },
+        {
+          "name": "HIFU Dot + Linear",
+          "price": "￥85,000",
+          "note": "First time ¥78,000"
+        },
+        {
+          "name": "Additional shots 100shots",
+          "price": "￥17,500",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "fat dissolving injection",
+      "note": "*Guideline/Standard body type",
+      "items": [
+        {
+          "name": "DEOLIPO（1cc〜）",
+          "price": "￥4,400〜￥70,400",
+          "note": "Face line 1~8cc/upper arms 3~8cc/abdomen 8~16cc/thighs 5~16cc"
+        }
+      ]
+    },
+    {
+      "name": "hair removal",
+      "note": "",
+      "items": [
+        {
+          "name": "hair removal",
+          "price": "Please contact us",
+          "note": "Using Lightshare Duet"
+        }
+      ]
+    },
+    {
+      "name": "botox",
+      "note": "",
+      "items": [
+        {
+          "name": "botox",
+          "price": "Please contact us",
+          "note": "Varies depending on location"
+        }
+      ]
+    },
+    {
+      "name": "hyaluronic acid",
+      "note": "",
+      "items": [
+        {
+          "name": "hyaluronic acid injection",
+          "price": "Please contact us",
+          "note": "Varies depending on formulation"
+        }
+      ]
+    },
+    {
+      "name": "AGA (hair thinning treatment)",
+      "note": "",
+      "items": [
+        {
+          "name": "HARG therapy",
+          "price": "Please contact us",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

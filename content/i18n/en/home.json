@@ -1,0 +1,331 @@
+{
+  "hero": {
+    "slides": [
+      {
+        "image": "/images/norris/mainimage01.jpg",
+        "imageSp": "/images/norris/sp_mainimage01.jpg",
+        "alt": "Aesthetic medicine that brings beauty and smiles to life.We deliver beautiful smiles that are tailored to each individual's concerns."
+      },
+      {
+        "image": "/images/norris/mainimage02.jpg",
+        "imageSp": "/images/norris/sp_mainimage02.jpg",
+        "alt": "Advanced beauty regenerative medicine Stem cell treatment/PRP treatment/HARG therapy"
+      },
+      {
+        "image": "/images/norris/mainimage03.jpg",
+        "imageSp": "/images/norris/sp_mainimage03.jpg",
+        "alt": "In order to be a clinic that you can continue to visit with peace of mind, we are open on Saturdays and Sundays/Weekdays until 7pm/No unnecessary upsells"
+      },
+      {
+        "image": "/images/norris/mainimage04.jpg",
+        "imageSp": "/images/norris/sp_mainimage04.jpg",
+        "alt": "Urology Are you overlooking that discomfort? Urology can be consulted with confidence.",
+        "href": "/urology/"
+      }
+    ]
+  },
+  "banner": {
+    "image": "/images/norris/hinyou.png",
+    "alt": "Information about urology",
+    "href": "/urology/"
+  },
+  "scheduleTitle": "October medical day",
+  "scheduleImage": "/images/norris/calendar.png",
+  "regen": {
+    "title": "Regenerative medicine menu",
+    "text": "Our hospital's regenerative medicine has been rigorously examined by the Specified Certified Regenerative Medicine Committee recognized by the Ministry of Health, Labor and Welfare, and we are a medical institution whose treatment validity, safety, and physician system have been recognized as appropriate.",
+    "bannerText": "Regenerative medicine menu",
+    "bannerHref": "/regenerate/",
+    "cards": [
+      {
+        "title": "stem cell therapy",
+        "text": "Stem cells have the ability to self-renew and also have the ability to differentiate into various types of cells such as blood vessels, cardiac muscle, bone, and fat.",
+        "image": "/images/norris/sec_02_bnrimg001.jpg",
+        "titleBg": "/images/norris/sec_02_ttlbg001.jpg",
+        "href": "/stem_cell/"
+      },
+      {
+        "title": "PRP",
+        "text": "By processing blood and injecting PRP into the affected area, the self-repairing ability of tissues is enhanced. By activating the production of collagen and elastin, you can expect various beauty effects.",
+        "image": "/images/norris/sec_02_bnrimg002.jpg",
+        "titleBg": "/images/norris/sec_02_ttlbg002.jpg",
+        "href": "/prp/"
+      },
+      {
+        "title": "exosome",
+        "sub": "(Stem cell culture supernatant)",
+        "text": "Refers to vesicles secreted outside cells, and their particularly important role is in the transmission of information between cells. These exosomes have a bag-like structure and contain important information related to genes, such as nucleic acids (microRNA and messenger RNA) and proteins.",
+        "image": "/images/norris/sec_02_bnrimg003.jpg",
+        "titleBg": "/images/norris/sec_02_ttlbg003.jpg",
+        "href": "/exosome/"
+      }
+    ]
+  },
+  "menuCards": {
+    "title": "Medical treatment menu",
+    "text": "At Norris Clinic, a cosmetic dermatology clinic in Osaka, we offer a wide range of treatment options to help our many patients achieve beauty and smiles.",
+    "cards": [
+      {
+        "title": "HARG therapy",
+        "sub": "Promote hair growth from cells",
+        "text": "It is a regenerative medicine that improves thinning hair and promotes hair regeneration and growth by injecting the ``HARG cocktail'' containing more than 150 types of growth factors extracted from adipose stem cells into the scalp.",
+        "image": "/images/norris/sec_02_bnrimg004.jpg",
+        "titleBg": "/images/norris/sec_02_ttlbg004.jpg",
+        "href": "/harg/"
+      },
+      {
+        "title": "laser treatment",
+        "sub": "Problems with stains and acne, improvement of skin quality",
+        "text": "By irradiating with Pico Laser (PicoWay), which has 3 different wavelengths, you can expect total skin beautification effects, including improving age spots and acne, and improving skin quality.",
+        "image": "/images/norris/sec_02_bnrimg005.jpg",
+        "titleBg": "/images/norris/sec_02_ttlbg005.jpg",
+        "href": "/picolaser/"
+      },
+      {
+        "title": "medical hair removal",
+        "sub": "Feel the effects in a short period of time",
+        "text": "We have introduced the ``Light Shere Duet,'' which is equipped with a large irradiation port and suction/cooling system.",
+        "image": "/images/norris/sec_02_bnrimg006.jpg",
+        "titleBg": "/images/norris/sec_02_ttlbg006.jpg",
+        "href": "/epilation/"
+      }
+    ],
+    "links": [
+      {
+        "label": "botox",
+        "href": "/botox/"
+      },
+      {
+        "label": "hyaluronic acid injection",
+        "href": "/hyaluronic/"
+      },
+      {
+        "label": "water light injection",
+        "href": "/vital/"
+      },
+      {
+        "label": "hormone injection",
+        "href": "/hormone/"
+      },
+      {
+        "label": "beauty drip",
+        "href": "/beauty/"
+      },
+      {
+        "label": "HIFU",
+        "href": "/hifu/"
+      },
+      {
+        "label": "derma pen",
+        "href": "/dermapen/"
+      },
+      {
+        "label": "Lift up (thread lift)",
+        "href": "/liftup/"
+      },
+      {
+        "label": "photo facial",
+        "href": "/photofacial/"
+      },
+      {
+        "label": "Beautiful skin diagnosis",
+        "href": "/beautiful_skin/"
+      },
+      {
+        "label": "men's menu",
+        "href": "/mens_menu/"
+      },
+      {
+        "label": "urology",
+        "href": "/urology/"
+      }
+    ]
+  },
+  "concerns": {
+    "title": "Search by symptoms/concerns",
+    "text": "Symptoms and concerns vary from patient to patient. At Norris Clinic, a cosmetic dermatology, urology, and regenerative medicine clinic in Osaka, we share our thoughts through careful counseling and propose treatments tailored to each patient.",
+    "items": [
+      {
+        "image": "/images/norris/sec06_bnr01.png",
+        "alt": "Stains, freckles, melasma, dullness",
+        "href": "/blemish/"
+      },
+      {
+        "image": "/images/norris/sec06_bnr02.png",
+        "alt": "Wrinkles/sagging",
+        "href": "/wrinkles/"
+      },
+      {
+        "image": "/images/norris/sec06_bnr03.png",
+        "alt": "Warts, moles, tattoo removal",
+        "href": "/mole/"
+      },
+      {
+        "image": "/images/norris/sec06_bnr04.png",
+        "alt": "Acne, acne scars, pores",
+        "href": "/acne/"
+      },
+      {
+        "image": "/images/norris/sec06_bnr05.png",
+        "alt": "aging care",
+        "href": "/rejuvenation/"
+      },
+      {
+        "image": "/images/norris/sec06_bnr06.png",
+        "alt": "Others (beauty drip/piercing)",
+        "href": "/others/"
+      }
+    ]
+  },
+  "devices": {
+    "title": "Search by device",
+    "text": "At Norris Clinic, we have a full range of equipment to ensure the satisfaction of our patients. We will support you to get rid of the parts and complexes you are concerned about.",
+    "items": [
+      {
+        "name": "light shear duet",
+        "text": "Heat-destructive diode laser hair removal equipment. Two types of handpieces are used.",
+        "image": "/images/norris/sec03_img01.jpg",
+        "imageSp": "/images/norris/sp_sec03_img01.jpg",
+        "href": "/epilation/"
+      },
+      {
+        "name": "Luminous IPL M22",
+        "text": "Luminous photofacial equipment. We will select and irradiate the light that is most suitable for each person's concerns from 7 types of light. Effective for age spots, freckles, melasma, acne scars, red face, beautiful skin, etc.",
+        "image": "/images/norris/sec03_img02.jpg",
+        "imageSp": "/images/norris/sp_sec03_img02.jpg",
+        "href": "/photofacial/"
+      },
+      {
+        "name": "Ultracell Q+ (HIFU)",
+        "text": "By using three cartridges, it is possible to approach the three deep layers that normal lasers cannot reach, and lift the skin from the inside. Effective for tightening, removing sagging, and lifting the skin.",
+        "image": "/images/norris/sec03_img03.jpg",
+        "imageSp": "/images/norris/sp_sec03_img03.jpg",
+        "href": "/hifu/"
+      },
+      {
+        "name": "PicoWay",
+        "text": "Skin laser manufactured by Syneron Candela. The short irradiation time allows the treatment to be performed with minimal damage to the skin. Effective for stains, freckles, acne scars, wrinkles, pigmentation, etc.",
+        "image": "/images/norris/sec03_img04.jpg",
+        "imageSp": "/images/norris/sp_sec03_img04.jpg",
+        "href": "/picolaser/"
+      },
+      {
+        "name": "re-Beau 2",
+        "text": "We perform skin diagnosis by visualizing skin conditions, hidden spots, and redness that are difficult to see with the naked eye. After diagnosis, we will recommend treatment and care methods tailored to each individual.",
+        "image": "/images/norris/sec03_img05.jpg",
+        "imageSp": "/images/norris/sp_sec03_img05.jpg",
+        "href": "/beautiful_skin/"
+      },
+      {
+        "name": "derma pen 4",
+        "text": "Microscopic needles are used to make holes in the skin and utilize the natural healing power to make the skin more beautiful. The world's fastest vibration frequency per second allows for treatment with minimal downtime. Effective for tightening acne scars and pores.",
+        "image": "/images/norris/sec03_img06.jpg",
+        "imageSp": "/images/norris/sp_sec03_img06.jpg",
+        "href": "/dermapen/"
+      }
+    ]
+  },
+  "features": {
+    "title": "Three features of Norris Clinic",
+    "text": "Norris Clinic was born with the aim of continuing to be a place and person where you can feel comfortable and feel at ease seeking advice. We are a beauty clinic that helps each patient improve and resolve their unique concerns. If you would like to receive beauty treatment in Osaka, please contact Norris Clinic.",
+    "items": [
+      {
+        "title": "Aging care that provides total care for your concerns",
+        "text": "This is a clinic that provides total care for your whole body, not just your face. By combining high technology and the latest equipment, we support aging care for each individual.",
+        "image": "/images/norris/sec04_bg01.jpg",
+        "href": "/rejuvenation/"
+      },
+      {
+        "title": "Fundamental skin improvement based on stem cell treatment",
+        "text": "Through regenerative medicine \"stem cell treatment\" that activates cells and promotes collagen production, we improve your skin from the root, not just superficially.",
+        "image": "/images/norris/sec04_bg02.jpg",
+        "href": "/stem_cell/"
+      },
+      {
+        "title": "No unnecessary upsells",
+        "text": "The level of concern and wishes vary depending on the patient. We will propose the best treatment for each patient, taking into consideration your budget.",
+        "image": "/images/norris/sec04_bg03.jpg",
+        "href": "/fee/"
+      }
+    ]
+  },
+  "greeting": {
+    "title": "Greetings",
+    "text": "``I want to be beautiful'' and ``I want to be young'' are feelings that everyone has, albeit to varying degrees. And being beautiful and youthful brings great joy to our daily lives. Not only will you be satisfied with yourself, but it will also lead to various benefits in your relationships with those around you, such as being praised by your loved ones and improving your relationships at work.\nCompared to before, there is no longer a negative image of aesthetic medicine. In an era when not only social behavior but also individual will should be respected, nothing would make us happier than if Norris Clinic could contribute to everyone's happiness.",
+    "image": "/images/norris/doctor.png",
+    "imageAlt": "Norris Clinic Director Yoshitomo Chihara",
+    "name": "Yoshitomo Chihara",
+    "nameTitle": "Director",
+    "href": "/doctor/"
+  },
+  "textSection": {
+    "title": "Norris Clinic's unique commitment and reasons why people choose us",
+    "blocks": [
+      {
+        "type": "h3",
+        "text": "Norris Clinic medical menu example"
+      },
+      {
+        "type": "p",
+        "text": "At Norris Clinic, we offer a wide range of treatment options centered on advanced beauty regenerative medicine in order to help our many patients achieve beauty and smiles."
+      },
+      {
+        "type": "h3",
+        "text": "Reasons why Norris Clinic in Tennoji, Osaka is chosen"
+      },
+      {
+        "type": "p",
+        "text": "Age has nothing to do with wanting to be beautiful. Norris Clinic in Osaka is a beauty clinic that focuses on creating a calm atmosphere that is comfortable for everyone. Not only young people but also elderly people can come here with peace of mind. In addition, our clinic provides medical treatment based on appropriate counseling provided by experienced staff. At that time, we will not do unnecessary upsells. We will propose the most suitable treatment method that the patient will be satisfied with, taking into consideration the patient's budget, wishes, and degree of concern."
+      },
+      {
+        "type": "p",
+        "text": "First of all, please tell us about your beauty concerns by phone or through the online reservation form. Norris Clinic in Osaka will help you improve and resolve your concerns, and provide you with days filled with beauty and smiles."
+      }
+    ]
+  },
+  "clinicTable": {
+    "title": "If you are looking for a beauty clinic in Tennoji/Namba, Osaka, come to Norris Clinic.",
+    "rows": [
+      {
+        "label": "Clinic name",
+        "value": "Norris Clinic Cosmetic Dermatology/Urology/Regenerative Medicine"
+      },
+      {
+        "label": "Director",
+        "value": "Yoshitomo Chihara"
+      },
+      {
+        "label": "Address",
+        "value": "4th floor, Kamirokutoki Building, 18-21 Ishigatsujicho, Tennoji-ku, Osaka-shi, Osaka 543-0031"
+      },
+      {
+        "label": "TEL",
+        "value": "06-6772-3456"
+      },
+      {
+        "label": "Medical hours",
+        "value": "10:30～19:00"
+      },
+      {
+        "label": "Closed days",
+        "value": "Irregular holidays"
+      }
+    ]
+  },
+  "instagram": {
+    "title": "Instagram",
+    "avatar": "/images/norris/insta/profile.webp",
+    "bio": "@norris_beautyclinic",
+    "images": [
+      "/images/norris/insta/post01.jpg",
+      "/images/norris/insta/post02.jpg",
+      "/images/norris/insta/post03.jpg",
+      "/images/norris/insta/post04.jpg",
+      "/images/norris/insta/post05.jpg",
+      "/images/norris/insta/post06.jpg",
+      "/images/norris/insta/post07.jpg",
+      "/images/norris/insta/post08.jpg"
+    ]
+  },
+  "instagramNote": ""
+}

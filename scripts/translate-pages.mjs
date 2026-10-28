@@ -24,16 +24,17 @@ const ROOT = path.resolve(process.env.CONTENT_DIR ?? "content");
 const LOCALES = process.argv.filter((a) => a === "en" || a === "zh");
 const TARGETS = LOCALES.length ? LOCALES : ["en", "zh"];
 const FORCE = process.argv.includes("--force");
+const REPAIR = process.argv.includes("--repair");
 const onlyIdx = process.argv.indexOf("--only");
 const ONLY = onlyIdx > -1 ? process.argv[onlyIdx + 1] : null;
 const TL = { en: "en", zh: "zh-CN" };
 const CONCURRENCY = 2;
-const MAX_CHARS = 4000;
+const MAX_CHARS = 900;
 const BATCH_GAP_MS = 400;
 const RATE_LIMIT_BACKOFF_MS = 20000;
 
 const CJK = /[぀-ヿ一-鿿]/;
-const SKIP_NODE = "script,style,noscript,form,iframe,code,pre";
+const SKIP_NODE_BASE = "script,style,noscript,iframe,code,pre";
 const SKIP_KEYS = new Set([
   "url", "href", "image", "imageSp", "avatar", "src", "tel", "tel2",
   "postalCode", "slug", "date", "order", "theme", "instagramUrl", "lineUrl",
@@ -41,19 +42,22 @@ const SKIP_KEYS = new Set([
   "titleBg", "instagramUser", "form",
 ]);
 // 属性値の翻訳対象
-const TEXT_ATTRS = ["alt", "title", "placeholder"];
+const TEXT_ATTRS = ["alt", "title", "placeholder", "value"];
 
 // ---------- 翻訳コア ----------
 
 async function gtxTranslate(text, target) {
+  // Chrome 拡張機能向けエンドポイント(メインAPIよりレート制限が緩い)
   const url =
-    "https://translate.googleapis.com/translate_a/single" +
-    `?client=gtx&sl=ja&tl=${encodeURIComponent(target)}&dt=t` +
+    "https://clients5.google.com/translate_a/t" +
+    `?client=dict-chrome-ex&sl=ja&tl=${encodeURIComponent(target)}` +
     `&q=${encodeURIComponent(text)}`;
   const res = await fetch(url, { signal: AbortSignal.timeout(30000) });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const data = await res.json();
-  return (data[0] ?? []).map((seg) => seg[0]).join("");
+  return Array.isArray(data)
+    ? data.flat(Infinity).filter((s) => typeof s === "string").join("")
+    : String(data ?? "");
 }
 
 async function deeplTranslate(text, target) {
@@ -159,15 +163,23 @@ async function translateAll(strings, target) {
 
 const t = (map, s) => (s && map.has(s) ? map.get(s) : s);
 
+const page0 = (file) => JSON.parse(readFileSync(file, "utf8"));
+
 // ---------- スクレイプページ ----------
 
-/** html 内の翻訳対象文字列(テキストノード + 属性値)を列挙 */
-function collectHtmlStrings(html, set) {
+/**
+ * html 内の翻訳対象文字列(テキストノード + 属性値)を列挙。
+ * skipForm=true の場合、<form> 内は翻訳しない
+ * (contact/reserve は localizeFormHtml の辞書翻訳を使うため)
+ */
+function collectHtmlStrings(html, set, skipForm = false) {
   if (!html) return;
+  const SKIP_NODE = skipForm ? SKIP_NODE_BASE + ",form" : SKIP_NODE_BASE;
   const $ = cheerio.load(`<div id="__r">${html}</div>`, null, false);
   $("#__r")
     .find(TEXT_ATTRS.map((a) => `[${a}]`).join(","))
     .each((_, el) => {
+      if (skipForm && $(el).closest("form").length) return;
       for (const a of TEXT_ATTRS) {
         const v = el.attribs?.[a];
         if (v && CJK.test(v)) set.add(v);
@@ -183,6 +195,13 @@ function collectHtmlStrings(html, set) {
       const v = node.data.trim();
       if (v && CJK.test(v)) set.add(v);
     });
+  // <script> 内の日本語文字列リテラル(セルフ診断ツール等)
+  $("#__r script").each((_, el) => {
+    const code = $(el).text();
+    for (const m of code.matchAll(/(["'])([^"'\\\n]*[぀-ヿ一-鿿][^"'\\\n]*)\1/g)) {
+      set.add(m[2]);
+    }
+  });
 }
 
 function collectPageStrings(page) {
@@ -193,18 +212,21 @@ function collectPageStrings(page) {
   add(page.title);
   add(page.docTitle);
   for (const b of page.breadcrumb ?? []) add(b.label);
+  const skipForm = /contact|reserve/.test(page.url ?? "");
   collectHtmlStrings(page.pageTitleHtml, set);
-  collectHtmlStrings(page.html, set);
+  collectHtmlStrings(page.html, set, skipForm);
   return set;
 }
 
 /** html を再パースして map でテキストノード/属性値を置換する */
-function applyHtmlTranslation(html, map) {
+function applyHtmlTranslation(html, map, skipForm = false) {
   if (!html) return html;
+  const SKIP_NODE = skipForm ? SKIP_NODE_BASE + ",form" : SKIP_NODE_BASE;
   const $ = cheerio.load(`<div id="__r">${html}</div>`, null, false);
   $("#__r")
     .find(TEXT_ATTRS.map((a) => `[${a}]`).join(","))
     .each((_, el) => {
+      if (skipForm && $(el).closest("form").length) return;
       for (const a of TEXT_ATTRS) {
         const v = el.attribs?.[a];
         const tr = v && map.get(v);
@@ -222,6 +244,13 @@ function applyHtmlTranslation(html, map) {
       const tr = v && map.get(v);
       if (tr) node.data = node.data.replace(v, tr);
     });
+  $("#__r script").each((_, el) => {
+    const code = $(el).text();
+    const next = code.replace(/(["'])([^"'\\\n]*[぀-ヿ一-鿿][^"'\\\n]*)\1/g, (m, q, lit) =>
+      map.has(lit) ? q + map.get(lit) + q : m,
+    );
+    if (next !== code) $(el).text(next);
+  });
   return $("#__r").html();
 }
 
@@ -233,8 +262,9 @@ function applyPageTranslation(page, map) {
     ...b,
     label: t(map, b.label?.trim()) ?? b.label,
   }));
+  const skipForm = /contact|reserve/.test(page.url ?? "");
   out.pageTitleHtml = applyHtmlTranslation(page.pageTitleHtml, map);
-  out.html = applyHtmlTranslation(page.html, map);
+  out.html = applyHtmlTranslation(page.html, map, skipForm);
   return out;
 }
 
@@ -297,6 +327,17 @@ async function main() {
       const rel = path.relative(path.join(ROOT, "pages"), path.dirname(file));
       const outFile = path.join(ROOT, "i18n", loc, "pages", rel, "index.json");
       if (!FORCE && existsSync(outFile) && statSync(outFile).mtimeMs > statSync(file).mtimeMs) {
+        // --repair: 出力に原文(日本語)が残っているものだけを補訳
+        if (!REPAIR) continue;
+        const done = JSON.parse(readFileSync(outFile, "utf8"));
+        const outText = JSON.stringify(done);
+        const left = [...collectPageStrings(page0(file))].filter((s) =>
+          outText.includes(s),
+        );
+        if (left.length === 0) continue;
+        const map = await translateAll(left, TL[loc]);
+        writeFileSync(outFile, JSON.stringify(applyPageTranslation(done, map), null, 2));
+        process.stderr.write(` ${rel} (repair:${left.length})\n`);
         continue;
       }
       const page = JSON.parse(readFileSync(file, "utf8"));

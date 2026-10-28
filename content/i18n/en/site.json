@@ -1,0 +1,24 @@
+{
+  "name": "Norris Clinic Cosmetic Dermatology/Urology/Regenerative Medicine",
+  "nameEn": "NORRIS CLINIC",
+  "tagline": "Cosmetic dermatology, urology, and regenerative medicine in Tennoji and Namba",
+  "description": "Norris Clinic Cosmetic Dermatology/Urology/Regenerative Medicine in Osaka Tennoji/Namba. We perform skin regeneration and improvement from the root using stain removal, wrinkle improvement, hair removal, Dermapen, HIFU, exosomes, and stem cell treatments. We are located 4 minutes walk from Uehonmachi, Osaka and 7 minutes from Tanimachi 9-chome, and are open on Saturdays and Sundays as well.",
+  "url": "https://www.norris-beauty-clinic.com",
+  "tel": "06-6772-3456",
+  "postalCode": "543-0031",
+  "address": "4th floor, Kamirokutoki Building, 18-21 Ishigatsuji-cho, Tennoji-ku, Osaka-shi, Osaka Prefecture",
+  "addressNote": "1 minute walk from Kintetsu \"Osaka-Uehonmachi Station\" / 7 minutes walk from Osaka Metro \"Tanimachi 9-chome Station\"",
+  "director": "Yoshitomo Chihara",
+  "reserveUrl": "https://www.norris-beauty-clinic.com/reserve/",
+  "contactUrl": "https://www.norris-beauty-clinic.com/contact/",
+  "lineUrl": "https://line.me/R/ti/p/@167qjgmu",
+  "instagramUrl": "https://www.instagram.com/norris_beautyclinic/",
+  "instagramUser": "norris_beautyclinic",
+  "theme": {
+    "primary": "#8e292c",
+    "primaryDark": "#6e090c",
+    "accent": "#a08f5d",
+    "background": "#f9f8f4",
+    "text": "#333"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "about": {
+    "title": "Clinic introduction",
+    "body": [
+      {
+        "type": "p",
+        "text": "We are located on the 4th floor of the Kamirokutoki Building. Please use the elevator."
+      }
+    ],
+    "image": "/images/norris/hinyou.png"
+  },
+  "facilities": [
+    {
+      "name": "reception",
+      "body": "We ask that you keep your medical card and fill out the medical questionnaire.",
+      "image": "/images/norris/sec_02_ttlbg001.jpg"
+    },
+    {
+      "name": "waiting room",
+      "body": "A USB port is available at each seat. You can wait comfortably while protecting your privacy with the partition.",
+      "image": "/images/norris/sec_02_ttlbg002.jpg"
+    },
+    {
+      "name": "counseling room",
+      "body": "This is a private room where you can have a calm consultation.",
+      "image": "/images/norris/sec_02_ttlbg003.jpg"
+    },
+    {
+      "name": "hair removal room",
+      "body": "This is a treatment room exclusively for medical hair removal.",
+      "image": "/images/norris/sec03_img01.jpg"
+    },
+    {
+      "name": "peeling room",
+      "body": "This is a room where treatments such as peeling are performed.",
+      "image": "/images/norris/sec_02_ttlbg005.jpg"
+    },
+    {
+      "name": "operating room",
+      "body": "Treatments are performed in a clean environment.",
+      "image": "/images/norris/sec_02_ttlbg006.jpg"
+    }
+  ]
+}

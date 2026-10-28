@@ -1,0 +1,23 @@
+{
+  "byTrain": [
+    {
+      "line": "Kintetsu",
+      "detail": "1 minute walk from Osaka Uehonmachi Station on the Osaka Line/Nara Line"
+    },
+    {
+      "line": "Osaka Metro",
+      "detail": "7 minutes walk from Tanimachi 9-chome Station on the Sennichimae Line and Tanimachi Line"
+    },
+    {
+      "line": "From Namba",
+      "detail": "Sennichimae Line each stop bound for Minami Tatsumi Namba Station ⇒ Tanimachi 9-chome Station"
+    },
+    {
+      "line": "From Shinsaibashi",
+      "detail": "Midosuji Line each stop bound for Tennoji Shinsaibashi Station⇒Namba Station⇒Tanimachi 9-chome Station"
+    }
+  ],
+  "byCar": "There is no dedicated parking lot. Please use a nearby parking lot.",
+  "mapEmbedUrl": "https://www.google.com/maps?q=18-21 Ishigatsuji-cho, Tennoji-ku, Osaka-shi, Osaka+Kamirokutoki Building&output=embed",
+  "mapNote": "4th floor, Kamirokutoki Building, 18-21 Ishigatsujicho, Tennoji-ku, Osaka-shi, Osaka 543-0031"
+}

@@ -1,0 +1,331 @@
+{
+  "hero": {
+    "slides": [
+      {
+        "image": "/images/norris/mainimage01.jpg",
+        "imageSp": "/images/norris/sp_mainimage01.jpg",
+        "alt": "为生活带来美丽和微笑的美容医学。我们根据每个人的关注点提供美丽的微笑。"
+      },
+      {
+        "image": "/images/norris/mainimage02.jpg",
+        "imageSp": "/images/norris/sp_mainimage02.jpg",
+        "alt": "先进美容再生医学干细胞治疗/PRP治疗/HARG治疗"
+      },
+      {
+        "image": "/images/norris/mainimage03.jpg",
+        "imageSp": "/images/norris/sp_mainimage03.jpg",
+        "alt": "为了成为您可以安心继续就诊的诊所，我们周六日/平日营业至晚上7点/没有不必要的追加销售"
+      },
+      {
+        "image": "/images/norris/mainimage04.jpg",
+        "imageSp": "/images/norris/sp_mainimage04.jpg",
+        "alt": "泌尿科 您是否忽视了这种不适？泌尿外科可放心咨询。",
+        "href": "/urology/"
+      }
+    ]
+  },
+  "banner": {
+    "image": "/images/norris/hinyou.png",
+    "alt": "有关泌尿科的信息",
+    "href": "/urology/"
+  },
+  "scheduleTitle": "十月医疗日",
+  "scheduleImage": "/images/norris/calendar.png",
+  "regen": {
+    "title": "再生医学菜单",
+    "text": "本院的再生医学经过厚生劳动省认可的再生医学指定认定委员会的严格审查，是治疗有效性、安全性、医生制度得到认可的医疗机构。",
+    "bannerText": "再生医学菜单",
+    "bannerHref": "/regenerate/",
+    "cards": [
+      {
+        "title": "干细胞疗法",
+        "text": "干细胞具有自我更新的能力，也具有分化成血管、心肌、骨骼、脂肪等多种细胞的能力。",
+        "image": "/images/norris/sec_02_bnrimg001.jpg",
+        "titleBg": "/images/norris/sec_02_ttlbg001.jpg",
+        "href": "/stem_cell/"
+      },
+      {
+        "title": "PRP",
+        "text": "通过处理血液并将PRP注射到患处，增强组织的自我修复能力。通过激活胶原蛋白和弹性蛋白的产生，您可以期待各种美容效果。",
+        "image": "/images/norris/sec_02_bnrimg002.jpg",
+        "titleBg": "/images/norris/sec_02_ttlbg002.jpg",
+        "href": "/prp/"
+      },
+      {
+        "title": "外泌体",
+        "sub": "(干细胞培养上清液)",
+        "text": "指细胞外分泌的囊泡，其特别重要的作用是细胞间的信息传递。这些外泌体具有袋状结构，包含与基因相关的重要信息，例如核酸（microRNA和信使RNA）和蛋白质。",
+        "image": "/images/norris/sec_02_bnrimg003.jpg",
+        "titleBg": "/images/norris/sec_02_ttlbg003.jpg",
+        "href": "/exosome/"
+      }
+    ]
+  },
+  "menuCards": {
+    "title": "医疗菜单",
+    "text": "在诺里斯诊所 (Norris Clinic)，这是一家位于大阪的美容皮肤科诊所，我们提供多种治疗选择，帮助众多患者实现美丽和微笑。",
+    "cards": [
+      {
+        "title": "哈格疗法",
+        "sub": "促进细胞毛发生长",
+        "text": "它是将含有从脂肪干细胞中提取的150多种生长因子的“HARG鸡尾酒”注射到头皮中，改善稀疏的头发并促进头发再生和生长的再生医学。",
+        "image": "/images/norris/sec_02_bnrimg004.jpg",
+        "titleBg": "/images/norris/sec_02_ttlbg004.jpg",
+        "href": "/harg/"
+      },
+      {
+        "title": "激光治疗",
+        "sub": "色斑和痤疮问题，改善肤质",
+        "text": "通过使用具有 3 种不同波长的 Pico Laser (PicoWay) 进行照射，您可以期待全面的皮肤美化效果，包括改善老年斑和痤疮以及改善皮肤质量。",
+        "image": "/images/norris/sec_02_bnrimg005.jpg",
+        "titleBg": "/images/norris/sec_02_ttlbg005.jpg",
+        "href": "/picolaser/"
+      },
+      {
+        "title": "医疗脱毛",
+        "sub": "短时间内感受效果",
+        "text": "我们推出了配备大型照射口和抽吸/冷却系统的“Light Shere Duet”。",
+        "image": "/images/norris/sec_02_bnrimg006.jpg",
+        "titleBg": "/images/norris/sec_02_ttlbg006.jpg",
+        "href": "/epilation/"
+      }
+    ],
+    "links": [
+      {
+        "label": "肉毒杆菌",
+        "href": "/botox/"
+      },
+      {
+        "label": "玻尿酸注射",
+        "href": "/hyaluronic/"
+      },
+      {
+        "label": "水光注入",
+        "href": "/vital/"
+      },
+      {
+        "label": "激素注射",
+        "href": "/hormone/"
+      },
+      {
+        "label": "美容点滴",
+        "href": "/beauty/"
+      },
+      {
+        "label": "HIFU",
+        "href": "/hifu/"
+      },
+      {
+        "label": "真皮笔",
+        "href": "/dermapen/"
+      },
+      {
+        "label": "提升（埋线提升）",
+        "href": "/liftup/"
+      },
+      {
+        "label": "面部照片",
+        "href": "/photofacial/"
+      },
+      {
+        "label": "美丽肌肤诊断",
+        "href": "/beautiful_skin/"
+      },
+      {
+        "label": "男士菜单",
+        "href": "/mens_menu/"
+      },
+      {
+        "label": "泌尿科",
+        "href": "/urology/"
+      }
+    ]
+  },
+  "concerns": {
+    "title": "按症状/疑虑搜索",
+    "text": "症状和担忧因患者而异。在位于大阪的美容皮肤科、泌尿科和再生医学诊所诺里斯诊所，我们通过仔细的咨询分享我们的想法，并提出适合每位患者的治疗方案。",
+    "items": [
+      {
+        "image": "/images/norris/sec06_bnr01.png",
+        "alt": "色斑、雀斑、黄褐斑、暗沉",
+        "href": "/blemish/"
+      },
+      {
+        "image": "/images/norris/sec06_bnr02.png",
+        "alt": "皱纹/下垂",
+        "href": "/wrinkles/"
+      },
+      {
+        "image": "/images/norris/sec06_bnr03.png",
+        "alt": "疣、痣、纹身去除",
+        "href": "/mole/"
+      },
+      {
+        "image": "/images/norris/sec06_bnr04.png",
+        "alt": "痤疮、痤疮疤痕、毛孔",
+        "href": "/acne/"
+      },
+      {
+        "image": "/images/norris/sec06_bnr05.png",
+        "alt": "老化护理",
+        "href": "/rejuvenation/"
+      },
+      {
+        "image": "/images/norris/sec06_bnr06.png",
+        "alt": "其他（美容点滴/穿刺）",
+        "href": "/others/"
+      }
+    ]
+  },
+  "devices": {
+    "title": "按设备搜索",
+    "text": "在诺里斯诊所，我们拥有全套设备，以确保患者满意。我们将支持您摆脱您担心的部分和复合体。",
+    "items": [
+      {
+        "name": "轻剪切二重奏",
+        "text": "热破坏性二极管激光脱毛设备。使用两种类型的手机。",
+        "image": "/images/norris/sec03_img01.jpg",
+        "imageSp": "/images/norris/sp_sec03_img01.jpg",
+        "href": "/epilation/"
+      },
+      {
+        "name": "发光 IPL M22",
+        "text": "发光面部护理设备。我们将从7种光中选择并照射最适合每个人关注的光。对老年斑、雀斑、黄褐斑、痤疮疤痕、红脸、美肤等有效。",
+        "image": "/images/norris/sec03_img02.jpg",
+        "imageSp": "/images/norris/sp_sec03_img02.jpg",
+        "href": "/photofacial/"
+      },
+      {
+        "name": "Ultracell Q+ (HIFU)",
+        "text": "通过使用三个墨盒，可以接近普通激光无法到达的三个深层，并从内部提升皮肤。有效收紧、消除下垂和提升皮肤。",
+        "image": "/images/norris/sec03_img03.jpg",
+        "imageSp": "/images/norris/sp_sec03_img03.jpg",
+        "href": "/hifu/"
+      },
+      {
+        "name": "PicoWay",
+        "text": "皮肤激光由 Syneron Candela 制造。照射时间短，可以在对皮肤造成最小损伤的情况下进行治疗。对色斑、雀斑、痤疮疤痕、皱纹、色素沉着等有效。",
+        "image": "/images/norris/sec03_img04.jpg",
+        "imageSp": "/images/norris/sp_sec03_img04.jpg",
+        "href": "/picolaser/"
+      },
+      {
+        "name": "re-Beau 2",
+        "text": "我们通过观察肉眼难以看到的皮肤状况、隐藏的斑点和发红来进行皮肤诊断。诊断后，我们将推荐适合每个人的治疗和护理方法。",
+        "image": "/images/norris/sec03_img05.jpg",
+        "imageSp": "/images/norris/sp_sec03_img05.jpg",
+        "href": "/beautiful_skin/"
+      },
+      {
+        "name": "真皮笔4",
+        "text": "使用显微针在皮肤上打孔，利用自然愈合力使皮肤更加美丽。世界上每秒最快的振动频率可以在最短的停机时间内进行治疗。有效收紧痤疮疤痕和毛孔。",
+        "image": "/images/norris/sec03_img06.jpg",
+        "imageSp": "/images/norris/sp_sec03_img06.jpg",
+        "href": "/dermapen/"
+      }
+    ]
+  },
+  "features": {
+    "title": "Norris Clinic的三大特色",
+    "text": "诺里斯诊所诞生的目的是继续成为一个让您感到舒适、安心寻求建议的地方和人。我们是一家美容诊所，帮助每位患者改善并解决他们独特的问题。如果您想在大阪接受美容治疗，请联系 Norris Clinic。",
+    "items": [
+      {
+        "title": "全方位呵护您的抗衰老护理",
+        "text": "这是一家为您的整个身体提供全面护理的诊所，而不仅仅是您的脸部。通过结合高科技和最新设备，我们支持每个人的老年护理。",
+        "image": "/images/norris/sec04_bg01.jpg",
+        "href": "/rejuvenation/"
+      },
+      {
+        "title": "基于干细胞治疗的根本性皮肤改善",
+        "text": "通过再生医学“干细胞治疗”，激活细胞并促进胶原蛋白生成，我们从根本上改善您的皮肤，而不仅仅是表面。",
+        "image": "/images/norris/sec04_bg02.jpg",
+        "href": "/stem_cell/"
+      },
+      {
+        "title": "没有不必要的加售",
+        "text": "关注程度和愿望因患者而异。我们将根据您的预算为每位患者提出最佳治疗方案。",
+        "image": "/images/norris/sec04_bg03.jpg",
+        "href": "/fee/"
+      }
+    ]
+  },
+  "greeting": {
+    "title": "问候",
+    "text": "“我想要美丽”和“我想要年轻”是每个人都有的感觉，尽管程度不同。美丽和年轻给我们的日常生活带来了巨大的快乐。你不仅会对自己感到满意，还会给你与周围人的关系带来各种好处，比如受到你所爱的人的赞扬，改善你的工作关系。\n与以前相比，美容医学的负面形象不再存在。在一个不仅社会行为还应尊重个人意愿的时代，没有什么比诺里斯诊所能为每个人的幸福做出贡献更让我们高兴的了。",
+    "image": "/images/norris/doctor.png",
+    "imageAlt": "诺里斯诊所院长 千原义智 (Yoshitomo Chihara)",
+    "name": "千原义智",
+    "nameTitle": "导演",
+    "href": "/doctor/"
+  },
+  "textSection": {
+    "title": "Norris Clinic 的独特承诺以及人们选择我们的原因",
+    "blocks": [
+      {
+        "type": "h3",
+        "text": "诺里斯诊所医疗菜单示例"
+      },
+      {
+        "type": "p",
+        "text": "在诺里斯诊所，我们提供以先进的美容再生医学为中心的广泛的治疗方案，以帮助我们的许多患者获得美丽和微笑。"
+      },
+      {
+        "type": "h3",
+        "text": "选择大阪天王寺Norris Clinic的理由"
+      },
+      {
+        "type": "p",
+        "text": "年龄与想要变得美丽无关。大阪的诺里斯诊所是一家美容诊所，致力于营造一个让每个人都感到舒适的平静氛围。不仅是年轻人，连老年人都可以安心来这里。此外，我们的诊所还根据经验丰富的工作人员提供的适当咨询提供医疗服务。到时候，我们就不会做不必要的追加销售。我们将根据患者的预算、意愿和关注程度，提出最适合患者满意的治疗方法。"
+      },
+      {
+        "type": "p",
+        "text": "首先，请通过电话或在线预订表告诉我们您的美容问题。大阪诺里斯诊所将帮助您改善和解决您的烦恼，为您提供充满美丽和微笑的日子。"
+      }
+    ]
+  },
+  "clinicTable": {
+    "title": "如果您正在寻找大阪天王寺/难波的美容诊所，就来Norris Clinic吧。",
+    "rows": [
+      {
+        "label": "诊所名称",
+        "value": "Norris Clinic 美容皮肤科/泌尿科/再生医学"
+      },
+      {
+        "label": "导演",
+        "value": "千原义智"
+      },
+      {
+        "label": "地址",
+        "value": "邮编：543-0031 大阪府大阪市天王寺区石月町 18-21 上六时大厦 4 楼"
+      },
+      {
+        "label": "TEL",
+        "value": "06-6772-3456"
+      },
+      {
+        "label": "医疗时间",
+        "value": "10:30～19:00"
+      },
+      {
+        "label": "休息日",
+        "value": "假期不规律"
+      }
+    ]
+  },
+  "instagram": {
+    "title": "Instagram",
+    "avatar": "/images/norris/insta/profile.webp",
+    "bio": "@norris_beautyclinic",
+    "images": [
+      "/images/norris/insta/post01.jpg",
+      "/images/norris/insta/post02.jpg",
+      "/images/norris/insta/post03.jpg",
+      "/images/norris/insta/post04.jpg",
+      "/images/norris/insta/post05.jpg",
+      "/images/norris/insta/post06.jpg",
+      "/images/norris/insta/post07.jpg",
+      "/images/norris/insta/post08.jpg"
+    ]
+  },
+  "instagramNote": ""
+}

@@ -1,0 +1,44 @@
+{
+  "about": {
+    "title": "诊所介绍",
+    "body": [
+      {
+        "type": "p",
+        "text": "我们位于上六时大厦 4 楼。请使用电梯。"
+      }
+    ],
+    "image": "/images/norris/hinyou.png"
+  },
+  "facilities": [
+    {
+      "name": "接待处",
+      "body": "我们要求您保留医疗卡并填写医疗调查问卷。",
+      "image": "/images/norris/sec_02_ttlbg001.jpg"
+    },
+    {
+      "name": "候诊室",
+      "body": "每个座位均配有 USB 端口。您可以舒适地等待，同时用隔断保护您的隐私。",
+      "image": "/images/norris/sec_02_ttlbg002.jpg"
+    },
+    {
+      "name": "咨询室",
+      "body": "这是一个私人房间，您可以在那里进行平静的咨询。",
+      "image": "/images/norris/sec_02_ttlbg003.jpg"
+    },
+    {
+      "name": "脱毛室",
+      "body": "这是专门进行医学脱毛的治疗室。",
+      "image": "/images/norris/sec03_img01.jpg"
+    },
+    {
+      "name": "剥皮室",
+      "body": "这是进行脱皮等处理的房间。",
+      "image": "/images/norris/sec_02_ttlbg005.jpg"
+    },
+    {
+      "name": "手术室",
+      "body": "治疗在洁净的环境中进行。",
+      "image": "/images/norris/sec_02_ttlbg006.jpg"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "name": "Yoshitomo Chihara",
+  "romanName": "Yoshitomo Chihara",
+  "title": "Director",
+  "image": "/images/norris/doctor.png",
+  "message": [
+    {
+      "type": "p",
+      "text": "Hello. My name is Yoshitomo Chihara, and I am the director of Norris Clinic. I previously worked as a urologist at a general hospital/clinic. While performing highly difficult plastic surgery techniques, I became fascinated with the pursuit of this technique. The patient will be happy with what he or she has designed and it will take shape with his or her own hands, and the patient will feel happy for the rest of his or her life."
+    },
+    {
+      "type": "p",
+      "text": "I decided to pursue a career in aesthetic medicine as a place where I could make the most of my skills. In clinical aesthetic medicine, a design that more closely reflects the wishes of the patient is required. We will select the treatment method by providing counseling, including advice from a doctor, while considering the patient's wishes first."
+    },
+    {
+      "type": "p",
+      "text": "Nothing can replace the joy I feel when I see a patient's smile after treatment or when I hear them say, ``I'm glad I received the treatment.''"
+    },
+    {
+      "type": "p",
+      "text": "We want Norris Clinic to be a place where you can feel free to consult when you have a problem or problem, just like a medical institution that treats illness or injury. Regardless of the level of your problem, please feel free to contact us. We are looking forward to the day when we can meet everyone."
+    }
+  ],
+  "career": [
+    "1999 Resident, Department of Urology, Nara Medical University",
+    "2000 Doctor, Department of Urology, Kikkoukai Tane General Hospital",
+    "2001 Nara Prefectural Medical University Graduate School",
+    "2005 Doctor, Department of Urology, Nara Medical University",
+    "2006 Nara Prefectural Nara Hospital (at that time) Urology Doctor",
+    "2007 Postdoctoral Researcher, Norris Cancer Center, University of Southern California",
+    "2009 Director, Department of Pathology, National Cancer Center (then) Research Institute",
+    "2010 Lecturer, Department of Molecular Pathology, Nara Medical University",
+    "2015 Director of Urology, Saiseikai Chuwa Hospital",
+    "2019 Director of Sakae Central Clinic (currently Amore Clinic)",
+    "2022 Norris Beauty Clinic Opening/Director"
+  ],
+  "qualifications": [
+    "insurance doctor",
+    "Japan Medical Association certified industrial physician",
+    "Doctor of Medicine, Nara Prefectural University of Medicine",
+    "Corpse autopsy qualification",
+    "Doctors prescribed in Article 15, Paragraph 1 of the Physically Disabled Persons Welfare Act (for kidney/bladder or rectal dysfunction)",
+    "Affiliated with the Japanese Society for Regenerative Medicine"
+  ]
+}

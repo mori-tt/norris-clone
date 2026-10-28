@@ -1,0 +1,22 @@
+{
+  "hoursTable": [
+    {
+      "label": "Medical hours",
+      "value": "10:30〜19:00"
+    },
+    {
+      "label": "Closed days",
+      "value": "Irregular holidays (please check the calendar)"
+    },
+    {
+      "label": "TEL",
+      "value": "06-6772-3456"
+    }
+  ],
+  "calendar": {
+    "year": 2026,
+    "month": 10,
+    "closedDays": [],
+    "note": "Clinic dates are subject to change. Please call us to confirm before your visit."
+  }
+}
