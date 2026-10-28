@@ -5,8 +5,8 @@ import { PostList } from "@/components/PostList";
 
 export const metadata: Metadata = { title: "お知らせ" };
 
-export default function NewsPage() {
-  const posts = getPosts("news");
+export default async function NewsPage() {
+  const posts = await getPosts("news");
   return (
     <>
       <PageHero ja="お知らせ" en="NEWS" />

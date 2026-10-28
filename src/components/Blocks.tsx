@@ -45,6 +45,14 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
                 />
               </figure>
             );
+          case "html":
+            // 自前の .md / CMS コンテンツ前提のためサニタイズは行わない
+            return (
+              <div
+                key={i}
+                dangerouslySetInnerHTML={{ __html: b.html }}
+              />
+            );
           case "link":
             return b.external ? (
               <p key={i}>

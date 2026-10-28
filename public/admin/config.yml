@@ -1,0 +1,242 @@
+# Decap CMS 設定
+# ローカル編集: `npm run cms`(decap-server)起動後に /admin/ を開く。
+# ローカルでは git プロキシ経由で content/ 以下のファイルを直接書き換える。
+# 本番公開サイト上の /admin/ はバックエンド未設定のためログインできない(表示のみ)。
+backend:
+  name: git-gateway
+local_backend: true
+media_folder: "public/images"
+public_folder: "/images"
+locale: "ja"
+
+collections:
+  # ========== 記事(フォルダ = frontmatter+markdown) ==========
+  - name: "news"
+    label: "お知らせ"
+    label_singular: "お知らせ"
+    folder: "content/news"
+    create: true
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "スラッグ(半角英数とハイフン)", name: "slug", widget: "string", pattern: ["^[a-z0-9-]+$", "半角英数とハイフンのみ"] }
+      - { label: "タイトル", name: "title", widget: "string" }
+      - { label: "日付", name: "date", widget: "date", format: "YYYY-MM-DD" }
+      - { label: "カテゴリ", name: "category", widget: "string", default: "お知らせ" }
+      - { label: "アイキャッチ", name: "image", widget: "image", required: false }
+      - { label: "抜粋", name: "excerpt", widget: "text", required: false }
+      - { label: "本文", name: "body", widget: "markdown" }
+
+  - name: "column"
+    label: "メディカルコラム"
+    label_singular: "コラム"
+    folder: "content/column"
+    create: true
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "スラッグ(半角英数とハイフン)", name: "slug", widget: "string", pattern: ["^[a-z0-9-]+$", "半角英数とハイフンのみ"] }
+      - { label: "タイトル", name: "title", widget: "string" }
+      - { label: "日付", name: "date", widget: "date", format: "YYYY-MM-DD" }
+      - { label: "カテゴリ", name: "category", widget: "string", default: "コラム" }
+      - { label: "アイキャッチ", name: "image", widget: "image", required: false }
+      - { label: "抜粋", name: "excerpt", widget: "text", required: false }
+      - { label: "本文", name: "body", widget: "markdown" }
+
+  - name: "menu"
+    label: "診療メニュー"
+    label_singular: "メニュー"
+    folder: "content/menu"
+    create: true
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{slug}}"
+    fields:
+      - { label: "スラッグ(半角英数とハイフン)", name: "slug", widget: "string", pattern: ["^[a-z0-9-]+$", "半角英数とハイフンのみ"] }
+      - { label: "名前", name: "name", widget: "string" }
+      - { label: "英語名", name: "nameEn", widget: "string", required: false }
+      - label: "分類"
+        name: "kind"
+        widget: "select"
+        options:
+          - { label: "診療メニュー", value: "treatment" }
+          - { label: "症状・お悩み", value: "concern" }
+          - { label: "機器", value: "device" }
+          - { label: "メンズ", value: "mens" }
+        default: "treatment"
+      - { label: "キャッチコピー", name: "catchcopy", widget: "string", required: false }
+      - { label: "リード文", name: "lead", widget: "text", required: false }
+      - { label: "メイン画像", name: "image", widget: "image", required: false }
+      - { label: "特徴(箇条書き)", name: "features", widget: "list", field: { label: "項目", name: "item", widget: "string" }, required: false }
+      - { label: "料金メモ", name: "priceNote", widget: "string", required: false }
+      - { label: "関連メニュー(スラッグ)", name: "related", widget: "list", field: { label: "スラッグ", name: "item", widget: "string" }, required: false }
+      - { label: "表示順", name: "order", widget: "number", value_type: "int", default: 0 }
+      - { label: "本文", name: "body", widget: "markdown" }
+
+  # ========== 単一ファイル設定 ==========
+  - name: "settings"
+    label: "サイト設定"
+    files:
+      - name: "site"
+        label: "サイト基本情報・テーマ"
+        file: "content/site.json"
+        format: "json"
+        fields:
+          - { label: "クリニック名", name: "name", widget: "string" }
+          - { label: "英語名", name: "nameEn", widget: "string", required: false }
+          - { label: "キャッチフレーズ", name: "tagline", widget: "string", required: false }
+          - { label: "説明文(SEO)", name: "description", widget: "text", required: false }
+          - { label: "サイトURL", name: "url", widget: "string" }
+          - { label: "電話番号", name: "tel", widget: "string" }
+          - { label: "郵便番号", name: "postalCode", widget: "string", required: false }
+          - { label: "住所", name: "address", widget: "string", required: false }
+          - { label: "住所補足", name: "addressNote", widget: "string", required: false }
+          - { label: "院長名", name: "director", widget: "string", required: false }
+          - { label: "WEB予約URL", name: "reserveUrl", widget: "string", required: false }
+          - { label: "問い合わせURL", name: "contactUrl", widget: "string", required: false }
+          - { label: "LINE URL", name: "lineUrl", widget: "string", required: false }
+          - { label: "Instagram URL", name: "instagramUrl", widget: "string", required: false }
+          - { label: "Instagramユーザー名", name: "instagramUser", widget: "string", required: false }
+          - label: "テーマカラー"
+            name: "theme"
+            widget: "object"
+            fields:
+              - { label: "メイン", name: "primary", widget: "color" }
+              - { label: "メイン(濃)", name: "primaryDark", widget: "color" }
+              - { label: "アクセント", name: "accent", widget: "color" }
+              - { label: "背景", name: "background", widget: "color" }
+              - { label: "文字", name: "text", widget: "color" }
+
+      - name: "home"
+        label: "トップページ"
+        file: "content/home.json"
+        format: "json"
+        fields:
+          - label: "ヒーロー"
+            name: "hero"
+            widget: "object"
+            fields:
+              - label: "スライド"
+                name: "slides"
+                widget: "list"
+                fields:
+                  - { label: "画像", name: "image", widget: "image" }
+                  - { label: "タイトル", name: "title", widget: "string" }
+                  - { label: "サブタイトル", name: "subtitle", widget: "string", required: false }
+          - label: "選ばれる理由"
+            name: "features"
+            widget: "object"
+            fields:
+              - { label: "見出し", name: "title", widget: "string" }
+              - label: "項目"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "タイトル", name: "title", widget: "string" }
+                  - { label: "本文", name: "text", widget: "text" }
+          - { label: "Instagram注記", name: "instagramNote", widget: "string", required: false }
+
+      - name: "schedule"
+        label: "診療時間・休診日"
+        file: "content/schedule.json"
+        format: "json"
+        fields:
+          - label: "診療時間表"
+            name: "hoursTable"
+            widget: "list"
+            fields:
+              - { label: "項目", name: "label", widget: "string" }
+              - { label: "値", name: "value", widget: "string" }
+          - label: "当月カレンダー"
+            name: "calendar"
+            widget: "object"
+            fields:
+              - { label: "年", name: "year", widget: "number", value_type: "int" }
+              - { label: "月", name: "month", widget: "number", value_type: "int", min: 1, max: 12 }
+              - { label: "休診日(日付)", name: "closedDays", widget: "list", field: { label: "日", name: "day", widget: "number", value_type: "int" } }
+              - { label: "注記", name: "note", widget: "string", required: false }
+
+      - name: "fee"
+        label: "料金一覧"
+        file: "content/fee.json"
+        format: "json"
+        fields:
+          - { label: "注記", name: "note", widget: "string", required: false }
+          - label: "カテゴリ"
+            name: "categories"
+            widget: "list"
+            fields:
+              - { label: "カテゴリ名", name: "name", widget: "string" }
+              - { label: "注記", name: "note", widget: "string", required: false }
+              - label: "項目"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "項目名", name: "name", widget: "string" }
+                  - { label: "価格", name: "price", widget: "string" }
+                  - { label: "注記", name: "note", widget: "string", required: false }
+
+      - name: "access"
+        label: "アクセス"
+        file: "content/access.json"
+        format: "json"
+        fields:
+          - label: "電車でお越しの方"
+            name: "byTrain"
+            widget: "list"
+            fields:
+              - { label: "路線", name: "line", widget: "string" }
+              - { label: "詳細", name: "detail", widget: "string" }
+          - { label: "車でお越しの方", name: "byCar", widget: "text", required: false }
+          - { label: "Googleマップ埋め込みURL", name: "mapEmbedUrl", widget: "string", required: false }
+          - { label: "マップ注記", name: "mapNote", widget: "string", required: false }
+
+      - name: "clinic"
+        label: "クリニック紹介・設備"
+        file: "content/clinic.json"
+        format: "json"
+        fields:
+          - label: "クリニックについて"
+            name: "about"
+            widget: "object"
+            fields:
+              - { label: "タイトル", name: "title", widget: "string" }
+              - { label: "画像", name: "image", widget: "image", required: false }
+              - label: "本文"
+                name: "body"
+                widget: "list"
+                types:
+                  - { label: "段落", name: "p", widget: "object", fields: [{ label: "文", name: "text", widget: "text" }] }
+                  - { label: "見出し(大)", name: "h2", widget: "object", fields: [{ label: "文", name: "text", widget: "string" }] }
+                  - { label: "見出し(小)", name: "h3", widget: "object", fields: [{ label: "文", name: "text", widget: "string" }] }
+                  - label: "箇条書き"
+                    name: "ul"
+                    widget: "object"
+                    fields:
+                      - { label: "項目", name: "items", widget: "list", field: { label: "項目", name: "item", widget: "string" } }
+          - label: "設備"
+            name: "facilities"
+            widget: "list"
+            fields:
+              - { label: "名前", name: "name", widget: "string" }
+              - { label: "説明", name: "body", widget: "text" }
+              - { label: "画像", name: "image", widget: "image", required: false }
+
+      - name: "doctor"
+        label: "院長紹介"
+        file: "content/doctor.json"
+        format: "json"
+        fields:
+          - { label: "氏名", name: "name", widget: "string" }
+          - { label: "ローマ字", name: "romanName", widget: "string", required: false }
+          - { label: "肩書", name: "title", widget: "string", default: "院長" }
+          - { label: "写真", name: "image", widget: "image", required: false }
+          - label: "メッセージ"
+            name: "message"
+            widget: "list"
+            types:
+              - { label: "段落", name: "p", widget: "object", fields: [{ label: "文", name: "text", widget: "text" }] }
+          - { label: "経歴", name: "career", widget: "list", field: { label: "項目", name: "item", widget: "string" }, required: false }
+          - { label: "資格・所属", name: "qualifications", widget: "list", field: { label: "項目", name: "item", widget: "string" }, required: false }

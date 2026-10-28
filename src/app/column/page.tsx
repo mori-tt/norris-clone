@@ -5,8 +5,8 @@ import { PostList } from "@/components/PostList";
 
 export const metadata: Metadata = { title: "メディカルコラム" };
 
-export default function ColumnPage() {
-  const posts = getPosts("column");
+export default async function ColumnPage() {
+  const posts = await getPosts("column");
   return (
     <>
       <PageHero ja="メディカルコラム" en="COLUMN" />

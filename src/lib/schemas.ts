@@ -17,6 +17,8 @@ export const blockSchema = z.discriminatedUnion("type", [
     text: z.string(),
     external: z.boolean().default(false),
   }),
+  // .md ファイルや外部CMS由来の本文は html ブロックとして保持(自前コンテンツ前提)
+  z.object({ type: z.literal("html"), html: z.string() }),
 ]);
 export type Block = z.infer<typeof blockSchema>;
 

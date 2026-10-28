@@ -1,6 +1,8 @@
-import { readFileSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
-import type { z } from "zod";
+import { z } from "zod";
+import { fetchExternalPosts } from "./external-cms";
+import { markdownToBlocks, parseMarkdown } from "./markdown";
 import {
   accessSchema,
   clinicSchema,
@@ -30,9 +32,7 @@ import {
  * CONTENT_DIR を指定すると別ディレクトリ(=別クリニック)のコンテンツでビルドできる。
  *   CONTENT_DIR=../sites/clinic-b npm run build
  */
-export const contentDir = path.resolve(
-  process.env.CONTENT_DIR ?? "content",
-);
+export const contentDir = path.resolve(process.env.CONTENT_DIR ?? "content");
 
 function readJson<S extends z.ZodType>(
   schema: S,
@@ -54,15 +54,36 @@ function readJson<S extends z.ZodType>(
   return parsed.data;
 }
 
-function readDir<S extends z.ZodType>(
+function readDirJson<S extends z.ZodType>(
   schema: S,
   ...segments: string[]
 ): z.infer<S>[] {
   const dir = path.join(contentDir, ...segments);
+  if (!existsSync(dir)) return [];
   return readdirSync(dir)
     .filter((f) => f.endsWith(".json"))
     .sort()
     .map((f) => readJson(schema, ...segments, f));
+}
+
+/** frontmatter の date を "YYYY-MM-DD" に正規化(YAMLはDateオブジェクトになる) */
+function normalizeDate(v: unknown): string {
+  if (v instanceof Date) return v.toISOString().slice(0, 10);
+  return String(v ?? "").slice(0, 10);
+}
+
+function readDirMd(...segments: string[]): { fileSlug: string; data: Record<string, unknown>; body: string }[] {
+  const dir = path.join(contentDir, ...segments);
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir)
+    .filter((f) => f.endsWith(".md"))
+    .sort()
+    .map((f) =>
+      parseMarkdown(
+        readFileSync(path.join(dir, f), "utf8"),
+        f.replace(/\.md$/, ""),
+      ),
+    );
 }
 
 export const getSite = (): Site => readJson(siteSchema, "site.json");
@@ -83,8 +104,24 @@ export const getAccess = (): Access => readJson(accessSchema, "access.json");
 
 export const getFee = (): Fee => readJson(feeSchema, "fee.json");
 
-export const getMenuItems = (): MenuItem[] =>
-  readDir(menuItemSchema, "menu").sort((a, b) => a.order - b.order);
+/** menu/*.json と menu/*.md(frontmatter)の両対応 */
+export const getMenuItems = (): MenuItem[] => {
+  const fromJson = readDirJson(menuItemSchema, "menu");
+  const fromMd = readDirMd("menu").map((f) => {
+    const parsed = menuItemSchema
+      .omit({ slug: true, body: true })
+      .extend({ slug: z.string().optional() })
+      .safeParse({ ...f.data, slug: f.data.slug ?? f.fileSlug });
+    if (!parsed.success) {
+      throw new Error(
+        `コンテンツの形式が正しくありません: ${path.join(contentDir, "menu", f.fileSlug)}.md\n${parsed.error.message}`,
+      );
+    }
+    const { ...rest } = parsed.data;
+    return menuItemSchema.parse({ ...rest, body: markdownToBlocks(f.body) });
+  });
+  return [...fromJson, ...fromMd].sort((a, b) => a.order - b.order);
+};
 
 export const getMenuItem = (slug: string): MenuItem | undefined =>
   getMenuItems().find((m) => m.slug === slug);
@@ -94,15 +131,43 @@ export const getMenuByKind = (kind: MenuItem["kind"]): MenuItem[] =>
 
 export type PostCollection = "news" | "column";
 
-export const getPosts = (collection: PostCollection): Post[] =>
-  readDir(postSchema, collection).sort((a, b) =>
-    b.date.localeCompare(a.date),
-  );
+function getLocalPosts(collection: PostCollection): Post[] {
+  const fromJson = readDirJson(postSchema, collection);
+  const fromMd = readDirMd(collection).map((f) => {
+    const parsed = postSchema.safeParse({
+      ...f.data,
+      slug: f.data.slug ?? f.fileSlug,
+      date: normalizeDate(f.data.date),
+      body: markdownToBlocks(f.body),
+    });
+    if (!parsed.success) {
+      throw new Error(
+        `コンテンツの形式が正しくありません: ${path.join(contentDir, collection, f.fileSlug)}.md\n${parsed.error.message}`,
+      );
+    }
+    return parsed.data;
+  });
+  return [...fromJson, ...fromMd].sort((a, b) => b.date.localeCompare(a.date));
+}
 
-export const getPost = (
+/**
+ * ローカル(content/news|column)に外部CMS(microCMS/Newt)の記事をマージ。
+ * 同slugは外部CMSが優先。環境変数未設定ならローカルのみ。
+ */
+export const getPosts = async (
+  collection: PostCollection,
+): Promise<Post[]> => {
+  const merged = new Map<string, Post>();
+  for (const p of getLocalPosts(collection)) merged.set(p.slug, p);
+  for (const p of await fetchExternalPosts(collection)) merged.set(p.slug, p);
+  return [...merged.values()].sort((a, b) => b.date.localeCompare(a.date));
+};
+
+export const getPost = async (
   collection: PostCollection,
   slug: string,
-): Post | undefined => getPosts(collection).find((p) => p.slug === slug);
+): Promise<Post | undefined> =>
+  (await getPosts(collection)).find((p) => p.slug === slug);
 
 export const getRelatedMenuItems = (item: MenuItem): MenuItem[] =>
   item.related

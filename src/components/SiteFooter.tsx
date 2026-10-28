@@ -2,10 +2,10 @@ import Link from "next/link";
 import { getNavigation, getPosts, getSite } from "@/lib/content";
 import { InstagramIcon, LineIcon, MapPinIcon, PhoneIcon } from "./icons";
 
-export function SiteFooter() {
+export async function SiteFooter() {
   const site = getSite();
   const nav = getNavigation();
-  const columns = getPosts("column").slice(0, 3);
+  const columns = (await getPosts("column")).slice(0, 3);
 
   return (
     <footer className="border-t border-accent/60 bg-white">

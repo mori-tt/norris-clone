@@ -19,10 +19,10 @@ import {
   PhoneIcon,
 } from "@/components/icons";
 
-export default function HomePage() {
+export default async function HomePage() {
   const site = getSite();
   const home = getHome();
-  const news = getPosts("news").slice(0, 3);
+  const news = (await getPosts("news")).slice(0, 3);
   const treatments = getMenuByKind("treatment");
   const schedule = getSchedule();
 

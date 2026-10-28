@@ -24,7 +24,61 @@ body {
   color: var(--text);
 }
 
-/* 記事本文(Blocks)の行間 */
+/* 記事本文(Blocks)・markdown生成HTMLのスタイル */
 .prose-clinic p {
   line-height: 1.9;
+}
+.prose-clinic h2 {
+  margin-top: 2rem;
+  border-left: 4px solid var(--primary);
+  padding-left: 0.75rem;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.prose-clinic h3 {
+  margin-top: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+.prose-clinic ul,
+.prose-clinic ol {
+  padding-left: 1.5rem;
+  line-height: 1.9;
+}
+.prose-clinic ul {
+  list-style: disc;
+}
+.prose-clinic ol {
+  list-style: decimal;
+}
+.prose-clinic a {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+.prose-clinic img {
+  border-radius: 0.25rem;
+  margin: 1rem 0;
+}
+.prose-clinic blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 1rem;
+  color: var(--text);
+  opacity: 0.8;
+}
+.prose-clinic hr {
+  border-color: var(--accent);
+  margin: 2rem 0;
+}
+.prose-clinic table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+.prose-clinic th,
+.prose-clinic td {
+  border: 1px solid var(--accent);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
 }

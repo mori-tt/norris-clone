@@ -8,12 +8,12 @@ import { PageHero } from "@/components/PageHero";
 
 export const metadata: Metadata = { title: "サイトマップ" };
 
-export default function SiteMapPage() {
+export default async function SiteMapPage() {
   const treatments = getMenuByKind("treatment");
   const concerns = getMenuByKind("concern");
   const devices = getMenuByKind("device");
-  const news = getPosts("news");
-  const columns = getPosts("column");
+  const news = await getPosts("news");
+  const columns = await getPosts("column");
 
   const sections: { title: string; links: { href: string; label: string }[] }[] =
     [
