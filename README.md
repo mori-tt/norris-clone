@@ -93,9 +93,10 @@ node scripts/scrape-norris-pages.mjs    # ページ本文+画像を再取得
 
 ## 注意点・制約
 
-- 本家由来のデッドリンク(`/liftup/` 等)は本家と同じく404になります
+- 本家由来のデッドリンク(`/aga/` `/liftup/`)とアフィリエイト経由リンクはレンダリング時にアンカーを剥がしてテキストのみ残します(`src/lib/sanitize.ts`)
 - `script/iframe/noscript/onclick` はスクレイプ時に除去済み(GTM・予約JS等は含まれません)
-- `/contact/` `/reserve/` のフォームは PHP 必須のレンタルサーバー向けに `public/contact.php` 経由で送信できます(下記「フォーム送信」参照)。PHP が無い環境では投稿は `?error=1` にリダイレクトされます
+- `/contact/` `/reserve/` のフォームは PHP 必須のレンタルサーバー向けに `public/contact.php` 経由で送信できます(下記「フォーム送信」参照)。PHP が実行できない静的ホスト(GitHub Pages等)では、FormEnhance が送信をインターセプトして電話案内を表示します(送信失敗ではなく案内に倒す)
+- GitHub Pages 向けビルド(`scripts/fix-base-path.mjs` 適用時)は `contact.php` と `admin/` を出力から除去します。PHPホストへ出す場合はスクリプト適用前の `out/` を使ってください
 
 ## フォーム送信(contact.php)
 

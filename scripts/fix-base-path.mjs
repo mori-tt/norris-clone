@@ -15,7 +15,7 @@
 // 新しいバイト長でヘッダを再計算」する必要がある。
 
 import { existsSync } from "node:fs";
-import { readdir, readFile, rename, stat, writeFile } from "node:fs/promises";
+import { readdir, readFile, rename, rm, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const [outDir = "out", baseArg = ""] = process.argv.slice(2);
@@ -223,4 +223,17 @@ async function decodeOutPaths(dir) {
 await decodeOutPaths(outDir);
 if (renamed > 0) {
   console.log(`fix-base-path: decoded ${renamed} percent-encoded path(s) under ${outDir}`);
+}
+
+// セキュリティ: このスクリプトは GitHub Pages(静的ホスト)向けの後処理専用。
+// 静的ホストで機能しない・公開すべきでないファイルを out/ から除去する。
+// - contact.php: 実行されず PHP ソースが丸見えになる(内部設定の漏洩)
+// - admin/: 認証の無い Decap CMS シェルが公開される(local_backend 専用)
+// ※ Lolipop 等の PHP ホストへ出す場合はこのスクリプトを通さず out/ を使う。
+const removeTargets = ["contact.php", "admin"];
+for (const rel of removeTargets) {
+  const p = path.join(outDir, rel);
+  if (!existsSync(p)) continue;
+  await rm(p, { recursive: true, force: true });
+  console.log(`fix-base-path: removed ${rel} (not for static hosting)`);
 }

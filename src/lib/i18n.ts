@@ -313,6 +313,9 @@ export function localizeFormHtml(html: string, locale: Locale): string {
   return out;
 }
 
+/** フォーム不可時に案内する電話番号(FormEnhance用) */
+export const FORM_TEL = "06-6772-3456";
+
 /** フォーム送信結果メッセージ(FormEnhance用) */
 export const FORM_RESULT = {
   sent: {
@@ -324,5 +327,10 @@ export const FORM_RESULT = {
     ja: "送信できませんでした。入力内容をご確認の上、時間を置いて再度お試しください。",
     en: "Sending failed. Please check your input and try again later.",
     zh: "发送失败。请检查输入内容，稍后重试。",
+  },
+  unavailable: {
+    ja: "現在、このページからのフォーム送信はご利用いただけません。お急ぎの方はお電話にてご連絡ください: ",
+    en: "Online form submission is currently unavailable. Please call us instead: ",
+    zh: "目前无法通过此表单提交。请致电联系我们: ",
   },
 } as const;

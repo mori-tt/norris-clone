@@ -259,3 +259,19 @@ html {
     width: 100%;
   }
 }
+
+/* フォーム送信不可(静的ホスト)時の案内 */
+.form-unavailable-note {
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  border: 1px solid #e2a03f;
+  border-radius: 4px;
+  background: #fdf6e9;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+.form-unavailable-note a {
+  color: inherit;
+  text-decoration: underline;
+  white-space: nowrap;
+}

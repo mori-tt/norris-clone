@@ -1,6 +1,7 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { contentDir } from "./content";
+import { sanitizeScrapedHtml } from "./sanitize";
 
 /**
  * scripts/scrape-norris-pages.mjs で取得した下層ページ。
@@ -45,12 +46,27 @@ export function getScrapedPage(pathname: string, locale = "ja"): ScrapedPage | n
   if (locale !== "ja") {
     const i18nFile = path.join(contentDir, "i18n", locale, "pages", rel, "index.json");
     if (existsSync(i18nFile)) {
-      return JSON.parse(readFileSync(i18nFile, "utf8")) as ScrapedPage;
+      return sanitizeScrapedPage(
+        JSON.parse(readFileSync(i18nFile, "utf8")) as ScrapedPage,
+      );
     }
   }
   const file = path.join(pagesRoot(), rel, "index.json");
   if (!existsSync(file)) return null;
-  return JSON.parse(readFileSync(file, "utf8")) as ScrapedPage;
+  return sanitizeScrapedPage(
+    JSON.parse(readFileSync(file, "utf8")) as ScrapedPage,
+  );
+}
+
+/** 読み込んだスクレイプJSONのHTMLフィールドをサニタイズして返す */
+function sanitizeScrapedPage(page: ScrapedPage): ScrapedPage {
+  return {
+    ...page,
+    html: sanitizeScrapedHtml(page.html),
+    pageTitleHtml: page.pageTitleHtml
+      ? sanitizeScrapedHtml(page.pageTitleHtml)
+      : page.pageTitleHtml,
+  };
 }
 
 /** content/pages 配下の全URLパス("/botox/"形式)を列挙 */
