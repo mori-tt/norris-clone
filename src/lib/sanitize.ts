@@ -121,11 +121,106 @@ function stripScripts(html: string): string {
   return html.replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, "");
 }
 
-/** href="javascript:..." を中立化(元サイトではJSフック用、クローンでは機能しない) */
+/**
+ * script依存で動作しないウィジェットを除去。
+ * 包茎診断ツール(#hokei-diagnosis-tool)はインラインscriptが必須で、
+ * 除去後は「クリックできそうで反応しない」PR導線の残骸になるため、
+ * マークアップごと取り除く(記事本文の流れは保持される)。
+ */
+const DEAD_WIDGET_IDS = ["hokei-diagnosis-tool"];
+
+function removeElementById(html: string, id: string): string {
+  const openRe = new RegExp(`<[a-z]+\\b[^>]*id=["']${id}["'][^>]*>`, "i");
+  const m = openRe.exec(html);
+  if (!m) return html;
+  const tag = m[0].match(/^<([a-z]+)/i)![1];
+  const tagRe = new RegExp(`</?${tag}\\b[^>]*>`, "gi");
+  let depth = 1;
+  let i = m.index + m[0].length;
+  tagRe.lastIndex = i;
+  while (depth > 0) {
+    const t = tagRe.exec(html);
+    if (!t) break;
+    depth += t[0].startsWith("</") ? -1 : 1;
+    i = tagRe.lastIndex;
+  }
+  return html.slice(0, m.index) + html.slice(i);
+}
+
+function stripDeadWidgets(html: string): string {
+  let out = html;
+  for (const id of DEAD_WIDGET_IDS) {
+    if (!out.includes(id)) continue;
+    // ウィジェット固有のCSSを含む <style> も除去
+    out = out.replace(
+      new RegExp(
+        `<style\\b[^>]*>(?:(?!</style>)[\\s\\S])*#${id}[\\s\\S]*?</style>`,
+        "gi",
+      ),
+      "",
+    );
+    out = removeElementById(out, id);
+  }
+  return out;
+}
+
+/** page.styles[](<style>の中身)用。ウィジェット専用CSSを含むブロックを掃除する */
+export function sanitizeStyleText(css: string): string {
+  let out = css;
+  for (const id of DEAD_WIDGET_IDS) {
+    if (!out.includes(id)) continue;
+    // 全体がウィジェットCSSのブロックはまるごと不要
+    if ((out.match(new RegExp(id, "g")) ?? []).length > 5) return "";
+    // 混在CSSから #id を含む個別ルールだけ除去
+    out = out.replace(
+      new RegExp(`[^{}@]*#${id}[^{}]*\\{[^{}]*\\}`, "g"),
+      "",
+    );
+  }
+  return out;
+}
+
+/**
+ * アンカー剥がし後に残った「ボタン風だがリンクを持たない」要素を
+ * dead-cta クラスでマークする(見た目を非活性にするCSSと組み合わせ)。
+ * SWELLのボタンブロック(corg-inline-btn / corgi-block-button)が対象。
+ */
+function markDeadCtas(html: string): string {
+  const re =
+    /(<(?:span|div|p)[^>]*class="[^"]*(?:corg-inline-btn|corgi-block-button)[^"]*"[^>]*>)([\s\S]*?)(<\/(?:span|div|p)>)/gi;
+  return html.replace(re, (m, open: string, inner: string, close: string) => {
+    if (/<a\b/i.test(inner)) return m;
+    const marked = open.replace(
+      /class="([^"]*)"/,
+      (_c, cls: string) => `class="${cls} dead-cta"`,
+    );
+    return marked + inner + close;
+  });
+}
+
+/**
+ * href="javascript:..." の href 属性を除去。
+ * 元サイトではJSフック用のプレースホルダ(例:ホバーで開くナビの親項目)で、
+ * クローンでは機能しない。href="#" 等にするとクリック時にトップへ
+ * ジャンプしてしまうため、属性自体を外して非リンク化する。
+ */
 function neutralizeJavascriptHrefs(html: string): string {
   return html.replace(
-    /href\s*=\s*(["'])\s*javascript:[^"']*\1/gi,
-    'href="#"',
+    /\s*href\s*=\s*(["'])\s*javascript:[^"']*\1/gi,
+    "",
+  );
+}
+
+/**
+ * 外部ドメインへの form action を除去。
+ * スクレイプした検索フォーム等が本家サイトへ GET/POST すると、
+ * 入力内容が外部に送信されてしまう。action を外すと同一ページへの
+ * 送信(実質リロード)になり情報は外部に出ない。
+ */
+function neutralizeExternalFormActions(html: string): string {
+  return html.replace(
+    /(<form\b[^>]*?)\saction\s*=\s*(["'])https?:\/\/[^"']*\2/gi,
+    "$1",
   );
 }
 
@@ -134,11 +229,14 @@ export function sanitizeScrapedHtml(html: string): string {
   if (!html) return html;
   let out = html;
   out = stripScripts(out);
+  out = stripDeadWidgets(out);
   out = neutralizeJavascriptHrefs(out);
+  out = neutralizeExternalFormActions(out);
   out = fixTruncatedDataUris(out);
   out = rewriteOriginUrls(out);
   out = unwrapAnchors(out, (href) => isAffiliate(href));
   out = unwrapAnchors(out, (href) => isDeadPath(href));
+  out = markDeadCtas(out);
   out = hardenBlankTargets(out);
   return out;
 }

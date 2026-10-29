@@ -275,3 +275,8 @@ html {
   text-decoration: underline;
   white-space: nowrap;
 }
+
+/* アンカー剥がし後の非活性CTA(リンクが無いボタン風要素) */
+.dead-cta {
+  opacity: 0.55;
+}

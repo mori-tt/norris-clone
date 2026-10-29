@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { asset } from "@/lib/asset";
 import { FormEnhance } from "@/components/FormEnhance";
+import { ColumnEnhance } from "@/components/ColumnEnhance";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { CtaBar } from "@/components/CtaBar";
@@ -153,6 +154,7 @@ export function UnderPageView({
       </div>
       <SiteFooter locale={locale} />
       <CtaBar locale={locale} />
+      <ColumnEnhance />
     </div>
   );
 }

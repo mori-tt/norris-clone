@@ -1,7 +1,7 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { contentDir } from "./content";
-import { sanitizeScrapedHtml } from "./sanitize";
+import { sanitizeScrapedHtml, sanitizeStyleText } from "./sanitize";
 
 /**
  * scripts/scrape-norris-pages.mjs で取得した下層ページ。
@@ -66,6 +66,7 @@ function sanitizeScrapedPage(page: ScrapedPage): ScrapedPage {
     pageTitleHtml: page.pageTitleHtml
       ? sanitizeScrapedHtml(page.pageTitleHtml)
       : page.pageTitleHtml,
+    styles: page.styles?.map(sanitizeStyleText),
   };
 }
 

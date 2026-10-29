@@ -1,6 +1,7 @@
 import { asset } from "@/lib/asset";
 import { localePrefix, type Locale } from "@/lib/i18n";
 import type { ScrapedPage } from "@/lib/pages";
+import { ColumnEnhance } from "@/components/ColumnEnhance";
 
 /**
  * /column/ サブサイト(SWELLテーマ)のページ描画。
@@ -44,6 +45,7 @@ export function ColumnPageView({
           __html: prefixColumnLinks(page.html, locale),
         }}
       />
+      <ColumnEnhance />
     </div>
   );
 }
