@@ -9,3 +9,10 @@ const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 export function asset(path: string): string {
   return BASE && path.startsWith("/") ? `${BASE}${path}` : path;
 }
+
+/** ベースパス付きの実パス(window.location.pathname等)からベース部を除去 */
+export function stripBase(pathname: string): string {
+  return BASE && pathname.startsWith(`${BASE}/`)
+    ? pathname.slice(BASE.length)
+    : pathname;
+}

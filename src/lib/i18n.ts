@@ -5,6 +5,8 @@
  * - ナビ・フッター・CTA・フォーム等のクローム文字列はこのファイルの辞書で翻訳する。
  */
 
+import { stripBase } from "./asset";
+
 export type Locale = "ja" | "en" | "zh";
 export const LOCALES: Locale[] = ["ja", "en", "zh"];
 
@@ -12,13 +14,14 @@ export function localePrefix(locale: Locale): string {
   return locale === "ja" ? "" : `/${locale}`;
 }
 
-/** "/en/fee/" -> locale:"en", path:"/fee/" */
+/** "/en/fee/" -> locale:"en", path:"/fee/"。ベースパス付き実URLも受け付ける */
 export function splitLocalePath(pathname: string): {
   locale: Locale;
   path: string;
 } {
-  const m = pathname.match(/^\/(en|zh)(\/.*)?$/);
-  if (!m) return { locale: "ja", path: pathname };
+  const p = stripBase(pathname);
+  const m = p.match(/^\/(en|zh)(\/.*)?$/);
+  if (!m) return { locale: "ja", path: p };
   return { locale: m[1] as Locale, path: m[2] || "/" };
 }
 
