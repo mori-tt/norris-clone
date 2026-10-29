@@ -51,8 +51,12 @@ export function MobileMenu({ locale = "ja" }: Props) {
     if (!menu) return;
     if (open) {
       const headerH = document.getElementById("header")?.offsetHeight ?? 0;
+      // position:absolute の基準(offsetParent)が親のposition指定で
+      // 変わっても正しいドキュメント座標になるよう補正する
+      const op = menu.offsetParent as HTMLElement | null;
+      const opDocTop = op ? op.getBoundingClientRect().top + window.scrollY : 0;
       menu.style.display = "block";
-      menu.style.top = `${window.scrollY + headerH}px`;
+      menu.style.top = `${window.scrollY + headerH - opDocTop}px`;
     } else {
       menu.style.display = "";
       menu.style.top = "";

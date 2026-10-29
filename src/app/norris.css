@@ -4173,7 +4173,6 @@ h2.ttl:before{
 }
 .langswitch a:hover { text-decoration: underline; }
 .langswitch a.current { font-weight: 700; color: #8e292c; }
-#header .inner { position: relative; }
 @media (max-width: 767px) {
   /* SPではabsoluteだとタグライン/sp_navに重なるため、ヘッダー最上段の帯にする */
   .langswitch {
