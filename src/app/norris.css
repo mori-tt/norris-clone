@@ -4175,12 +4175,15 @@ h2.ttl:before{
 .langswitch a.current { font-weight: 700; color: #8e292c; }
 #header .inner { position: relative; }
 @media (max-width: 767px) {
+  /* SPではabsoluteだとタグライン/sp_navに重なるため、ヘッダー最上段の帯にする */
   .langswitch {
-    top: 6px;
-    right: 6px;
+    position: static;
+    display: block;
+    text-align: center;
     font-size: 10px;
-    background: rgba(255,255,255,.75);
-    padding: 3px 6px;
-    border-radius: 3px;
+    padding: 5px 0;
+    background: #fff;
+    border-bottom: 1px solid #efe9dc;
   }
+  .langswitch a { padding: 2px 4px; }
 }
